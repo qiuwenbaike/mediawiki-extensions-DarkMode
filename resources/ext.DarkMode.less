@@ -40,8 +40,15 @@
 
 	/* START OF DARKMODE STYLES */
 	.client-darkmode {
-		background: #000;
-
+		body {
+			background-color: #000;
+		}
+		
+		/* Fix bug for Vector Legacy */
+		body.skin-vector-legacy {
+			background-color: #fff;
+		}
+		
 		/* "Default mode" link */
 		.ext-darkmode-link::before {
 			content: '\263C'; /* Sun icon */
@@ -65,15 +72,19 @@
 		.mw-kartographer-map,
 		.mw-kartographer-mapDialog-map,
 		.ext-related-articles-card-list .ext-related-articles-card-thumb {
-			filter: invert( 1 ) hue-rotate( 180deg );
 			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
+			filter: invert( 1 ) hue-rotate( 180deg );
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
 		/* Vector modern */
 		.skin-vector .mw-logo-wordmark,
+		.skin-vector .mw-logo-icon,
 		.skin-vector .mw-logo-tagline,
 		.skin-gongbi .mw-wiki-title > img,
+		.skin-gongbi .mw-wiki-logo > img,
+		.skin-citizen .mw-logo-icon,
+		.skin-citizen mw-logo-wordmark,
 		.cdx-icon svg {
 			filter: none;
 		}
@@ -197,14 +208,14 @@
 /* Hacks for older Firefox versions */
 @-moz-document url-prefix() {
 	body {
-		background: #000;
+		background-color: #000;
 	}
 }
 
 @-moz-document url-prefix() {
 	@supports (overflow-clip-margin: 1px) {
 		body {
-			background: #fff;
+			background-color: #fff;
 		}
 	}
 }
