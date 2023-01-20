@@ -40,14 +40,7 @@
 
 	/* START OF DARKMODE STYLES */
 	.client-darkmode {
-		body {
-			background-color: #000;
-		}
-		
-		/* Fix bug for Vector Legacy */
-		body.skin-vector-legacy {
-			background-color: #fff;
-		}
+		background-color: #000;
 		
 		/* "Default mode" link */
 		.ext-darkmode-link::before {
@@ -203,6 +196,20 @@
 			filter: brightness( 0 );
 		}
 	}
+}
+
+/* Hacks for Vector Legacy */
+.client-darkmode body {
+    background-color: #000;
+}
+
+body.skin-vector-legacy {
+	background-color: #fff;
+}
+
+/* Hacks for Gongbi */
+body.skin-Gongbi .mw-footer-container {
+	background-color: #eaecf0;
 }
 
 /* Hacks for older Firefox versions */
