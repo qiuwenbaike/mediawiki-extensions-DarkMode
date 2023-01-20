@@ -40,8 +40,6 @@
 
 	/* START OF DARKMODE STYLES */
 	.client-darkmode {
-		background-color: #000;
-		
 		/* "Default mode" link */
 		.ext-darkmode-link::before {
 			content: '\263C'; /* Sun icon */
@@ -199,12 +197,8 @@
 }
 
 /* Hacks for Vector Legacy */
-.client-darkmode body {
+.client-darkmode ~ body.skin-vector-legacy {
     background-color: #000;
-}
-
-body.skin-vector-legacy {
-	background-color: #fff;
 }
 
 /* Hacks for Gongbi */
