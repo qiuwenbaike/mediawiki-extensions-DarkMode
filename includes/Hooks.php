@@ -3,15 +3,12 @@
 namespace MediaWiki\Extension\DarkMode;
 
 use Config;
-use ContextSource;
-use Html;
 use IContextSource;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserOptionsLookup;
 use OutputPage;
 use Skin;
-use SkinTemplate;
 use User;
 
 class Hooks implements
@@ -26,7 +23,6 @@ class Hooks implements
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		Config $options,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		$this->userOptionsLookup = $userOptionsLookup;
