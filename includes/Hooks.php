@@ -26,7 +26,6 @@ class Hooks implements
 		Config $options,
 		UserOptionsLookup $userOptionsLookup
 	) {
-		$this->linkPosition = $options->get( 'DarkModeTogglePosition' );
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
