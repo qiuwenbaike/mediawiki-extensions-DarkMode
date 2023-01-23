@@ -29,13 +29,15 @@ $( function ( mw ) {
 		if ( darkMode === 0 ) {
 			$( 'html' ).removeClass( 'client-lightmode' );
 			$( 'html' ).addClass( 'client-darkmode' );
-			$.cookie( 'darkmode', 1 );
-			new mw.Api().saveOption( 'darkmode', 1, { expires: 7, path: '/' } );
+			$.removeCookie( 'darkmode' );
+			$.cookie( 'darkmode', 1, { expires: 7, path: '/' } );
+			new mw.Api().saveOption( 'darkmode', 1 );
 		} else {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
-			$.cookie( 'darkmode', 0 );
-			new mw.Api().saveOption( 'darkmode', 0, { expires: 7, path: '/' } );
+			$.removeCookie( 'darkmode' );
+			$.cookie( 'darkmode', 0, { expires: 7, path: '/' } );
+			new mw.Api().saveOption( 'darkmode', 0 );
 		}
 	} ).on( 'mouseenter mouseleave', function ( e ) {
 		this.style.opacity = e.type === 'mouseenter' ? 1 : 0.7;
