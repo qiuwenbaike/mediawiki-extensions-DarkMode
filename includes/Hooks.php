@@ -3,24 +3,15 @@
 namespace MediaWiki\Extension\DarkMode;
 
 use Config;
-use ContextSource;
-use Html;
 use IContextSource;
 use MediaWiki\Hook\BeforePageDisplayHook;
-use MediaWiki\Hook\SkinAddFooterLinksHook;
-use MediaWiki\Hook\SkinBuildSidebarHook;
-use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserOptionsLookup;
 use OutputPage;
 use Skin;
-use SkinTemplate;
 use User;
 
 class Hooks implements
-	SkinAddFooterLinksHook,
-	SkinTemplateNavigation__UniversalHook,
-	SkinBuildSidebarHook,
 	BeforePageDisplayHook,
 	GetPreferencesHook
 {
@@ -37,9 +28,6 @@ class Hooks implements
 	/** @var string */
 	public const CSS_CLASS = 'ext-darkmode-link';
 
-	/** @var string */
-	private $linkPosition;
-
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
@@ -48,89 +36,9 @@ class Hooks implements
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		Config $options,
 		UserOptionsLookup $userOptionsLookup
 	) {
-		$this->linkPosition = $options->get( 'DarkModeTogglePosition' );
 		$this->userOptionsLookup = $userOptionsLookup;
-	}
-
-	/**
-	 * Handler for SkinAddFooterLinks hook.
-	 * Add a "Dark mode" item to the footer if DarkModeTogglePosition is set to 'footer'.
-	 *
-	 * @param Skin $skin Skin being used.
-	 * @param string $key Current position in the footer.
-	 * @param array &$footerItems Array of URLs to add to.
-	 */
-	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerItems ) {
-		if ( $key !== 'places' ||
-			!self::shouldHaveDarkMode( $skin ) ||
-			$this->linkPosition !== self::POSITION_FOOTER
-		) {
-			return;
-		}
-
-		$footerItems['darkmode'] = Html::element(
-			'a',
-			$this->getLinkAttrs(
-				$skin,
-				'nwwmw-ui-icon mw-ui-icon-before mw-ui-icon-darkmode'
-			),
-			$this->getLinkText( $skin )
-		);
-	}
-
-	/**
-	 * Handler for SkinTemplateNavigation__UniversalHook.
-	 * Add a "Dark mode" item to the personal links (usually at the top),
-	 *   if DarkModeTogglePosition is set to 'personal'.
-	 *
-	 * @param SkinTemplate $skin
-	 * @param array &$links
-	 * @return void This hook must not abort, it must return no value
-	 * @phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
-	 */
-	public function onSkinTemplateNavigation__Universal( $skin, &$links ): void {
-		// phpcs:enable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
-		if ( !self::shouldHaveDarkMode( $skin ) || $this->linkPosition !== self::POSITION_PERSONAL ) {
-			return;
-		}
-
-		$insertUrls = [
-			'darkmode' => $this->getLinkAttrs( $skin ),
-		];
-
-		// Adjust placement based on whether user is logged in or out.
-		if ( array_key_exists( 'mytalk', $links['user-menu'] ) ) {
-			$after = 'mytalk';
-		} elseif ( array_key_exists( 'anontalk', $links['user-menu'] ) ) {
-			$after = 'anontalk';
-		} else {
-			// Fallback to showing at the end.
-			$after = false;
-			$links['user-menu'] += $insertUrls;
-		}
-
-		if ( $after ) {
-			$links['user-menu'] = wfArrayInsertAfter( $links['user-menu'], $insertUrls, $after );
-		}
-	}
-
-	/**
-	 * Handler for SkinBuildSidebar hook.
-	 * Add a "Dark mode" item to the sidebar in the navigation portlet menu,
-	 *   if DarkModeTogglePosition is set to 'sidebar'.
-	 *
-	 * @param SkinTemplate $skin
-	 * @param array &$bar
-	 */
-	public function onSkinBuildSidebar( $skin, &$bar ) {
-		if ( !self::shouldHaveDarkMode( $skin ) || $this->linkPosition !== self::POSITION_SIDEBAR ) {
-			return;
-		}
-
-		$bar['navigation'][] = $this->getLinkAttrs( $skin );
 	}
 
 	/**
@@ -153,7 +61,9 @@ class Hooks implements
 			// will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
 			// Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
 			$out->addHtmlClasses( 'client-darkmode' );
-		}
+		} else {
+            $out->addHtmlClasses( 'client-lightmode' );
+        }
 	}
 
 	/**
@@ -193,38 +103,6 @@ class Hooks implements
 		}
 		// On no parameter use the user setting.
 		return $this->userOptionsLookup->getBoolOption( $context->getUser(), 'darkmode' );
-	}
-
-	/**
-	 * @param ContextSource $context
-	 * @param string $additionalClasses
-	 * @return array
-	 */
-	private function getLinkAttrs( ContextSource $context, string $additionalClasses = '' ): array {
-		$active = $this->isDarkModeActive( $context );
-
-		return [
-			'text' => $this->getLinkText( $context ),
-			'href' => '#',
-			'class' => self::CSS_CLASS . ' ' . $additionalClasses,
-			'title' => $active
-				? 'darkmode-default-link-tooltip'
-				: 'darkmode-link-tooltip',
-			'icon' => $active ? 'moon' : 'bright',
-		];
-	}
-
-	/**
-	 * Get the initial message text for the dark mode toggle link.
-	 *
-	 * @param ContextSource $context
-	 * @return string
-	 */
-	private function getLinkText( ContextSource $context ): string {
-		return $context->msg( $this->isDarkModeActive( $context )
-			? 'darkmode-default-link'
-			: 'darkmode-link'
-		)->text();
 	}
 
 }
