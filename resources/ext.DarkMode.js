@@ -2,12 +2,14 @@
 'use strict';
 
 $( function () {
-	if ( window.matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
-		$( 'html' ).removeClass( 'client-lightmode' );
-		$( 'html' ).addClass( 'client-darkmode' );
-	} else if ( window.matchMedia( '( prefers-color-scheme: light)' ).matches ) {
-		$( 'html' ).removeClass( 'client-darkmode' );
-		$( 'html' ).addClass( 'client-lightmode' );
+	if ( !mw.user.options.get( 'darkmode' ) ) {
+		if ( window.matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
+			$( 'html' ).removeClass( 'client-lightmode' );
+			$( 'html' ).addClass( 'client-darkmode' );
+		} else if ( window.matchMedia( '( prefers-color-scheme: light)' ).matches ) {
+			$( 'html' ).removeClass( 'client-darkmode' );
+			$( 'html' ).addClass( 'client-lightmode' );
+		}
 	}
 
 	var darkMode = ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 ? 1 : 0;
