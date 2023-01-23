@@ -3,7 +3,7 @@
 'use strict';
 
 $( function ( mw ) {
-	var darkMode = ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 || mw.storage.get( 'ext.DarkMode' ) === 1 ? 1 : 0;
+	var darkMode = ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 || $.cookie( 'darkmode' ) === 1 ? 1 : 0;
 
 	if ( !darkMode && window.matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
 		$( 'html' ).removeClass( 'client-lightmode' );
@@ -29,13 +29,13 @@ $( function ( mw ) {
 		if ( darkMode === 0 ) {
 			$( 'html' ).removeClass( 'client-lightmode' );
 			$( 'html' ).addClass( 'client-darkmode' );
-			mw.storage.set( 'ext.DarkMode', 1 );
-			new mw.Api().saveOption( 'darkmode', 1 );
+			$.cookie( 'darkmode', 1 );
+			new mw.Api().saveOption( 'darkmode', 1, { expires: 7, path: '/' } );
 		} else {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
-			mw.storage.set( 'ext.DarkMode', 0 );
-			new mw.Api().saveOption( 'darkmode', 0 );
+			$.cookie( 'darkmode', 0 );
+			new mw.Api().saveOption( 'darkmode', 0, { expires: 7, path: '/' } );
 		}
 	} ).on( 'mouseenter mouseleave', function ( e ) {
 		this.style.opacity = e.type === 'mouseenter' ? 1 : 0.7;
