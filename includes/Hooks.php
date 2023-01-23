@@ -23,8 +23,10 @@ class Hooks implements
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
+		Config $options,
 		UserOptionsLookup $userOptionsLookup
 	) {
+		$this->linkPosition = $options->get( 'DarkModeTogglePosition' );
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
