@@ -10,6 +10,14 @@ $( function () {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
 		}
+	} else {
+		if ( mw.user.options.get( 'darkmode' ) === 1 ) {
+			$( 'html' ).removeClass( 'client-lightmode' );
+			$( 'html' ).addClass( 'client-darkmode' );
+		} else if ( mw.user.options.get( 'darkmode' ) === 0 ) {
+			$( 'html' ).removeClass( 'client-darkmode' );
+			$( 'html' ).addClass( 'client-lightmode' );
+		}
 	}
 
 	var darkMode = ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 ? 1 : 0;
@@ -33,13 +41,12 @@ $( function () {
 		if ( darkMode === 0 ) {
 			$( 'html' ).removeClass( 'client-lightmode' );
 			$( 'html' ).addClass( 'client-darkmode' );
-			darkMode = 1;
+			new mw.Api().saveOption( 'darkmode', 1 );
 		} else {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
-			darkMode = 0;
+			new mw.Api().saveOption( 'darkmode', 0 );
 		}
-		new mw.Api().saveOption( 'darkmode', darkMode );
 	} ).on( 'mouseenter mouseleave', function ( e ) {
 		this.style.opacity = e.type === 'mouseenter' ? 1 : 0.7;
 	} ).attr( 'draggable', 'false' ).appendTo( 'body' );
