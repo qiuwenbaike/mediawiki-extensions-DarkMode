@@ -31,13 +31,13 @@ $( function ( mw ) {
 			$( 'html' ).removeClass( 'client-lightmode' );
 			$( 'html' ).addClass( 'client-darkmode' );
 			$.removeCookie( 'darkmode' );
-			$.cookie( 'darkmode', 1, { expires: 7, path: '/' } );
+			$.cookie( 'darkmode', 1 );
 			new mw.Api().saveOption( 'darkmode', 1 );
 		} else {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
 			$.removeCookie( 'darkmode' );
-			$.cookie( 'darkmode', 0, { expires: 7, path: '/' } );
+			$.cookie( 'darkmode', 0 );
 			new mw.Api().saveOption( 'darkmode', 0 );
 		}
 	} ).on( 'mouseenter mouseleave', function ( e ) {
