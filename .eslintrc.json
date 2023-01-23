@@ -1,6 +1,18 @@
 {
 	"root": true,
+	"plugins": [
+		"es5",
+		"compat"
+	],
 	"extends": [
-		"wikimedia/server"
-	]
+		"eslint:recommended",
+		"plugin:compat/recommended"
+	],
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"es6": false,
+		"es2020": false,
+		"es2021": false
+	}
 }
