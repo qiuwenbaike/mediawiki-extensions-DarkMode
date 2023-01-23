@@ -38,18 +38,17 @@
 		.mw-no-invert,
 		td .diffchange,
 		.cdx-thumbnail__image,
-		.skin-minerva .mw-notification-visible .mw-notification-content,
 		/* Extensions */
 		.cdx-menu-item__thumbnail, /* T311835 */
 		.cx-slitem__image,
-		.mwe-math-element,
 		.mw-mmv-overlay,
 		.mw-mmv-pre-image,
-		.mw-kartographer-map,
-		.mw-kartographer-mapDialog-map,
-		.ext-related-articles-card-list .ext-related-articles-card-thumb {
+		/* Logos */
+		.skin-gongbi #p-banner,
+		.skin-gongbi #p-logo {
 			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
 			filter: invert( 1 ) hue-rotate( 180deg );
+			box-shadow: none;
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
@@ -63,6 +62,7 @@
 		.skin-citizen .mw-logo-icon,
 		.skin-citizen .mw-logo-wordmark,
 		.cdx-icon svg {
+			-webkit-filter: none;
 			filter: none;
 		}
 
@@ -145,156 +145,6 @@
 		/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
 		.image img[ src*='svg' ] {
 			background-color: #fff;
-			border-radius: 1px;
-		}
-
-		/* Dealing with false positives from selector above */
-		.mw-echo-ui-notificationItemWidget-icon img[ src*='svg' ],
-		.mbox-image .image img[ src*='svg' ],
-		/* Vote symbols on Talk pages */
-		.image img[ alt^='Symbol' ] {
-			background-color: transparent;
-		}
-
-		/* Page previews */
-		.mwe-popups {
-			box-shadow: 0 30px 90px -20px rgba( 0, 0, 0, 0.3 ), 0 0 1px #000;
-		}
-
-		.mwe-popups.flipped-y:after,
-		.mwe-popups.flipped-x-y:after {
-			border-top: 11px solid @darkmode-table-background-color;
-		}
-
-		.mwe-popups.mwe-popups-no-image-pointer:after {
-			border-bottom: 11px solid @darkmode-table-background-color;
-		}
-
-		/* Contributions menu */
-		html .cx-callout-1:after {
-			border-bottom-color: @darkmode-table-background-color;
-		}
-	}
-}
-
-@media screen and ( prefers-color-scheme: dark ) {
-	.client-lightmode {
-		&,
-		img,
-		video,
-		svg,
-		iframe, /* some maps are iframes */
-		.mw-no-invert,
-		td .diffchange,
-		.cdx-thumbnail__image,
-		.skin-minerva .mw-notification-visible .mw-notification-content,
-		/* Extensions */
-		.cdx-menu-item__thumbnail, /* T311835 */
-		.cx-slitem__image,
-		.mwe-math-element,
-		.mw-mmv-overlay,
-		.mw-mmv-pre-image,
-		.mw-kartographer-map,
-		.mw-kartographer-mapDialog-map,
-		.ext-related-articles-card-list .ext-related-articles-card-thumb {
-			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
-			filter: invert( 1 ) hue-rotate( 180deg );
-		}
-
-		/* Reset overrides, needed where double application above isn't working. */
-		/* Vector modern */
-		.skin-vector .mw-logo-wordmark,
-		.skin-vector .mw-logo-icon,
-		.skin-vector .mw-logo-tagline,
-		.skin-vector #sliderCollapseLogo,
-		.skin-gongbi .mw-wiki-title > img,
-		.skin-gongbi .mw-wiki-logo > img,
-		.skin-citizen .mw-logo-icon,
-		.skin-citizen .mw-logo-wordmark,
-		.cdx-icon svg {
-			filter: none;
-		}
-
-		/* Backgrounds */
-		table,
-		table.ambox-content,
-		table.toccolours,
-		.mw-notification,
-		.mwe-popups,
-		.infobox,
-		.toc,
-		.thumbinner,
-		.wikitable,
-		.cbnnr-main,
-		.cx-callout,
-		#simpleSearch,
-		#searchInput,
-		#centralNotice .cnotice {
-			background-color: @darkmode-table-background-color;
-		}
-
-		/* Borders */
-		&,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		table.ambox-content,
-		table.toccolours,
-		.mw-notification,
-		.infobox,
-		.toc,
-		.thumbinner,
-		#mw-head,
-		#mw-panel,
-		#content.mw-body,
-		#simpleSearch,
-		#searchInput,
-		#centralNotice .cnotice {
-			border-color: @darkmode-border-color;
-		}
-
-		/* Links */
-		/* Links: normal */
-		a,
-		.vector-menu-tabs li a,
-		/* Backwards compatible VectorTabs, deprecated in MW 1.35 */
-		.vectorTabs li a,
-		.toctogglelabel,
-		.mw-parser-output a.external,
-		.mw-parser-output a.extiw,
-		.mw-parser-output a.extiw:active,
-		#mw-panel .portal .body li a {
-			color: @darkmode-link-color;
-		}
-
-		/* Visited links */
-		a:visited,
-		.mw-parser-output a.extiw:visited,
-		#mw-panel .portal .body li a:visited {
-			color: @darkmode-link-visited-color;
-		}
-
-		/* Links: red */
-		a.new,
-		.vector-menu-tabs li.new a,
-		.vectorTabs li.new a {
-			color: @darkmode-red-link-color;
-		}
-
-		/* ::: Special Element Treatments ::: */
-		/* Image thumbnails */
-		.thumbimage {
-			border: 0;
-		}
-
-		/* Content image (thumbnail) SVGs */
-		/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
-		.image img[ src*='svg' ] {
-			background-color: #fff;
-			border-radius: 1px;
 		}
 
 		/* Dealing with false positives from selector above */

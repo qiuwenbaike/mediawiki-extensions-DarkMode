@@ -3,9 +3,16 @@
 'use strict';
 
 $( function ( mw ) {
-	if ( window.matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
+	if ( ( window.matchMedia( '( prefers-color-scheme: dark )' ).matches || $.cookie( 'darkmode' ) === 1 ) && ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) < 0 ) {
 		$( 'html' ).removeClass( 'client-lightmode' );
 		$( 'html' ).addClass( 'client-darkmode' );
+		$.removeCookie( 'darkmode' );
+		$.cookie( 'darkmode', 1, { path: '/' } );
+	} else if ( ( window.matchMedia( '( prefers-color-scheme: light )' ).matches || $.cookie( 'darkmode' ) === 0 ) && ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-lightmode' ) < 0 ) {
+		$( 'html' ).removeClass( 'client-darkmode' );
+		$( 'html' ).addClass( 'client-lightmode' );
+		$.cookie( 'darkmode', 1, { path: '/' } );
+		new mw.Api().saveOption( 'darkmode', 1 );
 	}
 
 	var darkModeButtonIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
@@ -24,7 +31,7 @@ $( function ( mw ) {
 		width: '32px',
 		height: '32px'
 	} ).on( 'click', function () {
-		if ( ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 || $.cookie( 'darkmode' ) === 1 ) {
+		if ( ( $( 'html' ).attr( 'class' ) ).indexOf( 'client-darkmode' ) > -1 ) {
 			$( 'html' ).removeClass( 'client-darkmode' );
 			$( 'html' ).addClass( 'client-lightmode' );
 			$.removeCookie( 'darkmode' );
