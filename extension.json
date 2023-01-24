@@ -36,9 +36,9 @@
 	},
 	"ResourceModules": {
 		"ext.DarkMode": {
-            "dependencies": [
-                "mediawiki.api"
-            ],
+			"dependencies": [
+				"mediawiki.api"
+			],
 			"packageFiles": [
 				"ext.DarkMode.js"
 			],

@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 /* global mediaWiki */
 'use strict';
 
