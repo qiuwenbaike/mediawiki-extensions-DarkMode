@@ -1,4 +1,3 @@
-/* global mediaWiki */
 'use strict';
 
 $( function ( mw ) {
