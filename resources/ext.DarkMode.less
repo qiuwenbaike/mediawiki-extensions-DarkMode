@@ -1,34 +1,16 @@
 /* Dark Mode
- *
- * Wikimedia Design Team 2019-2021
- * Original authors:
- * - Volker E.
+ * Authors:
+  * - Volker E.
  * - Alex Hollender
  * - MusikAnimal
  * - Carolyn Li-Madeo
  * - Jdlrobson
- *
- * Qiuwen Baike Contributors 2023-
- * Authors:
- * - WaitSpring
  * - AnYiEE
+ * - WaitSpring
  */
-
-/* Needed for some skins that have weird DOM structures and CSS such that elements don't appear over the <body> */
-/* This also helps save energy on OLED displays (such as smart phones). */
-@darkmode-background-color: #000;
-
-/* Table colors */
-@darkmode-table-background-color: #ddd;
-@darkmode-border-color: #cdcbc8;
-
-/* Link colors chosen for level AA conformance, see T233266 and T213778 */
-@darkmode-link-color: #36c;
-@darkmode-link-visited-color: #6b4ba1;
-@darkmode-red-link-color: #ff6e6e;
+/* stylelint-disable declaration-no-important */
 
 @media screen {
-	/* set height for Gongbi, because the filter in FF needs dimensions to get it to apply */
 	html {
 		height: 100%;
 	}
@@ -42,19 +24,29 @@
 		iframe, /* some maps are iframes */
 		.mw-no-invert,
 		td .diffchange,
-		.cdx-thumbnail__image,
 		/* Extensions */
 		.cdx-menu-item__thumbnail, /* T311835 */
-		.cx-slitem__image,
+		.cx-slitem__image:not( .oo-ui-icon-article ),
+		.frb-image,
+		.image-carousel,
+		.k-player.fullscreen,
+		.k-player .ttmlStyled,
+		.leaflet-tile,
+		.list-thumb:not( .list-thumb-none ),
 		.mw-mmv-overlay,
-		.mw-mmv-pre-image {
+		.mw-mmv-main.jq-fullscreened,
+		.mw-mmv-pre-image,
+		.mw-tmh-play-icon,
+		.mwe-math-element,
+		.vjs-fullscreen,
+		.vjs-text-track-display,
+		.wvui-typeahead-suggestion__thumbnail {
 			-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
 			filter: invert( 0.95 ) hue-rotate( 180deg );
 			box-shadow: none;
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
-		/* Vector modern */
 		.skin-vector .mw-logo-wordmark,
 		.skin-vector .mw-logo-icon,
 		.skin-vector .mw-logo-tagline,
@@ -83,7 +75,7 @@
 		#simpleSearch,
 		#searchInput,
 		#centralNotice .cnotice {
-			background-color: @darkmode-table-background-color;
+			background-color: #ddd;
 		}
 
 		/* Borders */
@@ -106,7 +98,39 @@
 		#simpleSearch,
 		#searchInput,
 		#centralNotice .cnotice {
-			border-color: @darkmode-border-color;
+			border-color: #cdcbc8;
+		}
+
+		/* Background */
+		body.skin-gongbi,
+		.drawer-container__mask,
+		.main-menu-mask,
+		.mw-mmv-image,
+		.overlay.media-viewer,
+		.vjs-poster,
+		#menus-cover {
+			background-color: #f7f7f7 !important;
+		}
+
+		.diff-addedline .diffchange {
+			background: #7fd7c4;
+		}
+
+		.diff-deletedline .diffchange {
+			background: #e88e89;
+		}
+
+		input,
+		textarea {
+			background: #eaecf0 !important;
+		}
+
+		/* Color */
+		input,
+		textarea,
+		.mw-mmv-image .error-box,
+		#mw-footer-container * {
+			color: #000 !important;
 		}
 
 		/* Links */
@@ -120,21 +144,26 @@
 		.mw-parser-output a.extiw,
 		.mw-parser-output a.extiw:active,
 		#mw-panel .portal .body li a {
-			color: @darkmode-link-color;
+			color: #36c;
 		}
 
 		/* Visited links */
 		a:visited,
 		.mw-parser-output a.extiw:visited,
 		#mw-panel .portal .body li a:visited {
-			color: @darkmode-link-visited-color;
+			color: #6b4ba1;
 		}
 
 		/* Links: red */
 		a.new,
 		.vector-menu-tabs li.new a,
 		.vectorTabs li.new a {
-			color: @darkmode-red-link-color;
+			color: #ff6e6e;
+		}
+
+		/* Footer links */
+		#mw-footer-container a {
+			color: #36c;
 		}
 
 		/* ::: Special Element Treatments ::: */
@@ -144,6 +173,54 @@
 		}
 
 		/* Content image (thumbnail) SVGs */
+		img,
+		.mw-ui-icon:before,
+		.mw-wiki-logo {
+			opacity: 0.8;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		img:hover {
+			opacity: 1;
+		}
+
+		.filehistory img,
+		.mw-ext-score img,
+		.mw-mmv-image *,
+		.mwe-math-element *,
+		#file img,
+		#gallerypreview img {
+			opacity: 1;
+		}
+
+		.mw-mmv-image img.blurred {
+			filter: blur( 3px ) invert( 0.95 ) hue-rotate( 180deg ) !important;
+		}
+
+		img[ alt*='-at-' ],
+		img[ alt*='- at -' ],
+		.branding-box img,
+		.mainpage_box h3 .header_icon img,
+		.mw-logo-container img,
+		.mw-ext-score img,
+		.wvui-icon svg,
+		#mf-wel img,
+		#p-banner img,
+		#portal img,
+		#topics-list img {
+			-webkit-filter: invert( 0 );
+			filter: invert( 0 );
+		}
+
+		.branding-box img:hover,
+		.mw-logo-container img:hover,
+		.mw-logo-icon:hover,
+		.skin-gongbi .mw-wiki-logo > img:hover,
+		#p-banner img:hover,
+		#sidebarCollapse:hover {
+			opacity: 0.8;
+		}
+
 		/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
 		.image img[ src*='svg' ] {
 			background-color: #fff;
@@ -159,33 +236,50 @@
 
 		/* Page previews */
 		.mwe-popups {
-			box-shadow: 0 30px 90px -20px rgba( 0, 0, 0, 0.3 ), 0 0 1px #000;
-		}
-
-		.mwe-popups.flipped-y:after,
-		.mwe-popups.flipped-x-y:after {
-			border-top: 11px solid @darkmode-table-background-color;
-		}
-
-		.mwe-popups.mwe-popups-no-image-pointer:after {
-			border-bottom: 11px solid @darkmode-table-background-color;
+			border: 10px solid #c8ccd1;
+			border-radius: 10px;
+			box-shadow: none;
 		}
 
 		/* Contributions menu */
 		html .cx-callout-1:after {
-			border-bottom-color: @darkmode-table-background-color;
+			border-bottom-color: #ddd;
+		}
+
+		/* Skin-specific hack */
+		/* Hacks for Vector Legacy */
+		& ~ body.skin-vector-legacy {
+			background-color: #000;
+		}
+
+		/* Hacks for Gongbi */
+		.skin-gongbi h1.firstHeading,
+		.skin-gongbi .mw-footer-container,
+		.skin-gongbi #mw-content-container,
+		.skin-gongbi #mw-header-nav-hack {
+			box-shadow: none;
+		}
+
+		.skin-gongbi h1.firstHeading,
+		.skin-gongbi #mw-content-container {
+			border-bottom: solid 4px #c8ccd1;
+		}
+
+		.skin-gongbi .mw-footer-container {
+			border-top: 0;
+		}
+
+		/* Gadgets */
+		.in-page-edit .CodeMirror {
+			background: #eaecf0 !important;
+			color: #000 !important;
+		}
+
+		#scrollDownButton,
+		#scrollUpButton {
+			transition: unset;
 		}
 	}
-}
-
-/* Hacks for Vector Legacy */
-.client-darkmode ~ body.skin-vector-legacy {
-	background-color: #000;
-}
-
-/* Hacks for Gongbi */
-.skin-Gongbi .mw-footer-container {
-	background-color: #eaecf0;
 }
 
 /* Hacks for older Firefox versions */
