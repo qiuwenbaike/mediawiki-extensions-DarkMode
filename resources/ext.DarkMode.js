@@ -73,10 +73,10 @@
 		}
 	} );
 
-	matchMedia( '(prefers-color-scheme:dark)' ).addEventListener( 'change', function ( event ) {
+	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener( 'change', function ( event ) {
 		modeObserver.dark( event.target );
 	} );
-	matchMedia( '(prefers-color-scheme:light)' ).addEventListener( 'change', function ( event ) {
+	matchMedia( '( prefers-color-scheme: light )' ).addEventListener( 'change', function ( event ) {
 		modeObserver.light( event.target );
 	} );
 	window.addEventListener( 'storage', function ( event ) {
