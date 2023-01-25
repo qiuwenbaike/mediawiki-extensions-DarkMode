@@ -12,11 +12,15 @@
 			document.documentElement.classList.remove( 'client-lightmode' );
 			document.documentElement.classList.add( 'client-darkmode' );
 			localStorage.setItem( extensionName, '1' );
+			linkTitle = mw.message( 'darkmode-default-link' );
+			linkAlt = mw.message( 'darkmode-default-link-tooltip' );
 			new mw.Api().saveOption( 'darkmode', '1' );
 		} else {
 			document.documentElement.classList.remove( 'client-darkmode' );
 			document.documentElement.classList.add( 'client-lightmode' );
 			localStorage.setItem( extensionName, '0' );
+			linkTitle = mw.message( 'darkmode-link' );
+			linkAlt = mw.message( 'darkmode-link-tooltip' );
 			new mw.Api().saveOption( 'darkmode', '0' );
 		}
 	};
@@ -49,8 +53,8 @@
 	var $darkModeButton = $( '<img>' ).attr( {
 		src: darkModeButtonIcon,
 		id: 'darkModeButton',
-		alt: '切换深色、浅色模式',
-		title: '切换深色、浅色模式'
+		alt: linkAlt,
+		title: linkTitle,
 	} ).css( {
 		cursor: 'pointer',
 		opacity: 0.7,
