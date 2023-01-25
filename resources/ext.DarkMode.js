@@ -13,16 +13,20 @@
 			document.documentElement.classList.remove( 'client-lightmode' );
 			document.documentElement.classList.add( 'client-darkmode' );
 			localStorage.setItem( extensionName, '1' );
-			linkTitle = mw.message( 'darkmode-default-link' );
-			linkAlt = mw.message( 'darkmode-default-link-tooltip' );
 			new mw.Api().saveOption( 'darkmode', '1' );
+			$darkModeButton.attr( {
+				'alt': mw.message( 'darkmode-default-link' ),
+				'title': mw.message( 'darkmode-default-link-tooltip' )
+			} );
 		} else {
 			document.documentElement.classList.remove( 'client-darkmode' );
 			document.documentElement.classList.add( 'client-lightmode' );
 			localStorage.setItem( extensionName, '0' );
-			linkTitle = mw.message( 'darkmode-link' );
-			linkAlt = mw.message( 'darkmode-link-tooltip' );
 			new mw.Api().saveOption( 'darkmode', '0' );
+			$darkModeButton.attr( {
+				'alt': mw.message( 'darkmode-link' ),
+				'title': mw.message( 'darkmode-link-tooltip' )
+			} );
 		}
 	};
 	var modeObserver = {
@@ -46,12 +50,16 @@
 			}
 		}
 		if ( localStorage[ extensionName ] === '1' ) {
-			linkTitle = mw.message( 'darkmode-default-link' );
-			linkAlt = mw.message( 'darkmode-default-link-tooltip' );
+			$darkModeButton.attr( {
+				'alt': mw.message( 'darkmode-default-link' ),
+				'title': mw.message( 'darkmode-default-link-tooltip' )
+			} );
 			return true;
 		} else {
-			linkTitle = mw.message( 'darkmode-link' );
-			linkAlt = mw.message( 'darkmode-link-tooltip' );
+			$darkModeButton.attr( {
+				'alt': mw.message( 'darkmode-link' ),
+				'title': mw.message( 'darkmode-link-tooltip' )
+			} );
 		}
 	};
 	var darkModeButtonIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
@@ -59,8 +67,6 @@
 	var $darkModeButton = $( '<img>' ).attr( {
 		src: darkModeButtonIcon,
 		id: 'darkModeButton',
-		alt: linkAlt,
-		title: linkTitle,
 	} ).css( {
 		cursor: 'pointer',
 		opacity: 0.7,
