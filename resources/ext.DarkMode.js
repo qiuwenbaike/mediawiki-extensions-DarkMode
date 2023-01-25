@@ -95,7 +95,7 @@
 		modeSwitcher();
 	} );
 	window.addEventListener( 'scroll', function () {
-		if ( document.getElementById( 'cat_a_lot' ) || document.getElementById( 'proveit' ) || document.getElementsByClassName( 'wordcount' )[0] ) {
+		if ( document.getElementById( 'cat_a_lot' ) || document.getElementById( 'proveit' ) || document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
 			$darkModeButton.css( 'bottom', '162px' );
 		} else {
 			$darkModeButton.css( 'bottom', '120px' );
