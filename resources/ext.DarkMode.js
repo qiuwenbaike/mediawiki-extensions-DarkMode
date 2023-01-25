@@ -11,15 +11,7 @@
 		$darkModeButton = $( '<img>' ).attr( {
 			src: darkModeButtonIcon,
 			id: 'darkModeButton'
-		} ).css( {
-			cursor: 'pointer',
-			opacity: 0.7,
-			position: 'fixed',
-			right: '8px',
-			'user-select': 'none',
-			width: '32px',
-			height: '32px'
-		} ).appendTo( 'body' ),
+		} ).css('opacity', '0.7').appendTo( 'body' ),
 		modeSwitcher = function () {
 			if ( localStorage[ extensionName ] === '0' ) {
 				document.documentElement.classList.remove( 'client-lightmode' );
