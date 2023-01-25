@@ -11,7 +11,18 @@
 		$darkModeButton = $( '<img>' ).attr( {
 			src: darkModeButtonIcon,
 			id: 'darkModeButton'
-		} ).css('opacity', '0.7').appendTo( 'body' ),
+		} ).css( {
+			cursor: 'pointer',
+			opacity: 0.7,
+			position: 'fixed',
+			right: '8px',
+			'-ms-user-select': 'none',
+			'-moz-user-select': 'none',
+			'-webkit-user-select': 'none',
+			'user-select': 'none',
+			width: '32px',
+			height: '32px'
+		} ).appendTo( 'body' ),
 		modeSwitcher = function () {
 			if ( localStorage[ extensionName ] === '0' ) {
 				document.documentElement.classList.remove( 'client-lightmode' );
@@ -84,7 +95,7 @@
 		modeSwitcher();
 	} );
 	window.addEventListener( 'scroll', function () {
-		if ( document.getElementById( 'cat_a_lot' ) || document.getElementById( 'proveit' ) || document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
+		if ( document.getElementById( 'cat_a_lot' ) || document.getElementById( 'proveit' ) || document.getElementsByClassName( 'wordcount' )[0] ) {
 			$darkModeButton.css( 'bottom', '162px' );
 		} else {
 			$darkModeButton.css( 'bottom', '120px' );
