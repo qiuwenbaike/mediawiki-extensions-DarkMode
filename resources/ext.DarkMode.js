@@ -66,11 +66,13 @@
 	} ).appendTo( 'body' );
 
 	window.addEventListener( 'scroll', function () {
-		if ( document.getElementById( 'cat_a_lot' ).length > 0 || document.getElementById( 'proveit' ).length > 0 || document.getElementsByClassName( 'wordcount' ).length > 0 ) {
-			$darkModeButton.css( 'bottom', '162px' );
-		} else {
-			$darkModeButton.css( 'bottom', '120px' );
-		}
+		if ( document.getElementById( 'cat_a_lot' ) || document.getElementById( 'proveit' ) || document.getElementsByClassName( 'wordcount' ) ) {
+            if ( document.getElementById( 'cat_a_lot' ).length > 0 || document.getElementById( 'proveit' ).length > 0 || document.getElementsByClassName( 'wordcount' ).length > 0 ) {
+                $darkModeButton.css( 'bottom', '162px' );
+            }
+        } else {
+            $darkModeButton.css( 'bottom', '120px' );
+        }
 	} );
 
 	matchMedia( '(prefers-color-scheme:dark)' ).addEventListener( 'change', function ( event ) {
