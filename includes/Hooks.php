@@ -40,12 +40,17 @@ class Hooks implements
 	 */
 	private function isDarkModeActive( IContextSource $context ): bool {
 		$var = $context->getRequest()->getRawVal( 'usedarkmode' );
-		if ( $var === '0' || $var === '1' ) {
-			// On usedarkmode=0 or usedarkmode=1 overwrite the cookie.
+		if ( $var === '0' || $var === '1' || $varCookie === '0' || $varCookie === '1' ) {
+			// On usedarkmode is set, overwrite the cookie.
 			return (bool)$var;
 		}
-		// On no parameter use the setting in cookie.
-		return (bool)$context->getRequest()->getCookie( 'darkmode', null, 0 );
+        $varCookie = $context->getRequest()->getCookie( 'darkmode' );
+        if ( $varCookie === '0' || $varCookie === '1' ) {
+			// Otherwise return cookie value.
+			return (bool)$varCookie;
+		}
+        // Otherwise return false
+		return false;
 	}
 
 }
