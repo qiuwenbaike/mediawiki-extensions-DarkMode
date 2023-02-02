@@ -2,32 +2,14 @@
 
 namespace MediaWiki\Extension\DarkMode;
 
-use Config;
 use IContextSource;
 use MediaWiki\Hook\BeforePageDisplayHook;
-use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\User\UserOptionsLookup;
 use OutputPage;
 use Skin;
-use User;
 
 class Hooks implements
-	BeforePageDisplayHook,
-	GetPreferencesHook
+	BeforePageDisplayHook
 {
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/**
-	 * @param Config $options
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
-	public function __construct(
-		Config $options,
-		UserOptionsLookup $userOptionsLookup
-	) {
-		$this->userOptionsLookup = $userOptionsLookup;
-	}
 
 	/**
 	 * Handler for BeforePageDisplay hook.
@@ -51,20 +33,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Handler for GetPreferences hook
-	 * Add hidden preference to keep dark mode turned on all pages
-	 *
-	 * @param User $user Current user
-	 * @param array &$preferences
-	 */
-	public function onGetPreferences( $user, &$preferences ) {
-		$preferences['darkmode'] = [
-			'type' => 'api',
-			'default' => 0,
-		];
-	}
-
-	/**
 	 * Is the Dark Mode active?
 	 *
 	 * @param IContextSource $context
@@ -73,11 +41,11 @@ class Hooks implements
 	private function isDarkModeActive( IContextSource $context ): bool {
 		$var = $context->getRequest()->getRawVal( 'usedarkmode' );
 		if ( $var === '0' || $var === '1' ) {
-			// On usedarkmode=0 or usedarkmode=1 overwrite the user setting.
+			// On usedarkmode=0 or usedarkmode=1 overwrite the cookie.
 			return (bool)$var;
 		}
-		// On no parameter use the user setting.
-		return $this->userOptionsLookup->getBoolOption( $context->getUser(), 'darkmode' );
+		// On no parameter use the setting in cookie.
+		return $context->getRequest()->getCookie( 'darkmode' ) ?? 0;
 	}
 
 }

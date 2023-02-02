@@ -25,8 +25,7 @@
 		"main": {
 			"class": "MediaWiki\\Extension\\DarkMode\\Hooks",
 			"services": [
-				"MainConfig",
-				"UserOptionsLookup"
+				"MainConfig"
 			]
 		}
 	},
@@ -38,7 +37,8 @@
 	"ResourceModules": {
 		"ext.DarkMode": {
 			"dependencies": [
-				"mediawiki.api"
+				"mediawiki.api",
+                "jquery.cookies"
 			],
 			"packageFiles": [
 				"ext.DarkMode.js"
