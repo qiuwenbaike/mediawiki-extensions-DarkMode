@@ -45,7 +45,7 @@ class Hooks implements
 			return (bool)$var;
 		}
 		// On no parameter use the setting in cookie.
-		return $context->getRequest()->getCookie( 'darkmode' );
+		return $context->getRequest()->getCookie( 'darkmode', null, '0' );
 	}
 
 }
