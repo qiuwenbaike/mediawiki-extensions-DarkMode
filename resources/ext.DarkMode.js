@@ -112,7 +112,7 @@
 				document.documentElement.classList.remove( 'client-lightmode' );
 				document.documentElement.classList.add( 'client-darkmode' );
 				docCookies.removeItem( cookieName );
-				docCookies.setItem( cookieName, '1' );
+				docCookies.setItem( cookieName, '1', Infinity, '/' );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-default-link' ),
 					title: mw.message( 'darkmode-default-link-tooltip' )
@@ -121,7 +121,7 @@
 				document.documentElement.classList.remove( 'client-darkmode' );
 				document.documentElement.classList.add( 'client-lightmode' );
 				docCookies.removeItem( cookieName );
-				docCookies.setItem( cookieName, '0' );
+				docCookies.setItem( cookieName, '0', Infinity, '/' );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-link' ),
 					title: mw.message( 'darkmode-link-tooltip' )
@@ -143,9 +143,9 @@
 		checkDarkMode = function () {
 			if ( !( docCookies.hasItem( cookieName ) ) ) {
 				if ( isDarkMode ) {
-					docCookies.setItem( cookieName, '1' );
+					docCookies.setItem( cookieName, '1', Infinity, '/' );
 				} else {
-					docCookies.setItem( cookieName, '0' );
+					docCookies.setItem( cookieName, '0', Infinity, '/' );
 				}
 			}
 			if ( docCookies.getItem( cookieName ) === '1' ) {
