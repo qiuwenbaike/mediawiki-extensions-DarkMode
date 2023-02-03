@@ -18,8 +18,7 @@
 		"MediaWiki\\Extension\\DarkMode\\": "includes/"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "main",
-		"GetPreferences": "main"
+		"BeforePageDisplay": "main"
 	},
 	"HookHandlers": {
 		"main": {
