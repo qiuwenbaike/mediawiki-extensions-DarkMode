@@ -2,6 +2,10 @@
   "extends": [
     "development"
   ],
+  "browserslist": [
+      "defaults",
+      "not ie < 11"
+  ],
   "hints": {
     "compat-api/css": [
       "default",
