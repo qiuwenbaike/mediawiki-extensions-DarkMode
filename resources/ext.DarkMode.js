@@ -1,94 +1,33 @@
-/* Dark Mode
+/**
+ * Dark Mode
  * Author(s):
- * - AnYiEE
+ * - AnYi
  * Rewrite in ES5 by WaitSpring
+ * Some code from cookies.js (https://developer.mozilla.org/en-US/docs/DOM/document.cookie), GPLv3 License.
  */
 
 ( function ( $, mw ) {
-	/* Start cookies.js */
-	/* \
-	|*|
-	|*|  :: cookies.js ::
-	|*|
-	|*|  A complete cookies reader/writer framework with full unicode support.
-	|*|
-	|*|  https://developer.mozilla.org/en-US/docs/DOM/document.cookie
-	|*|
-	|*|  This framework is released under the GNU Public License, version 3 or later.
-	|*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
-	|*|
-	|*|  Syntaxes:
-	|*|
-	|*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
-	|*|  * docCookies.getItem(name)
-	|*|  * docCookies.removeItem(name[, path], domain)
-	|*|  * docCookies.hasItem(name)
-	|*|
-	\ */
-	var docCookies = {
-		getItem: function ( sKey ) {
-			return (
-				decodeURIComponent(
-					document.cookie.replace(
-						new RegExp(
-							'(?:(?:^|.*;)\\s*' +
-                encodeURIComponent( sKey ).replace( /[-.+*]/g, '\\$&' ) +
-                '\\s*\\=\\s*([^;]*).*$)|^.*$'
-						),
-						'$1'
-					)
-				) || null
-			);
-		},
-		setItem: function ( sKey, sValue, vEnd, sPath, sDomain, bSecure ) {
-			if ( !sKey || /^(?:expires|max-age|path|domain|secure)$/i.test( sKey ) ) {
-				return false;
-			}
-			var sExpires = '';
-			if ( vEnd ) {
-				switch ( vEnd.constructor ) {
-					case Number:
-						sExpires = vEnd === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + vEnd;
-						break;
-					case String:
-						sExpires = '; expires=' + vEnd;
-						break;
-					case Date:
-						sExpires = '; expires=' + vEnd.toUTCString();
-						break;
-				}
-			}
-			document.cookie =
-        encodeURIComponent( sKey ) +
-        '=' +
-        encodeURIComponent( sValue ) +
-        sExpires +
-        ( sDomain ? '; domain=' + sDomain : '' ) +
-        ( sPath ? '; path=' + sPath : '' ) +
-        ( bSecure ? '; secure' : '' );
-			return true;
-		},
-		removeItem: function ( sKey, sPath, sDomain ) {
-			if ( !sKey || !this.hasItem( sKey ) ) {
-				return false;
-			}
-			document.cookie =
-        encodeURIComponent( sKey ) +
-        '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
-        ( sDomain ? '; domain=' + sDomain : '' ) +
-        ( sPath ? '; path=' + sPath : '' );
-			return true;
-		},
-		hasItem: function ( sKey ) {
-			return new RegExp(
-				'(?:^|;\\s*)' +
-          encodeURIComponent( sKey ).replace( /[-.+*]/g, '\\$&' ) +
-          '\\s*\\='
-			).test( document.cookie );
+	var getCookie = function getCookie( name ) {
+		return '; '.concat( decodeURIComponent( document.cookie ) ).split( '; '.concat( name, '=' ) ).pop().split( ';' ).shift();
+	};
+	var setCookie = function setCookie( name, value, time ) {
+		var path = arguments.length > 3 && arguments[ 3 ] !== undefined ? arguments[ 3 ] : '/';
+		var isSecure = arguments.length > 4 && arguments[ 4 ] !== undefined ? arguments[ 4 ] : true;
+		if ( !name || !value || !time || !path ) {
+			return;
+		}
+		var base = ''.concat( name, '=' ).concat( encodeURIComponent( value ), ';path=' ).concat( path ).concat( isSecure ? ';Secure' : '' ),
+			date = new Date();
+		if ( time === 'tmp' ) {
+			document.cookie = base;
+		} else {
+			date.setTime( date.getTime() + time * 3600000 );
+			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
 		}
 	};
-	/* End cookies.js */
-
+	var hasCookie = function hasCookie( name ) {
+		return new RegExp( '(?:^|;\\s*)' + encodeURIComponent( name ).replace( /[-.+*]/g, '\\$&' ) + '\\s*\\=' ).test( document.cookie );
+	};
 	var cookieName = 'usedarkmode',
 		isDarkMode = matchMedia( '( prefers-color-scheme: dark )' ).matches,
 		darkModeButtonIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
@@ -107,12 +46,12 @@
 			width: '32px',
 			height: '32px'
 		} ).appendTo( 'body' ),
-		modeSwitcher = function () {
-			if ( docCookies.getItem( cookieName ) === '0' ) {
+		modeSwitcher = function modeSwitcher() {
+			if ( getCookie( cookieName ) === '0' ) {
 				document.documentElement.classList.remove( 'client-lightmode' );
 				document.documentElement.classList.add( 'client-darkmode' );
-				docCookies.removeItem( cookieName );
-				docCookies.setItem( cookieName, '1', Infinity, '/' );
+				setCookie( cookieName, '', '-1' );
+				setCookie( cookieName, '1', 1e9 );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-default-link' ),
 					title: mw.message( 'darkmode-default-link-tooltip' )
@@ -120,8 +59,8 @@
 			} else {
 				document.documentElement.classList.remove( 'client-darkmode' );
 				document.documentElement.classList.add( 'client-lightmode' );
-				docCookies.removeItem( cookieName );
-				docCookies.setItem( cookieName, '0', Infinity, '/' );
+				setCookie( cookieName, '', '-1' );
+				setCookie( cookieName, '0', 1e9 );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-link' ),
 					title: mw.message( 'darkmode-link-tooltip' )
@@ -129,26 +68,26 @@
 			}
 		},
 		modeObserver = {
-			dark: function ( mediaQueryList ) {
-				if ( mediaQueryList.matches && docCookies.getItem( cookieName ) === '0' ) {
+			dark: function dark( mediaQueryList ) {
+				if ( mediaQueryList.matches && getCookie( cookieName ) === '0' ) {
 					modeSwitcher();
 				}
 			},
-			light: function ( mediaQueryList ) {
-				if ( mediaQueryList.matches && docCookies.getItem( cookieName ) === '1' ) {
+			light: function light( mediaQueryList ) {
+				if ( mediaQueryList.matches && getCookie( cookieName ) === '1' ) {
 					modeSwitcher();
 				}
 			}
 		},
-		checkDarkMode = function () {
-			if ( !( docCookies.hasItem( cookieName ) ) ) {
+		checkDarkMode = function checkDarkMode() {
+			if ( !hasCookie( cookieName ) ) {
 				if ( isDarkMode ) {
-					docCookies.setItem( cookieName, '1', Infinity, '/' );
+					setCookie( cookieName, '1', 1e9 );
 				} else {
-					docCookies.setItem( cookieName, '0', Infinity, '/' );
+					setCookie( cookieName, '0', 1e9 );
 				}
 			}
-			if ( docCookies.getItem( cookieName ) === '1' ) {
+			if ( getCookie( cookieName ) === '1' ) {
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-default-link' ),
 					title: mw.message( 'darkmode-default-link-tooltip' )
@@ -161,7 +100,6 @@
 				} );
 			}
 		};
-
 	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener( 'change', function ( event ) {
 		modeObserver.dark( event.target );
 	} );
@@ -175,13 +113,10 @@
 			$darkModeButton.css( 'bottom', '120px' );
 		}
 	} );
-
 	$darkModeButton.on( 'mouseenter mouseleave', function ( e ) {
 		this.style.opacity = e.type === 'mouseenter' ? 1 : 0.7;
 	} ).attr( 'draggable', 'false' ).on( 'click', function () {
 		modeSwitcher();
 	} );
-
 	checkDarkMode();
-
 }( jQuery, mediaWiki ) );
