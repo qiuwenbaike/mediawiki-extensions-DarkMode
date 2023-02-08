@@ -3,7 +3,6 @@
  * Author(s):
  * - AnYi
  * Rewrite in ES5 by WaitSpring
- * Some code from cookies.js (https://developer.mozilla.org/en-US/docs/DOM/document.cookie), GPLv3 License.
  */
 
 ( function ( $, mw ) {
@@ -24,9 +23,6 @@
 			date.setTime( date.getTime() + time * 3600000 );
 			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
 		}
-	};
-	var hasCookie = function hasCookie( name ) {
-		return new RegExp( '(?:^|;\\s*)' + encodeURIComponent( name ).replace( /[-.+*]/g, '\\$&' ) + '\\s*\\=' ).test( document.cookie );
 	};
 	var cookieName = 'usedarkmode',
 		isDarkMode = matchMedia( '( prefers-color-scheme: dark )' ).matches,
@@ -50,7 +46,7 @@
 			if ( getCookie( cookieName ) === '0' ) {
 				document.documentElement.classList.remove( 'client-lightmode' );
 				document.documentElement.classList.add( 'client-darkmode' );
-				setCookie( cookieName, '', '-1' );
+				setCookie( cookieName, '0', '-1' );
 				setCookie( cookieName, '1', 1e9 );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-default-link' ),
@@ -59,7 +55,7 @@
 			} else {
 				document.documentElement.classList.remove( 'client-darkmode' );
 				document.documentElement.classList.add( 'client-lightmode' );
-				setCookie( cookieName, '', '-1' );
+				setCookie( cookieName, '1', '-1' );
 				setCookie( cookieName, '0', 1e9 );
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-link' ),
@@ -80,7 +76,7 @@
 			}
 		},
 		checkDarkMode = function checkDarkMode() {
-			if ( !hasCookie( cookieName ) ) {
+			if ( getCookie( cookieName ) === '' ) {
 				if ( isDarkMode ) {
 					setCookie( cookieName, '1', 1e9 );
 				} else {
