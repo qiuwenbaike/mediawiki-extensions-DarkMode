@@ -39,12 +39,12 @@ class Hooks implements
 	 * @return bool
 	 */
 	private function isDarkModeActive( IContextSource $context ): bool {
-		$var = $_GET[ 'usedarkmode' ];
+		$var = !isset( $_GET[ 'usedarkmode' ] ) ? '' : $_GET[ 'usedarkmode' ];
 		if ( $var === '0' || $var === '1' ) {
 			// On usedarkmode is set, overwrite the cookie.
 			return (bool)$var;
 		}
-        $varCookie = $_COOKIE[ 'usedarkmode' ];
+        $varCookie = !isset( $_COOKIE[ 'usedarkmode' ] ) ? '' : $_COOKIE[ 'usedarkmode' ];
         if ( $varCookie === '0' || $varCookie === '1' ) {
 			// If usedarkmode not set, return cookie value.
 			return (bool)$varCookie;
