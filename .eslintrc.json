@@ -1,9 +1,6 @@
 {
 	"root": true,
-	"plugins": [
-		"es5",
-		"compat"
-	],
+	"plugins": ["es5", "compat"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:compat/recommended",

@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Beta16"
-		]
+		"authors": ["Beta16"]
 	},
 	"darkmode-link": "Modalità scura",
 	"darkmode-link-tooltip": "Attiva la modalità scura",

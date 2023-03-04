@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Jon Harald Søby"
-		]
+		"authors": ["Jon Harald Søby"]
 	},
 	"darkmode-desc": "En byttbar mørk modus for MediaWikis grensesnitt",
 	"darkmode-link": "Mørk modus",

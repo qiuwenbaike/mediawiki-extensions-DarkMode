@@ -1,5 +1,5 @@
 {
-	"name": "DarkMode",
+	"name": "darkmode",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"

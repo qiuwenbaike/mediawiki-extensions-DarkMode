@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Red Winged Duck"
-		]
+		"authors": ["Red Winged Duck"]
 	},
 	"darkmode-desc": "Падключальны рэжым цёмнага інтэрфэйсу карыстальніка для MediaWiki",
 	"darkmode-link": "Цёмны рэжым",

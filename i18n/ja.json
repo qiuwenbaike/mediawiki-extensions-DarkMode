@@ -1,9 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"MathXplore",
-			"Waki285"
-		]
+		"authors": ["MathXplore", "Waki285"]
 	},
 	"darkmode-link": "ダークモード",
 	"darkmode-link-tooltip": "ダークモードをオンにする",

@@ -1,9 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Rail",
-			"Railfail536"
-		]
+		"authors": ["Rail", "Railfail536"]
 	},
 	"darkmode-desc": "Przełączany tryb ciemny dla interfejsu użytkownika MediaWiki",
 	"darkmode-link": "Tryb ciemny",

@@ -1,10 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"Eduardo Addad de Oliveira",
-			"Eduardoaddad",
-			"Fúlvio"
-		]
+		"authors": ["Eduardo Addad de Oliveira", "Eduardoaddad", "Fúlvio"]
 	},
 	"darkmode-desc": "Um modo escuro alternado para a interface de usuário do MediaWiki",
 	"darkmode-link": "Modo escuro",

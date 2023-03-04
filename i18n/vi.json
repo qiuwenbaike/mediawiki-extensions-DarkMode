@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"NguoiDungKhongDinhDanh"
-		]
+		"authors": ["NguoiDungKhongDinhDanh"]
 	},
 	"darkmode-desc": "Chế độ tối cho giao diện người dùng MediaWiki",
 	"darkmode-link": "Chế độ tối",
