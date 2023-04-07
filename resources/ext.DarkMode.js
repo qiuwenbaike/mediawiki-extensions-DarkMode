@@ -100,7 +100,6 @@
 					alt: mw.message( 'darkmode-default-link' ),
 					title: mw.message( 'darkmode-default-link-tooltip' )
 				} );
-				return true;
 			} else {
 				$darkModeButton.attr( {
 					alt: mw.message( 'darkmode-link' ),
