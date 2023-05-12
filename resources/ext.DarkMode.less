@@ -16,15 +16,15 @@
 	}
 
 	#darkModeButton {
-        position: fixed;
-        right: 8px;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        -ms-user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
+		position: fixed;
+		right: 8px;
+		width: 32px;
+		height: 32px;
+		cursor: pointer;
+		-ms-user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
 	}
 
 	/* START OF DARKMODE STYLES */
@@ -33,11 +33,10 @@
 		img,
 		video,
 		svg,
-		iframe, 
+		iframe,
 		.mw-no-invert,
 		td .diffchange,
-		
-		.cdx-menu-item__thumbnail, 
+		.cdx-menu-item__thumbnail,
 		.cx-slitem__image:not( .oo-ui-icon-article ),
 		.frb-image,
 		.image-carousel,
@@ -53,9 +52,9 @@
 		.vjs-fullscreen,
 		.vjs-text-track-display,
 		.wvui-typeahead-suggestion__thumbnail {
+			box-shadow: none;
 			-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
 			filter: invert( 0.95 ) hue-rotate( 180deg );
-			box-shadow: none;
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
