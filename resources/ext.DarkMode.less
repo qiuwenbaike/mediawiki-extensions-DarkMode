@@ -15,17 +15,30 @@
 		height: 100%;
 	}
 
+	#darkModeButton {
+		cursor: pointer;
+		opacity: 0.7;
+		position: fixed;
+		right: 8px;
+		-ms-user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+		width: 32px;
+		height: 32px;
+	}
+
 	/* START OF DARKMODE STYLES */
 	.client-darkmode {
 		&,
 		img,
 		video,
 		svg,
-		iframe, /* some maps are iframes */
+		iframe, 
 		.mw-no-invert,
 		td .diffchange,
-		/* Extensions */
-		.cdx-menu-item__thumbnail, /* T311835 */
+		
+		.cdx-menu-item__thumbnail, 
 		.cx-slitem__image:not( .oo-ui-icon-article ),
 		.frb-image,
 		.image-carousel,
@@ -250,6 +263,12 @@
 		#scrollUpButton {
 			transition: unset;
 		}
+	}
+}
+
+@media print {
+	#darkModeButton {
+		display: none;
 	}
 }
 
