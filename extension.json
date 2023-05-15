@@ -1,13 +1,13 @@
 {
 	"name": "DarkMode",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"author": ["MusikAnimal", "R4356th", "AnYi", "WaitSpring"],
 	"url": "https://git.qiuwen.wiki/Fork/mediawiki-extensions-DarkMode",
 	"descriptionmsg": "darkmode-desc",
 	"license-name": "GPL-3.0",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.38.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\DarkMode\\": "includes/"
@@ -25,7 +25,7 @@
 		"DarkMode": ["i18n"]
 	},
 	"ResourceModules": {
-		"ext.DarkMode.js": {
+		"ext.DarkMode": {
 			"es6": true,
 			"packageFiles": ["ext.DarkMode.js"],
 			"styles": ["ext.DarkMode.less"],
