@@ -19,8 +19,8 @@ class Hooks implements
      */
     public function onBeforePageDisplay($out, $skin): void
     {
-        $out->addModules('ext.DarkMode');
-        $out->addModuleStyles('ext.DarkMode.styles');
+        $out->addModules('ext.DarkMode.js');
+        $out->addModuleStyles('ext.DarkMode.css');
 
         if ($this->isDarkModeActive($skin)) {
             // The class must be on the <html> element because the CSS filter creates a new stacking context.

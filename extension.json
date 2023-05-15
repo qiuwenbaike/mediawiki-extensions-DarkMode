@@ -25,7 +25,7 @@
 		"DarkMode": ["i18n"]
 	},
 	"ResourceModules": {
-		"ext.DarkMode": {
+		"ext.DarkMode.js": {
 			"es6": true,
 			"packageFiles": ["ext.DarkMode.js"],
 			"messages": [
@@ -35,7 +35,7 @@
 				"darkmode-default-link-tooltip"
 			]
 		},
-		"ext.DarkMode.styles": {
+		"ext.DarkMode.css": {
 			"styles": ["ext.DarkMode.less"]
 		}
 	},
