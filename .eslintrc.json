@@ -1,28 +1,6 @@
 {
 	"root": true,
-	"plugins": ["es5", "compat"],
 	"extends": [
-		"eslint:recommended",
-		"plugin:compat/recommended",
-		"wikimedia/client-es5",
-		"wikimedia/jquery",
-		"wikimedia/mediawiki"
-	],
-	"env": {
-		"browser": true,
-		"jquery": true,
-		"es6": false,
-		"es2020": false,
-		"es2021": false
-	},
-	"reportUnusedDisableDirectives": true,
-	"globals": {
-		"$": "readonly",
-		"jQuery": "readonly",
-		"mw": "readonly",
-		"mediaWiki": "readonly",
-		"OO": "readonly",
-		"wgULS": "readonly",
-		"wgUVS": "readonly"
-	}
+		"wikimedia/server"
+	]
 }
