@@ -41,8 +41,19 @@ $( () => {
 			id: 'darkModeButton',
 			draggable: 'false'
 		} )
-		.css( 'opacity', '0.7' )
-		.css( 'bottom', '120px' )
+		.css( {
+			opacity: '0.7',
+			position: 'fixed',
+			right: '8px',
+			width: '32px',
+			height: '32px',
+			cursor: 'pointer',
+			'-ms-user-select': 'none',
+			'-moz-user-select': 'none',
+			'-webkit-user-select': 'none',
+			'user-select': 'none',
+			bottom: '120px'
+		} )
 		.appendTo( 'body' );
 	const modeSwitcher = () => {
 		const meta = document.createElement( 'meta' );
