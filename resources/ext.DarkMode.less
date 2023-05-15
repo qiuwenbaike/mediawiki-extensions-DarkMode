@@ -14,19 +14,6 @@
 		height: 100%;
 	}
 
-	/* For button(s) */
-	#darkmode-button {
-		position: fixed;
-		right: 8px;
-		width: 32px;
-		height: 32px;
-		cursor: pointer;
-		-ms-user-select: none;
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		user-select: none;
-	}
-
 	/* START OF DARKMODE STYLES */
 	html.client-darkmode {
 		-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
@@ -270,6 +257,19 @@
 			transition: unset;
 		}
 	}
+}
+
+/* For button(s) */
+#darkmode-button {
+	position: fixed;
+	right: 8px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 @media print {
