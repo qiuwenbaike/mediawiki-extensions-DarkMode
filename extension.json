@@ -27,7 +27,6 @@
 	"ResourceModules": {
 		"ext.DarkMode": {
 			"es6": true,
-			"dependencies": ["mediawiki.api"],
 			"packageFiles": ["ext.DarkMode.js"],
 			"targets": [
 				"desktop",
