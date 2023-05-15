@@ -92,8 +92,12 @@ $( () => {
 		if ( getCookie( cookieName ) === '' ) {
 			if ( isDarkMode ) {
 				setCookie( cookieName, '1', 1e9 );
+				document.documentElement.classList.remove( 'client-lightmode' );
+				document.documentElement.classList.add( 'client-darkmode' );
 			} else {
 				setCookie( cookieName, '0', 1e9 );
+				document.documentElement.classList.remove( 'client-darkmode' );
+				document.documentElement.classList.add( 'client-lightmode' );
 			}
 		}
 		if ( getCookie( cookieName ) === '1' ) {
