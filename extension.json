@@ -29,6 +29,10 @@
             "es6": true,
 			"dependencies": ["mediawiki.api"],
 			"packageFiles": ["ext.DarkMode.js"],
+			"targets": [
+				"desktop",
+				"mobile"
+			],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
@@ -37,6 +41,10 @@
 			]
 		},
 		"ext.DarkMode.styles": {
+			"targets": [
+				"desktop",
+				"mobile"
+			],
 			"styles": ["ext.DarkMode.less"]
 		}
 	},
