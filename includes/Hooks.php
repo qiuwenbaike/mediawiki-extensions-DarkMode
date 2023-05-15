@@ -28,8 +28,10 @@ class Hooks implements
             // will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
             // Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
             $out->addHtmlClasses('client-darkmode');
+            $out->addMeta('color-scheme', 'dark');
         } else {
             $out->addHtmlClasses('client-lightmode');
+            $out->addMeta('color-scheme', 'light');
         }
     }
 
