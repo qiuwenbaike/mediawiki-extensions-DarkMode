@@ -8,7 +8,6 @@
  * - AnYiEE
  * - WaitSpring
  */
-/* stylelint-disable declaration-no-important */
 
 @media screen {
 	html {
@@ -28,12 +27,22 @@
 	}
 
 	/* START OF DARKMODE STYLES */
+	html.client-darkmode {
+		-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
+		filter: invert( 0.95 ) hue-rotate( 180deg );
+	}
+
 	.client-darkmode {
+		iframe {
+			-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
+			filter: invert( 0.95 ) hue-rotate( 180deg );
+		}
+
 		&,
 		img,
+		ogvjs,
 		video,
 		svg,
-		iframe,
 		.mw-no-invert,
 		td .diffchange,
 		.cdx-menu-item__thumbnail,
@@ -53,8 +62,8 @@
 		.vjs-text-track-display,
 		.wvui-typeahead-suggestion__thumbnail {
 			box-shadow: none;
-			-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
-			filter: invert( 0.95 ) hue-rotate( 180deg );
+			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
+			filter: invert( 1 ) hue-rotate( 180deg );
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
@@ -148,7 +157,6 @@
 		/* Links: normal */
 		a,
 		.vector-menu-tabs li a,
-		/* Backwards compatible VectorTabs, deprecated in MW 1.35 */
 		.vectorTabs li a,
 		.toctogglelabel,
 		.mw-parser-output a.external,
@@ -211,7 +219,6 @@
 		/* Dealing with false positives from selector above */
 		.mw-echo-ui-notificationItemWidget-icon img[ src*='svg' ],
 		.mbox-image .image img[ src*='svg' ],
-		/* Vote symbols on Talk pages */
 		.image img[ alt^='Symbol' ] {
 			background-color: transparent;
 		}
