@@ -25,7 +25,7 @@
 		"DarkMode": ["i18n"]
 	},
 	"ResourceModules": {
-		"ext.DarkMode": {
+		"ext.DarkMode.js": {
 			"es6": true,
 			"packageFiles": ["ext.DarkMode.js"],
 			"targets": [
@@ -39,7 +39,7 @@
 				"darkmode-default-link-tooltip"
 			]
 		},
-		"ext.DarkMode.style": {
+		"ext.DarkMode.css": {
 			"targets": [
 				"desktop",
 				"mobile"
