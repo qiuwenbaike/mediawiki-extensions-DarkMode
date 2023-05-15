@@ -36,10 +36,6 @@
 			]
 		},
 		"ext.DarkMode.styles": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": ["ext.DarkMode.less"]
 		}
 	},
