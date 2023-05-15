@@ -5,132 +5,137 @@
  * Rewrite in ES5 by WaitSpring
  */
 'use strict';
-
-(($, mw) => {
-	const getCookie = (name) => ('; '
-		.concat(decodeURIComponent(document.cookie))
-		.split('; '.concat(name, '='))
+$( () => {
+	const getCookie = ( name ) => ( '; '
+		.concat( decodeURIComponent( document.cookie ) )
+		.split( '; '.concat( name, '=' ) )
 		.pop()
-		.split(';')
-		.shift());
-	const setCookie = function setCookie(name, value, time) {
-		const path = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '/';
-		const isSecure = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
-		if (!name || !value || !time || !path) {
+		.split( ';' )
+		.shift() );
+	const setCookie = function setCookie( name, value, time ) {
+		const path = arguments.length > 3 && arguments[ 3 ] !== undefined ? arguments[ 3 ] : '/';
+		const isSecure =
+            arguments.length > 4 && arguments[ 4 ] !== undefined ? arguments[ 4 ] : true;
+		if ( !name || !value || !time || !path ) {
 			return;
 		}
 		const base = ''
-			.concat(name, '=')
-			.concat(encodeURIComponent(value), ';path=')
-			.concat(path)
-			.concat(isSecure ? ';Secure' : ''), date = new Date();
-		if (time === 'tmp') {
+			.concat( name, '=' )
+			.concat( encodeURIComponent( value ), ';path=' )
+			.concat( path )
+			.concat( isSecure ? ';Secure' : '' );
+		const date = new Date();
+		if ( time === 'tmp' ) {
 			document.cookie = base;
 		} else {
-			date.setTime(date.getTime() + time * 3600000);
-			document.cookie = ''.concat(base, ';expires=').concat(date.toGMTString());
+			date.setTime( date.getTime() + time * 3600000 );
+			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
 		}
 	};
-	const cookieName = 'usedarkmode',
-		isDarkMode = matchMedia('( prefers-color-scheme: dark )').matches,
-		darkModeButtonIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
-		$darkModeButton = $('<img>')
-			.attr({
-				src: darkModeButtonIcon,
-				id: 'darkModeButton',
-				draggable: 'false'
-			})
-			.css('opacity', '0.7')
-			.css('bottom', '120px')
-			.appendTo('body'),
-		modeSwitcher = () => {
-			const meta = document.createElement('meta');
-			meta.name = 'color-scheme';
-			let metaContent;
-			if (getCookie(cookieName) === '0') {
-				document.documentElement.classList.remove('client-lightmode');
-				document.documentElement.classList.add('client-darkmode');
-				metaContent = 'dark';
-				setCookie(cookieName, '0', '-1');
-				setCookie(cookieName, '1', 1e9);
-				$darkModeButton.attr({
-					alt: mw.message('darkmode-default-link'),
-					title: mw.message('darkmode-default-link-tooltip')
-				});
-			} else {
-				document.documentElement.classList.remove('client-darkmode');
-				document.documentElement.classList.add('client-lightmode');
-				metaContent = 'light';
-				setCookie(cookieName, '1', '-1');
-				setCookie(cookieName, '0', 1e9);
-				$darkModeButton.attr({
-					alt: mw.message('darkmode-link'),
-					title: mw.message('darkmode-link-tooltip')
-				});
-			}
-			meta.content = metaContent;
-			document.getElementsByTagName('head')[0].appendChild(meta);
-		},
-		modeObserver = {
-			dark: (mediaQueryList) => {
-				if (mediaQueryList.matches && getCookie(cookieName) === '0') {
-					modeSwitcher();
-				}
-			},
-			light: (mediaQueryList) => {
-				if (mediaQueryList.matches && getCookie(cookieName) === '1') {
-					modeSwitcher();
-				}
-			}
-		},
-		checkDarkMode = () => {
-			if (getCookie(cookieName) === '') {
-				if (isDarkMode) {
-					setCookie(cookieName, '1', 1e9);
-				} else {
-					setCookie(cookieName, '0', 1e9);
-				}
-			}
-			if (getCookie(cookieName) === '1') {
-				$darkModeButton.attr({
-					alt: mw.message('darkmode-default-link'),
-					title: mw.message('darkmode-default-link-tooltip')
-				});
-			} else {
-				$darkModeButton.attr({
-					alt: mw.message('darkmode-link'),
-					title: mw.message('darkmode-link-tooltip')
-				});
-			}
-		};
-	matchMedia('( prefers-color-scheme: dark )').addEventListener(
-		'change',
-		(event) => {
-			modeObserver.dark(event.target);
-		}
-	);
-	matchMedia('( prefers-color-scheme: light )').addEventListener(
-		'change',
-		(event) => {
-			modeObserver.light(event.target);
-		}
-	);
-	window.addEventListener('scroll', () => {
-		if (document.getElementById('cat_a_lot') ||
-			document.getElementById('proveit') ||
-			document.getElementsByClassName('wordcount')[0]) {
-			$darkModeButton.css('bottom', '162px');
+	const cookieName = 'usedarkmode';
+	const isDarkMode = matchMedia( '( prefers-color-scheme: dark )' ).matches;
+	const darkModeButtonIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
+	const $darkModeButton = $( '<img>' )
+		.attr( {
+			src: darkModeButtonIcon,
+			id: 'darkModeButton',
+			draggable: 'false'
+		} )
+		.css( 'opacity', '0.7' )
+		.css( 'bottom', '120px' )
+		.appendTo( 'body' );
+	const modeSwitcher = () => {
+		const meta = document.createElement( 'meta' );
+		meta.name = 'color-scheme';
+		let metaContent;
+		if ( getCookie( cookieName ) === '0' ) {
+			document.documentElement.classList.remove( 'client-lightmode' );
+			document.documentElement.classList.add( 'client-darkmode' );
+			metaContent = 'dark';
+			setCookie( cookieName, '0', '-1' );
+			setCookie( cookieName, '1', 1e9 );
+			$darkModeButton.attr( {
+				alt: mw.message( 'darkmode-default-link' ),
+				title: mw.message( 'darkmode-default-link-tooltip' )
+			} );
 		} else {
-			$darkModeButton.css('bottom', '120px');
+			document.documentElement.classList.remove( 'client-darkmode' );
+			document.documentElement.classList.add( 'client-lightmode' );
+			metaContent = 'light';
+			setCookie( cookieName, '1', '-1' );
+			setCookie( cookieName, '0', 1e9 );
+			$darkModeButton.attr( {
+				alt: mw.message( 'darkmode-link' ),
+				title: mw.message( 'darkmode-link-tooltip' )
+			} );
 		}
-	});
+		meta.content = metaContent;
+		if ( document.getElementsByName( 'color-scheme' ).length > 0 ) {
+			document.getElementsByName( 'color-scheme' )[ 0 ].setAttribute( 'content', metaContent );
+		} else {
+			document.head.appendChild( meta );
+		}
+	};
+	const modeObserver = {
+		dark: ( { matches } ) => {
+			if ( matches && getCookie( cookieName ) === '0' ) {
+				modeSwitcher();
+			}
+		},
+		light: ( { matches } ) => {
+			if ( matches && getCookie( cookieName ) === '1' ) {
+				modeSwitcher();
+			}
+		}
+	};
+	const checkDarkMode = () => {
+		if ( getCookie( cookieName ) === '' ) {
+			if ( isDarkMode ) {
+				setCookie( cookieName, '1', 1e9 );
+			} else {
+				setCookie( cookieName, '0', 1e9 );
+			}
+		}
+		if ( getCookie( cookieName ) === '1' ) {
+			$darkModeButton.attr( {
+				alt: mw.message( 'darkmode-default-link' ),
+				title: mw.message( 'darkmode-default-link-tooltip' )
+			} );
+		} else {
+			$darkModeButton.attr( {
+				alt: mw.message( 'darkmode-link' ),
+				title: mw.message( 'darkmode-link-tooltip' )
+			} );
+		}
+	};
+	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener(
+		'change',
+		( { target } ) => {
+			modeObserver.dark( target );
+		}
+	);
+	matchMedia( '( prefers-color-scheme: light )' ).addEventListener(
+		'change',
+		( { target } ) => {
+			modeObserver.light( target );
+		}
+	);
+	window.addEventListener( 'scroll', () => {
+		if ( document.getElementById( 'cat_a_lot' ) ||
+            document.getElementById( 'proveit' ) ||
+            document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
+			$darkModeButton.css( 'bottom', '162px' );
+		} else {
+			$darkModeButton.css( 'bottom', '120px' );
+		}
+	} );
 	$darkModeButton
-		.on('mouseenter mouseleave', function ({ type }) {
+		.on( 'mouseenter mouseleave', function ( { type } ) {
 			this.style.opacity = type === 'mouseenter' ? 1 : 0.7;
-		})
-		.attr('draggable', 'false')
-		.on('click', () => {
+		} )
+		.attr( 'draggable', 'false' )
+		.on( 'click', () => {
 			modeSwitcher();
-		});
+		} );
 	checkDarkMode();
-})(jQuery, mediaWiki);
+} );
