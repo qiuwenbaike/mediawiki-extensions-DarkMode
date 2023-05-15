@@ -28,10 +28,6 @@
 		"ext.DarkMode.js": {
 			"es6": true,
 			"packageFiles": ["ext.DarkMode.js"],
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
@@ -40,10 +36,6 @@
 			]
 		},
 		"ext.DarkMode.css": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": ["ext.DarkMode.less"]
 		}
 	},
