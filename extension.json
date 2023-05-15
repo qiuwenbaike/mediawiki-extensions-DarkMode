@@ -28,15 +28,13 @@
 		"ext.DarkMode.js": {
 			"es6": true,
 			"packageFiles": ["ext.DarkMode.js"],
+			"styles": ["ext.DarkMode.less"],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
 				"darkmode-default-link",
 				"darkmode-default-link-tooltip"
 			]
-		},
-		"ext.DarkMode.css": {
-			"styles": ["ext.DarkMode.less"]
 		}
 	},
 	"ResourceFileModulePaths": {
