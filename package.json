@@ -11,5 +11,8 @@
 		"grunt-eslint": "24.0.1",
 		"grunt-stylelint": "0.18.0",
 		"stylelint-config-wikimedia": "0.14.0"
+	},
+	"dependencies": {
+		"stylelint-config-idiomatic-order": "^9.0.0"
 	}
 }
