@@ -25,8 +25,8 @@
 		"DarkMode": ["i18n"]
 	},
 	"ResourceModules": {
-		"ext.DarkMode": {
-            "es6": true,
+		"ext.DarkMode.js": {
+			"es6": true,
 			"dependencies": ["mediawiki.api"],
 			"packageFiles": ["ext.DarkMode.js"],
 			"targets": [
@@ -40,7 +40,7 @@
 				"darkmode-default-link-tooltip"
 			]
 		},
-		"ext.DarkMode.styles": {
+		"ext.DarkMode.css": {
 			"targets": [
 				"desktop",
 				"mobile"
