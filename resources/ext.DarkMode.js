@@ -80,12 +80,43 @@ $( () => {
 				title: mw.message( 'darkmode-link-tooltip' )
 			} );
 		}
-		meta.content = metaContent;
+	};
+	const switchMetaContent = ( metaContent ) => {
 		if ( document.getElementsByName( 'color-scheme' ).length > 0 ) {
 			document.getElementsByName( 'color-scheme' )[ 0 ].setAttribute( 'content', metaContent );
 		} else {
+			const meta = document.createElement( 'meta' );
+			meta.name = 'color-scheme';
+			meta.content = metaContent;
 			document.head.appendChild( meta );
 		}
+	};
+	const checkDarkMode = () => {
+		if ( getCookie( cookieName ) === '' ) {
+			let metaContent;
+			if ( isDarkMode ) {
+				switchMode.dark();
+				metaContent = 'dark';
+			} else {
+				switchMode.light();
+				metaContent = 'light';
+			}
+			switchMetaContent( metaContent );
+		}
+	};
+	const modeSwitcher = () => {
+		if ( getCookie( cookieName ) === '' ) {
+			checkDarkMode();
+		}
+		let metaContent;
+		if ( getCookie( cookieName ) === '0' ) {
+			switchMode.dark();
+			metaContent = 'dark';
+		} else {
+			switchMode.light();
+			metaContent = 'light';
+		}
+		switchMetaContent( metaContent );
 	};
 	const modeObserver = {
 		dark: ( { matches } ) => {
