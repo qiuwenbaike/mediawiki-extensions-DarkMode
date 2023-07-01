@@ -1,7 +1,7 @@
 {
 	"name": "DarkMode",
 	"version": "0.4.0",
-	"author": ["MusikAnimal", "R4356th", "AnYi", "WaitSpring"],
+	"author": [ "MusikAnimal", "R4356th", "AnYi", "WaitSpring" ],
 	"url": "https://git.qiuwen.wiki/Fork/mediawiki-extensions-DarkMode",
 	"descriptionmsg": "darkmode-desc",
 	"license-name": "GPL-3.0",
@@ -18,16 +18,16 @@
 	"HookHandlers": {
 		"main": {
 			"class": "MediaWiki\\Extension\\DarkMode\\Hooks",
-			"services": ["MainConfig"]
+			"services": [ "MainConfig" ]
 		}
 	},
 	"MessagesDirs": {
-		"DarkMode": ["i18n"]
+		"DarkMode": [ "i18n" ]
 	},
 	"ResourceModules": {
 		"ext.DarkMode.js": {
 			"es6": true,
-			"packageFiles": ["ext.DarkMode.js"],
+			"packageFiles": [ "ext.DarkMode.js" ],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
@@ -36,7 +36,7 @@
 			]
 		},
 		"ext.DarkMode.css": {
-			"styles": ["ext.DarkMode.less"]
+			"styles": [ "ext.DarkMode.less" ]
 		}
 	},
 	"ResourceFileModulePaths": {

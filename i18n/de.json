@@ -1,6 +1,6 @@
 {
 	"@metadata": {
-		"authors": ["Mirzali"]
+		"authors": [ "Mirzali" ]
 	},
 	"darkmode-desc": "Ein umschaltbarer Dunkelmodus für die MediaWiki-Benutzeroberfläche",
 	"darkmode-link": "Dunkler Modus",

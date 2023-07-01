@@ -1,6 +1,6 @@
 {
 	"@metadata": {
-		"authors": ["TsuyaMarisa", "铁桶", "WaitSpring"]
+		"authors": [ "TsuyaMarisa", "铁桶", "WaitSpring" ]
 	},
 	"darkmode-desc": "MediaWiki用户界面的可切换暗色模式",
 	"darkmode-link": "暗色模式",
