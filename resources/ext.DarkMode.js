@@ -39,7 +39,9 @@ $( () => {
 		.attr( {
 			src: darkModeIcon,
 			id: 'darkmode-button',
-			draggable: 'false'
+			draggable: 'false',
+			alt: ( document.querySelector( 'meta[name=color-scheme]' ).content === 'dark' ) ? mw.message( 'darkmode-default-link' ) : mw.message( 'darkmode-link' ),
+			title: ( document.querySelector( 'meta[name=color-scheme]' ).content === 'dark' ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-default-link-tooltip' )
 		} )
 		.css( {
 			opacity: '0.7',
