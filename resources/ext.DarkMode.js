@@ -38,7 +38,7 @@
 	const darkModeButton = document.createElement( 'img' );
 	darkModeButton.id = 'darkmode-button';
 	darkModeButton.src = darkModeIcon;
-	darkModeButton.draggable = 'false';
+	darkModeButton.draggable = false;
 	darkModeButton.alt = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link' ) : mw.message( 'darkmode-link' );
 	darkModeButton.title = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-link-tooltip' );
 	darkModeButton.style.opacity = '0.7';
