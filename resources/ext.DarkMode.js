@@ -44,7 +44,7 @@
 	darkModeButton.style.opacity = '0.7';
 	darkModeButton.style.bottom = '120px';
 	darkModeButton.addEventListener( 'mouseenter mouseleave', function ( { type } ) {
-		this.style.opacity = type === 'mouseenter' ? 1 : 0.7;
+		darkModeButton.style.opacity = type === 'mouseenter' ? 1 : 0.7;
 	} );
 	document.body.appendChild( darkModeButton );
 	window.addEventListener( 'scroll', () => {
