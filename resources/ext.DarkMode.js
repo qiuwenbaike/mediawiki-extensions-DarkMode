@@ -43,9 +43,11 @@
 	darkModeButton.title = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-link-tooltip' );
 	darkModeButton.style.opacity = '0.7';
 	darkModeButton.style.bottom = '120px';
-	darkModeButton.addEventListener( 'mouseenter mouseleave', function ( { type } ) {
-		darkModeButton.style.opacity = type === 'mouseenter' ? 1 : 0.7;
-	} );
+	const eventTargetFunction = ( { type } ) => {
+		darkModeButton.style.opacity = type === 'mouseenter' ? '1' : '0.7';
+	};
+	darkModeButton.addEventListener( 'mouseenter', eventTargetFunction );
+	darkModeButton.addEventListener( 'mouseleave', eventTargetFunction );
 	document.body.appendChild( darkModeButton );
 	window.addEventListener( 'scroll', () => {
 		if ( document.getElementById( 'cat_a_lot' ) ||
