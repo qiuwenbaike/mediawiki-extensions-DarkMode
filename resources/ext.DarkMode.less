@@ -1,3 +1,4 @@
+/* stylelint-disable function-url-quotes */
 /* Dark Mode
  * Authors:
  * - Volker E.
@@ -199,6 +200,14 @@
 		#topics-list img {
 			-webkit-filter: invert( 0 );
 			filter: invert( 0 );
+		}
+
+		.mw-body-content .thumbinner .thumbimage,
+		.filehistory a img,
+		#file img {
+			background: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M0 0h8v16h8V8H0z' opacity='.07'/%3E%3C/svg%3E" )
+				repeat;
+			background-color: hsl( 210, 17%, 98% );
 		}
 
 		/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
