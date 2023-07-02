@@ -5,7 +5,7 @@
  * Rewrite in ES5 by WaitSpring
  */
 'use strict';
-$( () => {
+( () => {
 	const getCookie = ( name ) => ( '; '
 		.concat( decodeURIComponent( document.cookie ) )
 		.split( '; '.concat( name, '=' ) )
@@ -35,43 +35,45 @@ $( () => {
 	const cookieName = 'usedarkmode';
 	const isDarkMode = matchMedia( '( prefers-color-scheme: dark )' ).matches;
 	const darkModeIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
-	const $darkModeButton = $( '<img>' )
-		.attr( {
-			src: darkModeIcon,
-			id: 'darkmode-button',
-			draggable: 'false',
-			alt: ( document.querySelector( 'meta[name=color-scheme]' ).content === 'dark' ) ? mw.message( 'darkmode-default-link' ) : mw.message( 'darkmode-link' ),
-			title: ( document.querySelector( 'meta[name=color-scheme]' ).content === 'dark' ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-default-link-tooltip' )
-		} )
-		.css( {
-			opacity: '0.7',
-			bottom: '120px'
-		} )
-		.appendTo( 'body' );
-	const modeSwitcher = () => {
-		const meta = document.createElement( 'meta' );
-		meta.name = 'color-scheme';
-		let metaContent;
-		if ( getCookie( cookieName ) === '0' ) {
+	const darkModeButton = document.createElement( 'img' );
+	darkModeButton.id = 'darkmode-button';
+	darkModeButton.src = darkModeIcon;
+	darkModeButton.draggable = 'false';
+	darkModeButton.alt = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link' ) : mw.message( 'darkmode-link' );
+	darkModeButton.title = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-link-tooltip' );
+	darkModeButton.style.opacity = '0.7';
+	darkModeButton.style.bottom = '120px';
+	darkModeButton.addEventListener( 'mouseenter mouseleave', function ( { type } ) {
+		this.style.opacity = type === 'mouseenter' ? 1 : 0.7;
+	} );
+	document.body.appendChild( darkModeButton );
+	window.addEventListener( 'scroll', () => {
+		if ( document.getElementById( 'cat_a_lot' ) ||
+            document.getElementById( 'proveit' ) ||
+            document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
+			darkModeButton.style.bottom = '162px';
+		} else {
+			darkModeButton.style.bottom = '120px';
+		}
+	} );
+	const switchMode = {
+		dark: () => {
 			document.documentElement.classList.remove( 'client-lightmode' );
 			document.documentElement.classList.add( 'client-darkmode' );
 			metaContent = 'dark';
 			setCookie( cookieName, '0', '-1' );
 			setCookie( cookieName, '1', 1e9 );
-			$darkModeButton.attr( {
-				alt: mw.message( 'darkmode-default-link' ),
-				title: mw.message( 'darkmode-default-link-tooltip' )
-			} );
-		} else {
+			darkModeButton.alt = mw.message( 'darkmode-default-link' );
+			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
+		},
+		light: () => {
 			document.documentElement.classList.remove( 'client-darkmode' );
 			document.documentElement.classList.add( 'client-lightmode' );
 			metaContent = 'light';
 			setCookie( cookieName, '1', '-1' );
 			setCookie( cookieName, '0', 1e9 );
-			$darkModeButton.attr( {
-				alt: mw.message( 'darkmode-link' ),
-				title: mw.message( 'darkmode-link-tooltip' )
-			} );
+			darkModeButton.alt = mw.message( 'darkmode-link' );
+			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
 	};
 	const switchMetaContent = ( metaContent ) => {
@@ -111,6 +113,9 @@ $( () => {
 		}
 		switchMetaContent( metaContent );
 	};
+	darkModeButton.addEventListener( 'click', () => {
+		modeSwitcher();
+	} );
 	const modeObserver = {
 		dark: ( { matches } ) => {
 			if ( matches && getCookie( cookieName ) === '0' ) {
@@ -177,4 +182,4 @@ $( () => {
 			modeSwitcher();
 		} );
 	checkDarkMode();
-} );
+} )();
