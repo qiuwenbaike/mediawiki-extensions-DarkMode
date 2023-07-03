@@ -14,7 +14,7 @@
 	const setCookie = function setCookie( name, value, time ) {
 		const path = arguments.length > 3 && arguments[ 3 ] !== undefined ? arguments[ 3 ] : '/';
 		const isSecure =
-            arguments.length > 4 && arguments[ 4 ] !== undefined ? arguments[ 4 ] : true;
+			arguments.length > 4 && arguments[ 4 ] !== undefined ? arguments[ 4 ] : true;
 		if ( !name || !value || !time || !path ) {
 			return;
 		}
@@ -48,15 +48,17 @@
 	darkModeButton.addEventListener( 'mouseenter', eventTargetFunction );
 	darkModeButton.addEventListener( 'mouseleave', eventTargetFunction );
 	document.body.appendChild( darkModeButton );
-	window.addEventListener( 'scroll', () => {
+	const windowEventFunction = () => {
 		if ( document.getElementById( 'cat_a_lot' ) ||
-            document.getElementById( 'proveit' ) ||
-            document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
+			document.getElementById( 'proveit' ) ||
+			document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
 			darkModeButton.style.bottom = '162px';
 		} else {
 			darkModeButton.style.bottom = '120px';
 		}
-	} );
+	};
+	window.addEventListener( 'scroll', windowEventFunction );
+	window.addEventListener( 'selectionchange', windowEventFunction );
 	const switchMode = {
 		dark: () => {
 			document.documentElement.classList.remove( 'client-lightmode' );
