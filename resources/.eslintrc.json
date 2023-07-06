@@ -4,5 +4,10 @@
 		"wikimedia/server",
 		"wikimedia/language/es2022",
 		"wikimedia/mediawiki"
-	]
+	],
+	"globals": {
+		"window": "readonly",
+		"document": "readonly",
+		"matchMedia": "readonly"
+	}
 }

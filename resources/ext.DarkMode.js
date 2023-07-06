@@ -2,8 +2,9 @@
  * Dark Mode
  * Author(s):
  * - AnYi
- * Rewrite in ES5 by WaitSpring
+ * Rewrite in ES5 and ES6 by WaitSpring
  */
+'use strict';
 ( () => {
 	const getCookie = ( name ) => ( '; '
 		.concat( decodeURIComponent( document.cookie ) )
