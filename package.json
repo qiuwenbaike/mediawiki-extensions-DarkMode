@@ -2,17 +2,20 @@
 	"name": "darkmode",
 	"private": true,
 	"scripts": {
-		"test": "grunt test"
+		"test": "grunt test",
+		"eslint": "eslint .",
+		"eslint:fix": "eslint . --fix",
+		"stylelint": "stylelint resources/*.less --custom-syntax postcss-less",
+		"stylelint:fix": "stylelint resources/*.less --fix --custom-syntax postcss-less"
 	},
 	"devDependencies": {
-		"eslint-config-wikimedia": "0.25.0",
+		"eslint-config-wikimedia": "^0.25.1",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.10.0",
 		"grunt-eslint": "24.0.1",
 		"grunt-stylelint": "0.18.0",
+		"postcss-less": "^6.0.0",
+		"stylelint-config-idiomatic-order": "^9.0.0",
 		"stylelint-config-wikimedia": "0.14.0"
-	},
-	"dependencies": {
-		"stylelint-config-idiomatic-order": "^9.0.0"
 	}
 }
