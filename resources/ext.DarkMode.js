@@ -11,10 +11,7 @@
 		.pop()
 		.split( ';' )
 		.shift() );
-	const setCookie = function setCookie( name, value, time ) {
-		const path = arguments.length > 3 && arguments[ 3 ] !== undefined ? arguments[ 3 ] : '/';
-		const isSecure =
-			arguments.length > 4 && arguments[ 4 ] !== undefined ? arguments[ 4 ] : true;
+	const setCookie = ( name, value, time, path = '/', isSecure = true ) => {
 		if ( !name || !value || !time || !path ) {
 			return;
 		}
@@ -51,7 +48,7 @@
 	const windowEventFunction = () => {
 		if ( document.getElementById( 'cat_a_lot' ) ||
 			document.getElementById( 'proveit' ) ||
-			document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
+            document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
 			darkModeButton.style.bottom = '162px';
 		} else {
 			darkModeButton.style.bottom = '120px';
