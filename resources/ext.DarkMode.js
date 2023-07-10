@@ -161,13 +161,5 @@
 			darkModeButton.css( 'bottom', '120px' );
 		}
 	} );
-	darkModeButton
-		.on( 'mouseenter mouseleave', function ( { type } ) {
-			this.style.opacity = type === 'mouseenter' ? 1 : 0.7;
-		} )
-		.attr( 'draggable', 'false' )
-		.on( 'click', () => {
-			modeSwitcher();
-		} );
 	checkDarkMode();
 } )();
