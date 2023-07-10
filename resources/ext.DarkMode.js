@@ -57,26 +57,6 @@
 	};
 	window.addEventListener( 'scroll', windowEventFunction );
 	window.addEventListener( 'selectionchange', windowEventFunction );
-	const switchMode = {
-		dark: () => {
-			document.documentElement.classList.remove( 'client-lightmode' );
-			document.documentElement.classList.add( 'client-darkmode' );
-			metaContent = 'dark';
-			setCookie( cookieName, '0', '-1' );
-			setCookie( cookieName, '1', 1e9 );
-			darkModeButton.alt = mw.message( 'darkmode-default-link' );
-			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
-		},
-		light: () => {
-			document.documentElement.classList.remove( 'client-darkmode' );
-			document.documentElement.classList.add( 'client-lightmode' );
-			metaContent = 'light';
-			setCookie( cookieName, '1', '-1' );
-			setCookie( cookieName, '0', 1e9 );
-			darkModeButton.alt = mw.message( 'darkmode-link' );
-			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
-		}
-	};
 	const switchMetaContent = ( metaContent ) => {
 		if ( document.getElementsByName( 'color-scheme' ).length > 0 ) {
 			document.getElementsByName( 'color-scheme' )[ 0 ].setAttribute( 'content', metaContent );
@@ -85,6 +65,26 @@
 			meta.name = 'color-scheme';
 			meta.content = metaContent;
 			document.head.appendChild( meta );
+		}
+	};
+	const switchMode = {
+		dark: () => {
+			document.documentElement.classList.remove( 'client-lightmode' );
+			document.documentElement.classList.add( 'client-darkmode' );
+			switchMetaContent( 'dark' );
+			setCookie( cookieName, '0', '-1' );
+			setCookie( cookieName, '1', 1e9 );
+			darkModeButton.alt = mw.message( 'darkmode-default-link' );
+			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
+		},
+		light: () => {
+			document.documentElement.classList.remove( 'client-darkmode' );
+			document.documentElement.classList.add( 'client-lightmode' );
+			switchMetaContent( 'light' );
+			setCookie( cookieName, '1', '-1' );
+			setCookie( cookieName, '0', 1e9 );
+			darkModeButton.alt = mw.message( 'darkmode-link' );
+			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
 	};
 	const checkDarkMode = () => {
