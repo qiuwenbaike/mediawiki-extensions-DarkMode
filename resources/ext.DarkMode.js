@@ -89,15 +89,26 @@
 	};
 	const checkDarkMode = () => {
 		if ( getCookie( cookieName ) === '' ) {
-			let metaContent;
 			if ( isDarkMode ) {
-				switchMode.dark();
-				metaContent = 'dark';
+				setCookie( cookieName, '1', 1e9 );
+				document.documentElement.classList.remove( 'client-lightmode' );
+				document.documentElement.classList.add( 'client-darkmode' );
 			} else {
-				switchMode.light();
-				metaContent = 'light';
+				setCookie( cookieName, '0', 1e9 );
+				document.documentElement.classList.remove( 'client-darkmode' );
+				document.documentElement.classList.add( 'client-lightmode' );
 			}
-			switchMetaContent( metaContent );
+		}
+		if ( getCookie( cookieName ) === '1' ) {
+			darkModeButton.attr( {
+				alt: mw.message( 'darkmode-default-link' ),
+				title: mw.message( 'darkmode-default-link-tooltip' )
+			} );
+		} else {
+			darkModeButton.attr( {
+				alt: mw.message( 'darkmode-link' ),
+				title: mw.message( 'darkmode-link-tooltip' )
+			} );
 		}
 	};
 	const modeSwitcher = () => {
@@ -129,30 +140,6 @@
 			}
 		}
 	};
-	const checkDarkMode = () => {
-		if ( getCookie( cookieName ) === '' ) {
-			if ( isDarkMode ) {
-				setCookie( cookieName, '1', 1e9 );
-				document.documentElement.classList.remove( 'client-lightmode' );
-				document.documentElement.classList.add( 'client-darkmode' );
-			} else {
-				setCookie( cookieName, '0', 1e9 );
-				document.documentElement.classList.remove( 'client-darkmode' );
-				document.documentElement.classList.add( 'client-lightmode' );
-			}
-		}
-		if ( getCookie( cookieName ) === '1' ) {
-			$darkModeButton.attr( {
-				alt: mw.message( 'darkmode-default-link' ),
-				title: mw.message( 'darkmode-default-link-tooltip' )
-			} );
-		} else {
-			$darkModeButton.attr( {
-				alt: mw.message( 'darkmode-link' ),
-				title: mw.message( 'darkmode-link-tooltip' )
-			} );
-		}
-	};
 	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener(
 		'change',
 		( { target } ) => {
@@ -169,12 +156,12 @@
 		if ( document.getElementById( 'cat_a_lot' ) ||
             document.getElementById( 'proveit' ) ||
             document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
-			$darkModeButton.css( 'bottom', '162px' );
+			darkModeButton.css( 'bottom', '162px' );
 		} else {
-			$darkModeButton.css( 'bottom', '120px' );
+			darkModeButton.css( 'bottom', '120px' );
 		}
 	} );
-	$darkModeButton
+	darkModeButton
 		.on( 'mouseenter mouseleave', function ( { type } ) {
 			this.style.opacity = type === 'mouseenter' ? 1 : 0.7;
 		} )
