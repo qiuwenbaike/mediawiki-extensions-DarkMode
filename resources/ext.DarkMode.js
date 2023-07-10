@@ -48,7 +48,7 @@
 	document.body.appendChild( darkModeButton );
 	const windowEventFunction = () => {
 		if ( document.getElementById( 'cat_a_lot' ) ||
-			document.getElementById( 'proveit' ) ||
+            document.getElementById( 'proveit' ) ||
             document.getElementsByClassName( 'wordcount' )[ 0 ] ) {
 			darkModeButton.style.bottom = '162px';
 		} else {
@@ -100,15 +100,11 @@
 			}
 		}
 		if ( getCookie( cookieName ) === '1' ) {
-			darkModeButton.attr( {
-				alt: mw.message( 'darkmode-default-link' ),
-				title: mw.message( 'darkmode-default-link-tooltip' )
-			} );
+			darkModeButton.alt = mw.message( 'darkmode-default-link' );
+			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
 		} else {
-			darkModeButton.attr( {
-				alt: mw.message( 'darkmode-link' ),
-				title: mw.message( 'darkmode-link-tooltip' )
-			} );
+			darkModeButton.alt = mw.message( 'darkmode-link' );
+			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
 	};
 	const modeSwitcher = () => {
