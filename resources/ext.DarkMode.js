@@ -125,27 +125,27 @@
 		modeSwitcher();
 	} );
 	const modeObserver = {
-		dark: ( { matches } ) => {
-			if ( matches && getCookie( cookieName ) === '0' ) {
+		dark: ( event ) => {
+			if ( event.matches && getCookie( cookieName ) === '0' ) {
 				modeSwitcher();
 			}
 		},
-		light: ( { matches } ) => {
-			if ( matches && getCookie( cookieName ) === '1' ) {
+		light: ( event ) => {
+			if ( event.matches && getCookie( cookieName ) === '1' ) {
 				modeSwitcher();
 			}
 		}
 	};
 	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener(
 		'change',
-		( { target } ) => {
-			modeObserver.dark( target );
+		( event ) => {
+			modeObserver.dark( event.target );
 		}
 	);
 	matchMedia( '( prefers-color-scheme: light )' ).addEventListener(
 		'change',
-		( { target } ) => {
-			modeObserver.light( target );
+		( event ) => {
+			modeObserver.light( event.target );
 		}
 	);
 	checkDarkMode();
