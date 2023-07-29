@@ -17,14 +17,14 @@
 
 	/* START OF DARKMODE STYLES */
 	html.client-darkmode {
-		-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
-		filter: invert( 0.95 ) hue-rotate( 180deg );
+		-webkit-filter: invert( 1 ) hue-rotate( 180deg );
+		filter: invert( 1 ) hue-rotate( 180deg );
 	}
 
 	.client-darkmode {
 		iframe {
-			-webkit-filter: invert( 0.95 ) hue-rotate( 180deg );
-			filter: invert( 0.95 ) hue-rotate( 180deg );
+			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
+			filter: invert( 1 ) hue-rotate( 180deg );
 		}
 
 		&,
@@ -70,6 +70,11 @@
 		.cdx-icon svg {
 			-webkit-filter: none;
 			filter: none;
+		}
+
+		/* Fix font color at api.php */
+		.mw-special-ApiHelp {
+			color: #000;
 		}
 
 		/* Backgrounds */
@@ -184,7 +189,7 @@
 
 		/* Content image (thumbnail) SVGs */
 		.mw-mmv-image img.blurred {
-			filter: blur( 3px ) invert( 0.95 ) hue-rotate( 180deg ) !important;
+			filter: blur( 3px ) invert( 1 ) hue-rotate( 180deg ) !important;
 		}
 
 		img[ alt*='-at-' ],
