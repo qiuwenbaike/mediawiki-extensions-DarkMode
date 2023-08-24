@@ -16,6 +16,6 @@
 		"grunt-stylelint": "0.18.0",
 		"postcss-less": "^6.0.0",
 		"stylelint-config-idiomatic-order": "^9.0.0",
-		"stylelint-config-wikimedia": "0.14.0"
+		"stylelint-config-wikimedia": "0.16.1"
 	}
 }
