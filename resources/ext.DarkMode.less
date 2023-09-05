@@ -50,21 +50,42 @@
 		.mw-tmh-play-icon,
 		.mwe-math-element,
 		.vjs-fullscreen,
-		.vjs-text-track-display {
+		.vjs-text-track-display,
+		.wvui-typeahead-suggestion__thumbnail,
+		.citizen-typeahead__item--page .citizen-typeahead__thumbnail {
 			box-shadow: none;
 			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
 			filter: invert( 1 ) hue-rotate( 180deg );
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
-		.skin-vector .mw-logo-wordmark,
-		.skin-vector .mw-logo-icon,
-		.skin-vector .mw-logo-tagline,
-		.skin-vector #sliderCollapseLogo,
-		.skin-gongbi .mw-wiki-title > img,
-		.skin-gongbi .mw-wiki-logo > img,
-		.skin-citizen .mw-logo-icon,
-		.skin-citizen .mw-logo-wordmark,
+		.skin-vector {
+			.mw-logo-wordmark,
+			.mw-logo-icon,
+			.mw-logo-tagline,
+			#sliderCollapseLogo {
+				-webkit-filter: none;
+				filter: none;
+			}
+		}
+
+		.skin-gongbi {
+			.mw-wiki-title,
+			.mw-wiki-logo  {
+				& > img {
+					-webkit-filter: none;
+					filter: none;
+				}
+			}
+		}
+
+		.skin-citizen {
+			.mw-logo-icon,
+			.mw-logo-wordmark {
+				-webkit-filter: none;
+				filter: none;
+			}
+		}
 		.cdx-icon svg {
 			-webkit-filter: none;
 			filter: none;
