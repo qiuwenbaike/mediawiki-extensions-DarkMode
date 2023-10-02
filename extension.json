@@ -27,7 +27,7 @@
 	"ResourceModules": {
 		"ext.DarkMode.js": {
 			"es6": true,
-			"packageFiles": [ "ext.DarkMode.js" ],
+			"packageFiles": [ "ext.DarkMode.js", "ext.DarkMode.EmojiWrap.js" ],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
