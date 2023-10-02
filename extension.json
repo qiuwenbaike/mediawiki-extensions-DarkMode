@@ -35,6 +35,10 @@
 				"darkmode-default-link-tooltip"
 			]
 		},
+		"ext.DarkMode.EmojiWrap.js": {
+			"es6": true,
+			"packageFiles": [ "ext.DarkMode.EmojiWrap.js" ]
+		},
 		"ext.DarkMode.css": {
 			"styles": [ "ext.DarkMode.less" ]
 		}
