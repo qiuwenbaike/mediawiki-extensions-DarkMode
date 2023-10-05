@@ -1,8 +1,8 @@
 /**
- * Dark Mode
- * Author(s):
- * - AnYi
- * Rewrite in ES5 and ES6 by WaitSpring
+ * @name DarkMode.js
+ * @description add dark mode to MediaWiki sites
+ * @author AnYi, WaitSpring
+ * @license GPL-3.0
  */
 'use strict';
 ( () => {
