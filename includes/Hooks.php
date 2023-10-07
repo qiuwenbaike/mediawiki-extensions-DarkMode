@@ -19,8 +19,7 @@ class Hooks implements
      */
     public function onBeforePageDisplay($out, $skin): void
     {
-        $out->addModules('ext.DarkMode.js');
-        $out->addModules('ext.DarkMode.EmojiWrap.js');
+        $out->addModules([ 'ext.DarkMode', 'ext.DarkMode.EmojiWrap' ]);
         $out->addModuleStyles('ext.DarkMode.css');
 
         if ($this->isDarkModeActive($skin)) {

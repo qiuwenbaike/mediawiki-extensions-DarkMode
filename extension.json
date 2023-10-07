@@ -25,7 +25,7 @@
 		"DarkMode": [ "i18n" ]
 	},
 	"ResourceModules": {
-		"ext.DarkMode.js": {
+		"ext.DarkMode": {
 			"es6": true,
 			"packageFiles": [ "ext.DarkMode.js" ],
 			"messages": [
@@ -35,7 +35,7 @@
 				"darkmode-default-link-tooltip"
 			]
 		},
-		"ext.DarkMode.EmojiWrap.js": {
+		"ext.DarkMode.EmojiWrap": {
 			"es6": true,
 			"packageFiles": [ "ext.DarkMode.EmojiWrap.js" ]
 		},
