@@ -16,14 +16,14 @@
 
 	/* START OF DARKMODE STYLES */
 	html.client-darkmode {
-		-webkit-filter: invert( 1 ) hue-rotate( 180deg );
-		filter: invert( 1 ) hue-rotate( 180deg );
+		-webkit-filter: invert(1) hue-rotate(180deg);
+		filter: invert(1) hue-rotate(180deg);
 	}
 
 	.client-darkmode {
 		iframe {
-			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
-			filter: invert( 1 ) hue-rotate( 180deg );
+			-webkit-filter: invert(1) hue-rotate(180deg);
+			filter: invert(1) hue-rotate(180deg);
 		}
 
 		&,
@@ -36,13 +36,12 @@
 		td .diffchange,
 		.mwe-upwiz-thumbnail,
 		.cdx-menu-item__thumbnail,
-		.cx-slitem__image:not( .oo-ui-icon-article ),
-		.frb-image,
+		.cx-slitem__image:not(.oo-ui-icon-article),
 		.image-carousel,
 		.k-player.fullscreen,
 		.k-player .ttmlStyled,
 		.leaflet-tile,
-		.list-thumb:not( .list-thumb-none ),
+		.list-thumb:not(.list-thumb-none),
 		.mw-mmv-overlay,
 		.mw-mmv-main.jq-fullscreened,
 		.mw-mmv-pre-image,
@@ -53,8 +52,8 @@
 		.wvui-typeahead-suggestion__thumbnail,
 		.citizen-typeahead__item--page .citizen-typeahead__thumbnail {
 			box-shadow: none;
-			-webkit-filter: invert( 1 ) hue-rotate( 180deg );
-			filter: invert( 1 ) hue-rotate( 180deg );
+			-webkit-filter: invert(1) hue-rotate(180deg);
+			filter: invert(1) hue-rotate(180deg);
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
@@ -144,7 +143,13 @@
 		.drawer-container__mask,
 		.main-menu-mask,
 		.mw-mmv-image,
+		.wikimirror-darkmode
+			.mw-tmh-media-dialog
+			.oo-ui-dialog-content
+			> .oo-ui-window-body
+			.oo-ui-layout,
 		.overlay.media-viewer,
+		.video-js,
 		.vjs-poster,
 		#menus-cover {
 			background-color: #f7f7f7 !important;
@@ -158,14 +163,14 @@
 			background-color: #e88e89;
 		}
 
-		input,
-		textarea {
+		input:not([type]),
+		textarea:not([type]) {
 			background-color: #eaecf0 !important;
 		}
 
 		/* Color */
-		input,
-		textarea,
+		input:not([type]),
+		textarea:not([type]),
 		.mw-mmv-image .error-box {
 			color: #000 !important;
 		}
@@ -210,11 +215,11 @@
 
 		/* Content image (thumbnail) SVGs */
 		.mw-mmv-image img.blurred {
-			filter: blur( 3px ) invert( 1 ) hue-rotate( 180deg ) !important;
+			filter: blur(3px) invert(1) hue-rotate(180deg) !important;
 		}
 
-		img[ alt*='-at-' ],
-		img[ alt*='- at -' ],
+		img[alt*="-at-"],
+		img[alt*="- at -"],
 		.branding-box img,
 		.mainpage_box h3 .header_icon img,
 		.mw-logo-container img,
@@ -224,26 +229,27 @@
 		#p-banner img,
 		#portal img,
 		#topics-list img {
-			-webkit-filter: invert( 0 );
-			filter: invert( 0 );
+			-webkit-filter: invert(0);
+			filter: invert(0);
 		}
 
 		.mw-body-content .thumbinner .thumbimage,
 		.filehistory a img,
 		#file img {
-			background: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23f9fafb' d='M0 0h16v16H0z' paint-order='markers stroke fill'/%3E%3C/svg%3E" ) repeat;
+			background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23f9fafb' d='M0 0h16v16H0z' paint-order='markers stroke fill'/%3E%3C/svg%3E")
+				repeat;
 			background-color: #f9fafb;
 		}
 
 		/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
-		.image img[ src*='svg' ] {
+		.image img[src*="svg"] {
 			background-color: #fff;
 		}
 
 		/* Dealing with false positives from selector above */
-		.mw-echo-ui-notificationItemWidget-icon img[ src*='svg' ],
-		.mbox-image .image img[ src*='svg' ],
-		.image img[ alt^='Symbol' ] {
+		.mw-echo-ui-notificationItemWidget-icon img[src*="svg"],
+		.mbox-image .image img[src*="svg"],
+		.image img[alt^="Symbol"] {
 			background-color: transparent;
 		}
 
@@ -290,6 +296,8 @@
 
 		#scrollDownButton,
 		#scrollUpButton {
+			-webkit-transition: unset;
+			-moz-transition: unset;
 			transition: unset;
 		}
 	}

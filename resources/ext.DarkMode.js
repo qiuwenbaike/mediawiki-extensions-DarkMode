@@ -6,46 +6,26 @@
  */
 'use strict';
 ( () => {
-	const getCookie = ( name ) => ( '; '
-		.concat( decodeURIComponent( document.cookie ) )
-		.split( '; '.concat( name, '=' ) )
-		.pop()
-		.split( ';' )
-		.shift() );
-	const setCookie = ( name, value, time, path = '/', isSecure = true ) => {
-		if ( !name || !value || !time || !path ) {
-			return;
-		}
-		const base = ''
-			.concat( name, '=' )
-			.concat( encodeURIComponent( value ), ';path=' )
-			.concat( path )
-			.concat( isSecure ? ';Secure' : '' );
-		const date = new Date();
-		if ( time === 'tmp' ) {
-			document.cookie = base;
-		} else {
-			date.setTime( date.getTime() + time * 36e5 );
-			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
-		}
-	};
-	const cookieName = 'usedarkmode';
-	const isDarkMode = matchMedia( '( prefers-color-scheme: dark )' ).matches;
-	const darkModeIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
+	const COOKIE_NAME = 'usedarkmode';
+	const DARK_MODE_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
+
 	const darkModeButton = document.createElement( 'img' );
 	darkModeButton.id = 'darkmode-button';
-	darkModeButton.src = darkModeIcon;
+	darkModeButton.src = DARK_MODE_ICON;
 	darkModeButton.draggable = false;
 	darkModeButton.alt = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link' ) : mw.message( 'darkmode-link' );
 	darkModeButton.title = ( document.documentElement.classList.contains( 'client-darkmode' ) ) ? mw.message( 'darkmode-default-link-tooltip' ) : mw.message( 'darkmode-link-tooltip' );
 	darkModeButton.style.opacity = '0.7';
 	darkModeButton.style.bottom = '120px';
-	const eventTargetFunction = ( event ) => {
+
+	const hoverListener = ( event ) => {
 		darkModeButton.style.opacity = event.type === 'mouseenter' ? '1' : '0.7';
 	};
-	darkModeButton.addEventListener( 'mouseenter', eventTargetFunction );
-	darkModeButton.addEventListener( 'mouseleave', eventTargetFunction );
+	darkModeButton.addEventListener( 'mouseenter', hoverListener );
+	darkModeButton.addEventListener( 'mouseleave', hoverListener );
+
 	document.body.appendChild( darkModeButton );
+
 	const windowEventFunction = () => {
 		if ( document.getElementById( 'cat_a_lot' ) ||
             document.getElementById( 'proveit' ) ||
@@ -57,7 +37,38 @@
 	};
 	window.addEventListener( 'scroll', windowEventFunction );
 	window.addEventListener( 'selectionchange', windowEventFunction );
-	const switchMetaContent = ( metaContent ) => {
+
+	const getCookie = ( name ) => ( '; '
+		.concat( decodeURIComponent( document.cookie ) )
+		.split( '; '.concat( name, '=' ) )
+		.pop()
+		.split( ';' )
+		.shift() );
+	const setCookie = ( {
+		name,
+		value,
+		hour = 0,
+		path = '/',
+		isSecure = true
+	} ) => {
+		if ( !name || !value || !path ) {
+			return;
+		}
+		const base = ''
+			.concat( name, '=' )
+			.concat( encodeURIComponent( value ), ';path=' )
+			.concat( path )
+			.concat( isSecure ? ';Secure' : '' );
+		const date = new Date();
+		if ( hour === 0 ) {
+			document.cookie = base;
+		} else {
+			date.setTime( date.getTime() + hour * 3_600_000 );
+			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
+		}
+	};
+
+	const setMetaContent = ( metaContent ) => {
 		if ( document.getElementsByName( 'color-scheme' ).length > 0 ) {
 			document.getElementsByName( 'color-scheme' )[ 0 ].setAttribute( 'content', metaContent );
 		} else {
@@ -71,35 +82,35 @@
 		dark: () => {
 			document.documentElement.classList.remove( 'client-lightmode' );
 			document.documentElement.classList.add( 'client-darkmode' );
-			switchMetaContent( 'dark' );
-			setCookie( cookieName, '0', '-1' );
-			setCookie( cookieName, '1', 1e9 );
+			setMetaContent( 'dark' );
+			setCookie( { name: COOKIE_NAME, value: '0', hour: -1 } );
+			setCookie( { name: COOKIE_NAME, value: '1', hour: 1_000_000_000 } );
 			darkModeButton.alt = mw.message( 'darkmode-default-link' );
 			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
 		},
 		light: () => {
 			document.documentElement.classList.remove( 'client-darkmode' );
 			document.documentElement.classList.add( 'client-lightmode' );
-			switchMetaContent( 'light' );
-			setCookie( cookieName, '1', '-1' );
-			setCookie( cookieName, '0', 1e9 );
+			setMetaContent( 'light' );
+			setCookie( { name: COOKIE_NAME, value: '1', hour: -1 } );
+			setCookie( { name: COOKIE_NAME, value: '0', hour: 1_000_000_000 } );
 			darkModeButton.alt = mw.message( 'darkmode-link' );
 			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
 	};
 	const checkDarkMode = () => {
-		if ( getCookie( cookieName ) === '' ) {
-			if ( isDarkMode ) {
-				setCookie( cookieName, '1', 1e9 );
+		if ( getCookie( COOKIE_NAME ) === '' ) {
+			if ( matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
+				setCookie( { name: COOKIE_NAME, value: '1', hour: 1_000_000_000 } );
 				document.documentElement.classList.remove( 'client-lightmode' );
 				document.documentElement.classList.add( 'client-darkmode' );
 			} else {
-				setCookie( cookieName, '0', 1e9 );
+				setCookie( { name: COOKIE_NAME, value: '0', hour: 1_000_000_000 } );
 				document.documentElement.classList.remove( 'client-darkmode' );
 				document.documentElement.classList.add( 'client-lightmode' );
 			}
 		}
-		if ( getCookie( cookieName ) === '1' ) {
+		if ( getCookie( COOKIE_NAME ) === '1' ) {
 			darkModeButton.alt = mw.message( 'darkmode-default-link' );
 			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
 		} else {
@@ -107,45 +118,44 @@
 			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
 	};
-	const modeSwitcher = () => {
-		if ( getCookie( cookieName ) === '' ) {
+	const toggleMode = () => {
+		if ( getCookie( COOKIE_NAME ) === '' ) {
 			checkDarkMode();
 		}
 		let metaContent;
-		if ( getCookie( cookieName ) === '0' ) {
+		if ( getCookie( COOKIE_NAME ) === '0' ) {
 			switchMode.dark();
 			metaContent = 'dark';
 		} else {
 			switchMode.light();
 			metaContent = 'light';
 		}
-		switchMetaContent( metaContent );
+		setMetaContent( metaContent );
 	};
-	darkModeButton.addEventListener( 'click', () => {
-		modeSwitcher();
-	} );
-	const modeObserver = {
+	darkModeButton.addEventListener( 'click', toggleMode );
+
+	const mediaQueryListeners = {
 		dark: ( event ) => {
-			if ( event.matches && getCookie( cookieName ) === '0' ) {
-				modeSwitcher();
+			if ( event.matches && getCookie( COOKIE_NAME ) === '0' ) {
+				toggleMode();
 			}
 		},
 		light: ( event ) => {
-			if ( event.matches && getCookie( cookieName ) === '1' ) {
-				modeSwitcher();
+			if ( event.matches && getCookie( COOKIE_NAME ) === '1' ) {
+				toggleMode();
 			}
 		}
 	};
 	matchMedia( '( prefers-color-scheme: dark )' ).addEventListener(
 		'change',
 		( event ) => {
-			modeObserver.dark( event.target );
+			mediaQueryListeners.dark( event.target );
 		}
 	);
 	matchMedia( '( prefers-color-scheme: light )' ).addEventListener(
 		'change',
 		( event ) => {
-			modeObserver.light( event.target );
+			mediaQueryListeners.light( event.target );
 		}
 	);
 	checkDarkMode();
