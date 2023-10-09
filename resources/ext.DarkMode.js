@@ -63,7 +63,7 @@
 		if ( hour === 0 ) {
 			document.cookie = base;
 		} else {
-			date.setTime( date.getTime() + hour * 3_600_000 );
+			date.setTime( date.getTime() + hour * 36e5 );
 			document.cookie = ''.concat( base, ';expires=' ).concat( date.toGMTString() );
 		}
 	};
@@ -84,7 +84,7 @@
 			document.documentElement.classList.add( 'client-darkmode' );
 			setMetaContent( 'dark' );
 			setCookie( { name: COOKIE_NAME, value: '0', hour: -1 } );
-			setCookie( { name: COOKIE_NAME, value: '1', hour: 1_000_000_000 } );
+			setCookie( { name: COOKIE_NAME, value: '1', hour: 1e9 } );
 			darkModeButton.alt = mw.message( 'darkmode-default-link' );
 			darkModeButton.title = mw.message( 'darkmode-default-link-tooltip' );
 		},
@@ -93,7 +93,7 @@
 			document.documentElement.classList.add( 'client-lightmode' );
 			setMetaContent( 'light' );
 			setCookie( { name: COOKIE_NAME, value: '1', hour: -1 } );
-			setCookie( { name: COOKIE_NAME, value: '0', hour: 1_000_000_000 } );
+			setCookie( { name: COOKIE_NAME, value: '0', hour: 1e9 } );
 			darkModeButton.alt = mw.message( 'darkmode-link' );
 			darkModeButton.title = mw.message( 'darkmode-link-tooltip' );
 		}
@@ -101,11 +101,11 @@
 	const checkDarkMode = () => {
 		if ( getCookie( COOKIE_NAME ) === '' ) {
 			if ( matchMedia( '( prefers-color-scheme: dark )' ).matches ) {
-				setCookie( { name: COOKIE_NAME, value: '1', hour: 1_000_000_000 } );
+				setCookie( { name: COOKIE_NAME, value: '1', hour: 1e9 } );
 				document.documentElement.classList.remove( 'client-lightmode' );
 				document.documentElement.classList.add( 'client-darkmode' );
 			} else {
-				setCookie( { name: COOKIE_NAME, value: '0', hour: 1_000_000_000 } );
+				setCookie( { name: COOKIE_NAME, value: '0', hour: 1e9 } );
 				document.documentElement.classList.remove( 'client-darkmode' );
 				document.documentElement.classList.add( 'client-lightmode' );
 			}
