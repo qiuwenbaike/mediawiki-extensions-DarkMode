@@ -17,9 +17,6 @@
 
 	const EMOJI_NODE_NAME = 'QIUWEN-EMOJI';
 	const getAllTextNode = ( nodeList, textNodeArray = [] ) => {
-		if ( !nodeList.length ) {
-			return textNodeArray;
-		}
 		for ( const node of nodeList ) {
 			if ( node instanceof Text ) {
 				textNodeArray.push( node );
@@ -73,7 +70,9 @@
 			const { nextSibling, nodeValue: _nodeValue } = _node;
 			const emojiRegExpMatchArrayInside = _nodeValue?.match( REGEX_EMOJI );
 			if ( emojiRegExpMatchArrayInside ) {
-				surroundTexts( _node, emojiRegExpMatchArrayInside[ 0 ] );
+				requestAnimationFrame( () => {
+					surroundTexts( _node, emojiRegExpMatchArrayInside[ 0 ] );
+				} );
 			}
 			recursiveNodeNextSibling( nextSibling );
 		};
@@ -86,7 +85,9 @@
 			) {
 				continue;
 			}
-			surroundTexts( node, emoji );
+			requestAnimationFrame( () => {
+				surroundTexts( node, emoji );
+			} );
 			recursiveNodeNextSibling( node );
 		}
 	};
