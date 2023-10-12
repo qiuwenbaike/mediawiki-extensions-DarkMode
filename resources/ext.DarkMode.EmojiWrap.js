@@ -97,6 +97,22 @@
 
 	const observerCallback = ( mutations ) => {
 		for ( const mutationRecord of mutations ) {
+			if (
+				[
+					mutationRecord.previousSibling?.nextSibling?.nodeName,
+					mutationRecord.addedNodes[ 0 ]?.nodeName,
+					mutationRecord.target.nodeName
+				].includes( EMOJI_NODE_NAME )
+			) {
+				continue;
+			}
+			if (
+				mutationRecord.addedNodes.length >= 3 &&
+				mutationRecord.addedNodes[ 1 ] instanceof Element &&
+				mutationRecord.addedNodes[ 1 ].className === 'gadget-space'
+			) {
+				continue;
+			}
 			for ( const node of mutationRecord.addedNodes ) {
 				if ( !( node instanceof Element || Text ) ) {
 					continue;
