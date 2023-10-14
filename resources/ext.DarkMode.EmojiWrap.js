@@ -27,6 +27,9 @@
 		return textNodeArray;
 	};
 	const getTextNodeArray = ( target ) => {
+		if ( !( target instanceof Element || target instanceof NodeList || target instanceof Text ) ) {
+			return;
+		}
 		if ( target instanceof Text ) {
 			return [ target ];
 		}
