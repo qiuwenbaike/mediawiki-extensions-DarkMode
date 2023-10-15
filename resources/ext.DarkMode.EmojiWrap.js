@@ -117,7 +117,7 @@
 				continue;
 			}
 			for ( const node of mutationRecord.addedNodes ) {
-				if ( !( node instanceof Element || Text ) ) {
+				if ( !( node instanceof Element || node instanceof Text ) ) {
 					continue;
 				}
 				const addedTextNodeArray = getTextNodeArray( node );
