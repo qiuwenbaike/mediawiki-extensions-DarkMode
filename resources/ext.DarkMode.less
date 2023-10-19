@@ -134,7 +134,7 @@
 		}
 
 		/* Background */
-		body.skin-gongbi,
+		.skin-gongbi,
 		.drawer-container__mask,
 		.main-menu-mask,
 		.mw-mmv-image,
@@ -165,7 +165,8 @@
 		/* Color */
 		input:not([type]),
 		textarea:not([type]),
-		.mw-mmv-image .error-box {
+		.mw-mmv-image .error-box,
+		.skin-gongbi #searchInput {
 			color: #000 !important;
 		}
 
@@ -261,7 +262,7 @@
 
 		/* Skin-specific hack */
 		/* Hacks for Vector Legacy */
-		& ~ body.skin-vector-legacy {
+		.skin-vector-legacy {
 			background-color: #000;
 		}
 
