@@ -44,13 +44,13 @@
 			callback( textNode, nodeValue );
 		}
 	};
-	const surroundEmojiText = ( node, nodeValue ) => {
+	const surroundEmojiText = ( textNode, nodeValue ) => {
 		const emojiRegExpMatchArray = nodeValue.match( REGEX_EMOJI );
 		if ( !emojiRegExpMatchArray ) {
 			return;
 		}
-		const surroundTexts = ( _node, emoji ) => {
-			const { parentNode, nodeValue: _nodeValue } = _node;
+		const surroundTexts = ( node, emoji ) => {
+			const { parentNode, nodeValue: _nodeValue } = node;
 			if ( !_nodeValue || !parentNode ) {
 				return;
 			}
@@ -61,25 +61,25 @@
 			const element = document.createElement( EMOJI_NODE_NAME );
 			element.className = 'mw-no-invert';
 			const range = document.createRange();
-			range.setStart( _node, startIndex );
-			range.setEnd( _node, startIndex + emoji.length );
+			range.setStart( node, startIndex );
+			range.setEnd( node, startIndex + emoji.length );
 			range.surroundContents( element );
 		};
-		const recursiveNodeNextSibling = ( _node ) => {
-			if ( !_node ) {
+		const recursiveNodeNextSibling = ( node ) => {
+			if ( !node ) {
 				return;
 			}
-			const { nextSibling, nodeValue: _nodeValue } = _node;
+			const { nextSibling, nodeValue: _nodeValue } = node;
 			const emojiRegExpMatchArrayInside = _nodeValue?.match( REGEX_EMOJI );
 			if ( emojiRegExpMatchArrayInside ) {
 				requestAnimationFrame( () => {
-					surroundTexts( _node, emojiRegExpMatchArrayInside[ 0 ] );
+					surroundTexts( node, emojiRegExpMatchArrayInside[ 0 ] );
 				} );
 			}
 			recursiveNodeNextSibling( nextSibling );
 		};
 		for ( const emoji of emojiRegExpMatchArray ) {
-			const nodeName = [ node.nodeName, node.parentNode?.nodeName ];
+			const nodeName = [ textNode.nodeName, textNode.parentNode?.nodeName ];
 			if (
 				nodeName.includes( 'INPUT' ) ||
 				nodeName.includes( 'TEXTAREA' ) ||
@@ -88,9 +88,9 @@
 				continue;
 			}
 			requestAnimationFrame( () => {
-				surroundTexts( node, emoji );
+				surroundTexts( textNode, emoji );
 			} );
-			recursiveNodeNextSibling( node );
+			recursiveNodeNextSibling( textNode );
 		}
 	};
 
