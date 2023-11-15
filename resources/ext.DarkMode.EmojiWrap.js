@@ -111,7 +111,7 @@
 			if (
 				mutationRecord.addedNodes.length >= 3 &&
 				mutationRecord.addedNodes[ 1 ] instanceof Element &&
-				mutationRecord.addedNodes[ 1 ].className === 'gadget-space'
+				mutationRecord.addedNodes[ 1 ].className === 'gadget-text_spacing'
 			) {
 				continue;
 			}
