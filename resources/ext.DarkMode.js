@@ -5,16 +5,16 @@
  * @license GPL-3.0
  */
 (() => {
-	const COOKIE_NAME = 'usedarkmode';
-	const DARK_MODE_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E";
-	const getMessage = (key) => mw.message('darkmode-' + key).plain();
+	const COOKIE_NAME = 'usedarkmode',
+		ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
+		message = (key) => mw.message('darkmode-' + key).plain();
 
 	const button = document.createElement('img');
 	button.id = 'darkmode-button';
-	button.src = DARK_MODE_ICON;
+	button.src = ICON;
 	button.draggable = false;
-	button.alt = (document.documentElement.classList.contains('client-darkmode')) ? getMessage('default-link') : getMessage('link');
-	button.title = (document.documentElement.classList.contains('client-darkmode')) ? getMessage('default-link-tooltip') : getMessage('link-tooltip');
+	button.alt = (document.documentElement.classList.contains('client-darkmode')) ? message('default-link') : message('link');
+	button.title = (document.documentElement.classList.contains('client-darkmode')) ? message('default-link-tooltip') : message('link-tooltip');
 	button.style.opacity = '0.7';
 	button.style.bottom = '120px';
 
@@ -86,8 +86,8 @@
 			setMetaContent('dark');
 			setCookie({ name: COOKIE_NAME, value: '0', hour: -1 });
 			setCookie({ name: COOKIE_NAME, value: '1', hour: 24 * 365 * 1000 });
-			button.alt = getMessage('default-link');
-			button.title = getMessage('default-link-tooltip');
+			button.alt = message('default-link');
+			button.title = message('default-link-tooltip');
 		},
 		light: () => {
 			document.documentElement.classList.remove('client-darkmode');
@@ -95,8 +95,8 @@
 			setMetaContent('light');
 			setCookie({ name: COOKIE_NAME, value: '1', hour: -1 });
 			setCookie({ name: COOKIE_NAME, value: '0', hour: 24 * 365 * 1000 });
-			button.alt = getMessage('link');
-			button.title = getMessage('link-tooltip');
+			button.alt = message('link');
+			button.title = message('link-tooltip');
 		}
 	};
 
@@ -113,11 +113,11 @@
 			}
 		}
 		if (getCookie(COOKIE_NAME) === '1') {
-			button.alt = getMessage('default-link');
-			button.title = getMessage('default-link-tooltip');
+			button.alt = message('default-link');
+			button.title = message('default-link-tooltip');
 		} else {
-			button.alt = getMessage('link');
-			button.title = getMessage('link-tooltip');
+			button.alt = message('link');
+			button.title = message('link-tooltip');
 		}
 	};
 
