@@ -5,5 +5,9 @@
 		"wikimedia/language/es2022",
 		"wikimedia/mediawiki",
 		"wikimedia/jquery"
-	]
+	],
+	"rules": {
+		"space-in-parens": 0,
+		"mediawiki/msg-doc": "off"
+	}
 }
