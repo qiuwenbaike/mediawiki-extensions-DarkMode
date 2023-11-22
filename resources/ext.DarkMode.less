@@ -26,7 +26,7 @@
 			filter: invert(1) hue-rotate(180deg);
 		}
 
-		&:not(.mw-invert),
+		&,
 		canvas,
 		img,
 		ogvjs,
@@ -46,9 +46,11 @@
 		.vjs-text-track-display,
 		.wvui-typeahead-suggestion__thumbnail,
 		.citizen-typeahead__item--page .citizen-typeahead__thumbnail {
-			box-shadow: none;
-			-webkit-filter: invert(1) hue-rotate(180deg);
-			filter: invert(1) hue-rotate(180deg);
+			&:not(.mw-invert) {
+				box-shadow: none;
+				-webkit-filter: invert(1) hue-rotate(180deg);
+				filter: invert(1) hue-rotate(180deg);
+			}
 		}
 
 		/* Reset overrides, needed where double application above isn't working. */
@@ -85,6 +87,7 @@
 			filter: none;
 		}
 
+		// Delete this when Math extension is fixed
 		.mwe-math-mathml-a11y,
 		.mwe-math-fallback-image-display,
 		.mwe-math-fallback-image-inline {
