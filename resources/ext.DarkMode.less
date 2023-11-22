@@ -9,6 +9,17 @@
  * - WaitSpring
  */
 
+.invert() {
+	box-shadow: none;
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	filter: invert(1) hue-rotate(180deg);
+}
+
+.noinvert() {
+	-webkit-filter: none;
+	filter: none;
+}
+
 @media screen {
 	html {
 		height: 100%;
@@ -16,22 +27,14 @@
 
 	/* START OF DARKMODE STYLES */
 	html.client-darkmode {
-		-webkit-filter: invert(1) hue-rotate(180deg);
-		filter: invert(1) hue-rotate(180deg);
+		.invert;
 	}
 
 	.client-darkmode {
-		iframe {
-			-webkit-filter: invert(1) hue-rotate(180deg);
-			filter: invert(1) hue-rotate(180deg);
-		}
-
 		&,
-		canvas,
-		img,
+		iframe,
 		ogvjs,
 		video,
-		svg,
 		.mw-no-invert,
 		td .diffchange,
 		.mwe-upwiz-thumbnail,
@@ -46,10 +49,14 @@
 		.vjs-text-track-display,
 		.wvui-typeahead-suggestion__thumbnail,
 		.citizen-typeahead__item--page .citizen-typeahead__thumbnail {
+			.invert;
+		}
+
+		canvas,
+		img,
+		svg {
 			&:not(.mw-invert) {
-				box-shadow: none;
-				-webkit-filter: invert(1) hue-rotate(180deg);
-				filter: invert(1) hue-rotate(180deg);
+				.invert;
 			}
 		}
 
@@ -59,8 +66,7 @@
 			.mw-logo-icon,
 			.mw-logo-tagline,
 			#sliderCollapseLogo {
-				-webkit-filter: none;
-				filter: none;
+				.noinvert;
 			}
 		}
 
@@ -68,8 +74,7 @@
 			.mw-wiki-title,
 			.mw-wiki-logo {
 				& > img {
-					-webkit-filter: none;
-					filter: none;
+					.noinvert;
 				}
 			}
 		}
@@ -77,22 +82,19 @@
 		.skin-citizen {
 			.mw-logo-icon,
 			.mw-logo-wordmark {
-				-webkit-filter: none;
-				filter: none;
+				.noinvert;
 			}
 		}
 
 		.cdx-icon svg {
-			-webkit-filter: none;
-			filter: none;
+			.noinvert;
 		}
 
 		// Delete this when Math extension is fixed
 		.mwe-math-mathml-a11y,
 		.mwe-math-fallback-image-display,
 		.mwe-math-fallback-image-inline {
-			-webkit-filter: none;
-			filter: none;
+			.noinvert;
 		}
 
 		/* Fix font color at api.php */
@@ -234,8 +236,7 @@
 		#p-banner img,
 		#portal img,
 		#topics-list img {
-			-webkit-filter: invert(0);
-			filter: invert(0);
+			.noinvert;
 		}
 
 		.mw-body-content .thumbinner .thumbimage,
