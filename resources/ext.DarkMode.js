@@ -4,12 +4,14 @@
  * @author 安忆 <i@anyi.in>, WaitSpring
  * @license GPL-3.0
  */
-(() => {
-	const COOKIE_NAME = 'usedarkmode',
+(function () {
+	var COOKIE_NAME = 'usedarkmode',
 		ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
-		message = (key) => mw.message('darkmode-' + key).plain();
+		message = function (key) {
+			return mw.message('darkmode-' + key).plain();
+		};
 
-	const button = document.createElement('img');
+	var button = document.createElement('img');
 	button.id = 'darkmode-button';
 	button.src = ICON;
 	button.draggable = false;
@@ -18,47 +20,49 @@
 	button.style.opacity = '0.7';
 	button.style.bottom = '120px';
 
-	const hoverListener = ({ type }) => {
-		button.style.opacity = type === 'mouseenter' ? '1' : '0.7';
+	var hoverListener = function (event) {
+		button.style.opacity = event.type === 'mouseenter' ? '1' : '0.7';
 	};
 	button.addEventListener('mouseenter', hoverListener);
 	button.addEventListener('mouseleave', hoverListener);
 
 	document.body.appendChild(button);
 
-	const windowEventFunction = () => {
-		button.style.bottom = (document.querySelector('#cat_a_lot') ||
-			document.querySelector('#proveit') ||
-			document.querySelectorAll('.wordcount')[ 0 ]) ? '162px' : '120px';
-	};
+	function windowEventFunction() {
+		button.style.bottom = (document.getElementById('cat_a_lot') ||
+			document.getElementById('proveit') ||
+			document.getElementsByClassName('wordcount')[ 0 ]) ? '162px' : '120px';
+	}
 	window.addEventListener('scroll', windowEventFunction);
 	window.addEventListener('selectionchange', windowEventFunction);
 
-	const getCookie = (name) => ('; '
-		.concat(decodeURIComponent(document.cookie))
-		.split('; '.concat(name, '='))
-		.pop()
-		.split(';')
-		.shift());
+	var getCookie = function (name) {
+		return ('; '
+			.concat(decodeURIComponent(document.cookie))
+			.split('; '.concat(name, '='))
+			.pop()
+			.split(';')
+			.shift());
+	};
 
-	const setCookie = ({
-		name,
-		value,
-		hour = 0,
-		path = '/',
-		isSecure = true
-	}) => {
+	var setCookie = function (object) {
+		var name = object.name,
+			value = object.value,
+			hour = object.hour || 0,
+			path = object.path || '/',
+			isSecure = object.isSecure || true;
+
 		if (!name || !value || !path) {
 			return;
 		}
 
-		const base = ''
+		var base = ''
 			.concat(name, '=')
 			.concat(encodeURIComponent(value), ';path=')
 			.concat(path)
 			.concat(isSecure ? ';Secure' : '');
 
-		const date = new Date();
+		var date = new Date();
 
 		if (hour === 0) {
 			document.cookie = base;
@@ -68,19 +72,19 @@
 		}
 	};
 
-	const setMetaContent = (metaContent) => {
-		if (document.querySelectorAll('[name=color-scheme]').length > 0) {
-			document.querySelectorAll('[name=color-scheme]')[ 0 ].setAttribute('content', metaContent);
+	var setMetaContent = function (metaContent) {
+		if (document.getElementsByTagName('meta')[ 'color-scheme' ]) {
+			document.getElementsByTagName('meta')[ 'color-scheme' ].setAttribute('content', metaContent);
 		} else {
-			const meta = document.createElement('meta');
+			var meta = document.createElement('meta');
 			meta.name = 'color-scheme';
 			meta.content = metaContent;
 			document.head.appendChild(meta);
 		}
 	};
 
-	const switchMode = {
-		dark: () => {
+	var switchMode = {
+		dark: function () {
 			document.documentElement.classList.remove('client-lightmode');
 			document.documentElement.classList.add('client-darkmode');
 			setMetaContent('dark');
@@ -89,7 +93,7 @@
 			button.alt = message('default-link');
 			button.title = message('default-link-tooltip');
 		},
-		light: () => {
+		light: function () {
 			document.documentElement.classList.remove('client-darkmode');
 			document.documentElement.classList.add('client-lightmode');
 			setMetaContent('light');
@@ -100,7 +104,7 @@
 		}
 	};
 
-	const checkDarkMode = () => {
+	var checkDarkMode = function () {
 		if (getCookie(COOKIE_NAME) === '') {
 			if (matchMedia('( prefers-color-scheme: dark )').matches) {
 				setCookie({ name: COOKIE_NAME, value: '1', hour: 24 * 365 * 1000 });
@@ -121,11 +125,11 @@
 		}
 	};
 
-	const toggleMode = () => {
+	var toggleMode = function () {
 		if (getCookie(COOKIE_NAME) === '') {
 			checkDarkMode();
 		}
-		let metaContent;
+		var metaContent;
 		if (getCookie(COOKIE_NAME) === '0') {
 			switchMode.dark();
 			metaContent = 'dark';
@@ -137,14 +141,14 @@
 	};
 	button.addEventListener('click', toggleMode);
 
-	const mediaQueryListeners = {
-		dark: ({ matches }) => {
-			if (matches && getCookie(COOKIE_NAME) === '0') {
+	var mediaQueryListeners = {
+		dark: function (event) {
+			if (event.matches && getCookie(COOKIE_NAME) === '0') {
 				toggleMode();
 			}
 		},
-		light: ({ matches }) => {
-			if (matches && getCookie(COOKIE_NAME) === '1') {
+		light: function (event) {
+			if (event.matches && getCookie(COOKIE_NAME) === '1') {
 				toggleMode();
 			}
 		}
@@ -152,16 +156,16 @@
 
 	matchMedia('( prefers-color-scheme: dark )').addEventListener(
 		'change',
-		({ target }) => {
-			mediaQueryListeners.dark(target);
+		function (match) {
+			mediaQueryListeners.dark(match.target);
 		}
 	);
 	matchMedia('( prefers-color-scheme: light )').addEventListener(
 		'change',
-		({ target }) => {
-			mediaQueryListeners.light(target);
+		function (match) {
+			mediaQueryListeners.light(match.target);
 		}
 	);
 
 	checkDarkMode();
-})();
+}());
