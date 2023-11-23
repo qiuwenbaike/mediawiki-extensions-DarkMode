@@ -10,5 +10,5 @@
 		"space-in-parens": 0,
 		"mediawiki/msg-doc": "off"
 	},
-	"ignorePatterns": ["resources/ext.DarkMode.EmojiWrap.js"]
+	"ignorePatterns": [ "resources/ext.DarkMode.EmojiWrap.js" ]
 }

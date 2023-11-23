@@ -5,8 +5,9 @@
  * @license GPL-3.0
  */
 (function () {
-	var COOKIE_NAME = 'usedarkmode',
-		ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
+	var COOKIE_NAME = 'ext.DarkMode_usedarkmode',
+		ICON =
+			"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
 		message = function (key) {
 			return mw.message('darkmode-' + key).plain();
 		};
@@ -15,12 +16,18 @@
 	button.id = 'darkmode-button';
 	button.src = ICON;
 	button.draggable = false;
-	button.alt = (document.documentElement.classList.contains('client-darkmode')) ? message('default-link') : message('link');
-	button.title = (document.documentElement.classList.contains('client-darkmode')) ? message('default-link-tooltip') : message('link-tooltip');
+	button.alt = document.documentElement.classList.contains('client-darkmode') ?
+		message('default-link') :
+		message('link');
+	button.title = document.documentElement.classList.contains(
+		'client-darkmode'
+	) ?
+		message('default-link-tooltip') :
+		message('link-tooltip');
 	button.style.opacity = '0.7';
 	button.style.bottom = '120px';
 
-	var hoverListener = function (event) {
+	var hoverListener = function hoverListener(event) {
 		button.style.opacity = event.type === 'mouseenter' ? '1' : '0.7';
 	};
 	button.addEventListener('mouseenter', hoverListener);
@@ -28,24 +35,27 @@
 
 	document.body.appendChild(button);
 
-	function windowEventFunction() {
-		button.style.bottom = (document.getElementById('cat_a_lot') ||
+	var windowEventFunction = function windowEventFunction() {
+		button.style.bottom =
+			document.getElementById('cat_a_lot') ||
 			document.getElementById('proveit') ||
-			document.getElementsByClassName('wordcount')[ 0 ]) ? '162px' : '120px';
-	}
+			document.getElementsByClassName('wordcount')[ 0 ] ?
+				'162px' :
+				'120px';
+	};
 	window.addEventListener('scroll', windowEventFunction);
 	window.addEventListener('selectionchange', windowEventFunction);
 
-	var getCookie = function (name) {
-		return ('; '
+	var getCookie = function getCookie(name) {
+		return '; '
 			.concat(decodeURIComponent(document.cookie))
 			.split('; '.concat(name, '='))
 			.pop()
 			.split(';')
-			.shift());
+			.shift();
 	};
 
-	var setCookie = function (object) {
+	var setCookie = function setCookie(object) {
 		var name = object.name,
 			value = object.value,
 			hour = object.hour || 0,
@@ -68,13 +78,16 @@
 			document.cookie = base;
 		} else {
 			date.setTime(date.getTime() + hour * 60 * 60 * 1000);
-			document.cookie = ''.concat(base, ';expires=').concat(date.toGMTString());
+			document.cookie = ''
+				.concat(base, ';expires=')
+				.concat(date.toGMTString());
 		}
 	};
 
-	var setMetaContent = function (metaContent) {
+	var setMetaContent = function setMetaContent(metaContent) {
 		if (document.getElementsByTagName('meta')[ 'color-scheme' ]) {
-			document.getElementsByTagName('meta')[ 'color-scheme' ].setAttribute('content', metaContent);
+			document
+				.getElementsByTagName('meta')[ 'color-scheme' ].setAttribute('content', metaContent);
 		} else {
 			var meta = document.createElement('meta');
 			meta.name = 'color-scheme';
@@ -104,14 +117,22 @@
 		}
 	};
 
-	var checkDarkMode = function () {
+	var checkDarkMode = function checkDarkMode() {
 		if (getCookie(COOKIE_NAME) === '') {
 			if (matchMedia('( prefers-color-scheme: dark )').matches) {
-				setCookie({ name: COOKIE_NAME, value: '1', hour: 24 * 365 * 1000 });
+				setCookie({
+					name: COOKIE_NAME,
+					value: '1',
+					hour: 24 * 365 * 1000
+				});
 				document.documentElement.classList.remove('client-lightmode');
 				document.documentElement.classList.add('client-darkmode');
 			} else {
-				setCookie({ name: COOKIE_NAME, value: '0', hour: 24 * 365 * 1000 });
+				setCookie({
+					name: COOKIE_NAME,
+					value: '0',
+					hour: 24 * 365 * 1000
+				});
 				document.documentElement.classList.remove('client-darkmode');
 				document.documentElement.classList.add('client-lightmode');
 			}
@@ -125,7 +146,7 @@
 		}
 	};
 
-	var toggleMode = function () {
+	var toggleMode = function toggleMode() {
 		if (getCookie(COOKIE_NAME) === '') {
 			checkDarkMode();
 		}

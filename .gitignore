@@ -1,6 +1,3 @@
-.*.swp
-*~
-/composer.lock
-/vendor
-/node_modules
-.eslintcache
+vendor
+node_modules
+composer.lock
