@@ -48,7 +48,7 @@ class Hooks implements
 			// On usedarkmode is set, overwrite the cookie.
 			return (bool)$var;
 		}
-		$varCookie = (isset($_COOKIE['ext.DarkMode_usedarkmode']) ? $_COOKIE['ext.DarkMode_usedarkmode'] : isset($_COOKIE['usedarkmode'])) ? $_COOKIE['usedarkmode'] : '';
+		$varCookie = isset($_COOKIE['ext.DarkMode_usedarkmode']) ? $_COOKIE['ext.DarkMode_usedarkmode'] : (isset($_COOKIE['usedarkmode']) ? $_COOKIE['usedarkmode'] : '');
 		if ($varCookie === '0' || $varCookie === '1') {
 			// If usedarkmode not set, return cookie value.
 			return (bool)$varCookie;
