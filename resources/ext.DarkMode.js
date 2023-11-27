@@ -5,7 +5,7 @@
  * @license GPL-3.0
  */
 (function () {
-	var COOKIE_NAME = 'ext.DarkMode_usedarkmode',
+	var COOKIE_NAME = 'usedarkmode',
 		ICON =
 			"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
 		message = function (key) {
@@ -38,8 +38,8 @@
 	var windowEventFunction = function windowEventFunction() {
 		button.style.bottom =
 			document.getElementById('cat_a_lot') ||
-			document.getElementById('proveit') ||
-			document.getElementsByClassName('wordcount')[ 0 ] ?
+				document.getElementById('proveit') ||
+				document.getFlementsByClassName('wordcount')[ 0 ] ?
 				'162px' :
 				'120px';
 	};
