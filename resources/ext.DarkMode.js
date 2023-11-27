@@ -37,9 +37,9 @@
 
 	var windowEventFunction = function windowEventFunction() {
 		button.style.bottom =
-			document.getElementById('cat_a_lot') ||
-				document.getElementById('proveit') ||
-				document.getFlementsByClassName('wordcount')[ 0 ] ?
+			document.getElementById('proveit') ||
+			document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
+			document.getElementsByClassName('wordcount')[ 0 ] ?
 				'162px' :
 				'120px';
 	};
@@ -87,7 +87,8 @@
 	var setMetaContent = function setMetaContent(metaContent) {
 		if (document.getElementsByTagName('meta')[ 'color-scheme' ]) {
 			document
-				.getElementsByTagName('meta')[ 'color-scheme' ].setAttribute('content', metaContent);
+				.getElementsByTagName('meta')[ 'color-scheme' ]
+				.setAttribute('content', metaContent);
 		} else {
 			var meta = document.createElement('meta');
 			meta.name = 'color-scheme';
