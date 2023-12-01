@@ -60,8 +60,8 @@
 		}
 
 		const surroundTexts = function (node, emoji) {
-			const { parentNode, nodeValue: _nodeValue } = node;
-			if (!_nodeValue || !parentNode) {
+			const { nodeName, parentNode, nodeValue: _nodeValue } = node;
+			if (nodeName === '#comment' || !_nodeValue || !parentNode) {
 				return;
 			}
 			const startIndex = _nodeValue.indexOf(emoji);
