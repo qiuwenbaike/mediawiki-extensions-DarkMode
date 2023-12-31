@@ -36,9 +36,9 @@
 			return [];
 		}
 		if (target instanceof Text) {
-			return [ target ];
+			return [target];
 		}
-		const nodeList = target instanceof Element ? [ target ] : target;
+		const nodeList = target instanceof Element ? [target] : target;
 		return getAllTextNode(nodeList);
 	};
 
@@ -86,7 +86,7 @@
 
 			if (emojiRegExpMatchArrayInside) {
 				requestAnimationFrame(function () {
-					surroundTexts(node, emojiRegExpMatchArrayInside[ 0 ]);
+					surroundTexts(node, emojiRegExpMatchArrayInside[0]);
 				});
 			}
 
@@ -94,7 +94,7 @@
 		};
 
 		for (const emoji of emojiRegExpMatchArray) {
-			const nodeName = [ textNode.nodeName, textNode.parentNode?.nodeName ];
+			const nodeName = [textNode.nodeName, textNode.parentNode?.nodeName];
 
 			if (
 				nodeName.includes('INPUT') ||
@@ -120,7 +120,7 @@
 			if (
 				[
 					mutationRecord.previousSibling?.nextSibling?.nodeName,
-					mutationRecord.addedNodes[ 0 ]?.nodeName,
+					mutationRecord.addedNodes[0]?.nodeName,
 					mutationRecord.target.nodeName
 				].includes(EMOJI_NODE_NAME)
 			) {
@@ -128,8 +128,8 @@
 			}
 			if (
 				mutationRecord.addedNodes.length >= 3 &&
-				mutationRecord.addedNodes[ 1 ] instanceof Element &&
-				mutationRecord.addedNodes[ 1 ].className === 'gadget-text_spacing'
+				mutationRecord.addedNodes[1] instanceof Element &&
+				mutationRecord.addedNodes[1].className === 'gadget-text_spacing'
 			) {
 				continue;
 			}
