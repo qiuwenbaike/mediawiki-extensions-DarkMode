@@ -1,8 +1,5 @@
 {
-	"extends": [
-		"stylelint-config-idiomatic-order",
-		"stylelint-config-wikimedia"
-	],
+	"extends": ["stylelint-config-wikimedia"],
 	"rules": {
 		"font-weight-notation": null,
 		"selector-max-id": null,
