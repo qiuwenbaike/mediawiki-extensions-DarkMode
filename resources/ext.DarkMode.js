@@ -25,7 +25,7 @@
 		message('default-link-tooltip') :
 		message('link-tooltip');
 	button.style.opacity = '0.7';
-	button.style.bottom = '120px';
+	button.style.bottom = '127px';
 
 	var hoverListener = function hoverListener(event) {
 		button.style.opacity = event.type === 'mouseenter' ? '1' : '0.7';
@@ -40,8 +40,8 @@
 			document.getElementById('proveit') ||
 				document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
 				document.getElementsByClassName('wordcount')[ 0 ] ?
-				'162px' :
-				'120px';
+				'169px' :
+				'127px';
 	};
 	window.addEventListener('scroll', windowEventFunction);
 	window.addEventListener('selectionchange', windowEventFunction);
