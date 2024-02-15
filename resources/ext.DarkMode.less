@@ -22,13 +22,19 @@
 }
 
 @media screen {
+	:root {
+		color-scheme: light dark;
+	}
+
 	html {
+		color-scheme: only light;
 		height: 100%;
 	}
 
 	/* START OF DARKMODE STYLES */
 	html.client-darkmode {
 		.invert;
+		color-scheme: only dark;
 	}
 
 	.client-darkmode {
