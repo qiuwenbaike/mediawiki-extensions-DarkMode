@@ -39,7 +39,7 @@
 		button.style.bottom =
 			document.getElementById('proveit') ||
 				document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
-				document.getElementsByClassName('wordcount')[ 0 ] ?
+				document.getElementById('gadget-word_count-tip') ?
 				'169px' :
 				'127px';
 	};
