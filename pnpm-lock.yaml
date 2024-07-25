@@ -15,8 +15,8 @@ importers:
         specifier: 1.6.1
         version: 1.6.1
       grunt-banana-checker:
-        specifier: 0.11.1
-        version: 0.11.1
+        specifier: 0.13.0
+        version: 0.13.0
       grunt-eslint:
         specifier: 25.0.0
         version: 25.0.0(grunt@1.6.1)
@@ -1115,9 +1115,9 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  grunt-banana-checker@0.11.1:
-    resolution: {integrity: sha512-CF0h/TXaX9sbF2yIz+fUfJc4Zvms7XGYQ7ZYMD5+vv0LMZzSFf7JSHXDaBEs72nQWw4r4ap5fOW3baAliW+0bQ==}
-    engines: {node: '>=8'}
+  grunt-banana-checker@0.13.0:
+    resolution: {integrity: sha512-uAUKILcP69Q4OJHHV2wzxqVaoXB8G3Uh/XuSJLn0Bk/9+WiUY/Q4+OX7dUhrPPeDZPtoGh37qqJLVvZlDTUecg==}
+    engines: {node: '>=16'}
     hasBin: true
 
   grunt-cli@1.4.3:
@@ -3435,7 +3435,9 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  grunt-banana-checker@0.11.1: {}
+  grunt-banana-checker@0.13.0:
+    dependencies:
+      chalk: 4.1.2
 
   grunt-cli@1.4.3:
     dependencies:
