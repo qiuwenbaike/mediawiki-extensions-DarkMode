@@ -13,7 +13,7 @@
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "25.0.0",
-		"postcss-import": "^15.1.0",
+		"postcss-import": "^16.1.0",
 		"postcss-preset-env": "^9.6.0",
 		"stylelint": "^15.11.0",
 		"stylelint-config-wikimedia": "latest"
