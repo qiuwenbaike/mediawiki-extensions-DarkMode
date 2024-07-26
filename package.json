@@ -12,7 +12,7 @@
 		"eslint-config-wikimedia": "latest",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.13.0",
-		"grunt-eslint": "24.0.1",
+		"grunt-eslint": "25.0.0",
 		"grunt-stylelint": "0.20.1",
 		"postcss-less": "^6.0.0",
 		"stylelint": "^16.7.0",
