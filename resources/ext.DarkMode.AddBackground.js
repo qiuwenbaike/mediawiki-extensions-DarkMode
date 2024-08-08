@@ -16,7 +16,7 @@
 	const imageBackgroundPeers = [];
 
 	for (const figure of figures) {
-		const images = figure.querySelectorAll('img');
+		const images = figure.querySelectorAll('img:not(.mw-invert)');
 		if (!images.length) {
 			continue;
 		}
