@@ -6,7 +6,9 @@
  */
 'use strict';
 (function () {
-	const figures = document.querySelectorAll('[typeof="mw:File"]');
+	const figures = document.querySelectorAll(
+		'[typeof="mw:File"], [typeof="mw:File/Thumb"], [typeof="mw:File/Frame"], [typeof="mw:File/Frameless"]'
+	);
 	if (!figures.length) {
 		return;
 	}
@@ -18,7 +20,7 @@
 		}
 
 		for (const image of images) {
-			const background = document.createElement('div');
+			const background = document.createElement('span');
 			background.classList.add('darkmode-figure-background');
 			image.before(background);
 			background.style.position = 'absolute';
