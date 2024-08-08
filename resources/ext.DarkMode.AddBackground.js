@@ -6,7 +6,9 @@
  */
 'use strict';
 (function () {
-	const figures = document.querySelectorAll('span[typeof~="mw:File"]');
+	const figures = document.querySelectorAll(
+		'span[typeof~="mw:File"], span[typeof~="mw:File/Thumb"], span[typeof~="mw:File/Frame"], span[typeof~="mw:File/Frameless"]'
+	);
 	if (!figures.length) {
 		return;
 	}

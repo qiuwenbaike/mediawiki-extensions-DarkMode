@@ -156,12 +156,23 @@
 		}
 
 		*:not(.mw-no-invert) {
-			> div[typeof~="mw:File"],
-			> figure[typeof~="mw:File"],
+			> [typeof~="mw:File"],
+			> [typeof~="mw:File/Thumb"],
+			> [typeof~="mw:File/Frame"],
+			> [typeof~="mw:File/Frameless"],
 			> .mw-halign-left,
 			> .mw-halign-right,
 			> .mw-halign-center {
-				background: rgba(0, 0, 0, 0.5);
+				background: rgba(0, 0, 0, 0.1);
+			}
+
+			span {
+				> [typeof~="mw:File"],
+				> [typeof~="mw:File/Thumb"],
+				> [typeof~="mw:File/Frame"],
+				> [typeof~="mw:File/Frameless"] {
+					display: inline-block;
+				}
 			}
 		}
 
