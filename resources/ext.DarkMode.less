@@ -140,7 +140,6 @@
 			border-color: #cdcbc8;
 		}
 
-		/* Background */
 		.skin-gongbi,
 		.drawer-container__mask,
 		.main-menu-mask,
@@ -154,6 +153,15 @@
 		.vjs-poster,
 		#menus-cover {
 			background-color: #f7f7f7 !important;
+		}
+
+		*:not(.mw-no-invert) {
+			> [typeof~="mw:File"],
+			> .mw-halign-left,
+			> .mw-halign-right,
+			> .mw-halign-center {
+				background: rgba(0, 0, 0, 0.5);
+			}
 		}
 
 		.diff-addedline .diffchange {
@@ -170,7 +178,7 @@
 		}
 
 		.darkmode-figure-background {
-			background: rgba(0, 0, 0, 0.75);
+			background: rgba(0, 0, 0, 0.5);
 		}
 
 		/* Color */
