@@ -6,15 +6,24 @@
  */
 'use strict';
 (function () {
-	const figureImages = document.querySelectorAll('[typeof="mw:File"] img');
-	if (!figureImages.length) {
+	const figures = document.querySelectorAll('[typeof="mw:File"]');
+	if (!figures.length) {
 		return;
 	}
-	for (const element of figureImages) {
-		const background = document.createElement('div');
-		background.classList.add('darkmode-figure-background');
-		element.before(background);
-		background.style.width = (element.width || 0).toString() + 'px';
-		background.style.height = (element.height || 0).toString() + 'px';
+
+	for (const figure of figures) {
+		const images = figure.querySelectorAll('img');
+		if (!images.length) {
+			continue;
+		}
+
+		for (const image of images) {
+			const background = document.createElement('div');
+			background.classList.add('darkmode-figure-background');
+			image.before(background);
+			background.style.position = 'absolute';
+			background.style.width = (image.width || 0).toString() + 'px';
+			background.style.height = (image.height || 0).toString() + 'px';
+		}
 	}
 }());
