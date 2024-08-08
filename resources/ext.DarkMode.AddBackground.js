@@ -13,6 +13,8 @@
 		return;
 	}
 
+	const imageBackgroundPeers = [];
+
 	for (const figure of figures) {
 		const images = figure.querySelectorAll('img');
 		if (!images.length) {
@@ -26,6 +28,22 @@
 			background.style.position = 'absolute';
 			background.style.width = (image.width || 0).toString() + 'px';
 			background.style.height = (image.height || 0).toString() + 'px';
+			imageBackgroundPeers.push({
+				image,
+				background
+			});
 		}
 	}
+
+	window.addEventListener('resize', () => {
+		if (!imageBackgroundPeers) {
+			return;
+		}
+
+		for (const { image, background } of imageBackgroundPeers) {
+			background.style.position = 'absolute';
+			background.style.width = (image.width || 0).toString() + 'px';
+			background.style.height = (image.height || 0).toString() + 'px';
+		}
+	});
 }());
