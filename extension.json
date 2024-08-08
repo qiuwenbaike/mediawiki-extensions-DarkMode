@@ -38,6 +38,10 @@
 			"es6": true,
 			"packageFiles": [ "ext.DarkMode.EmojiWrap.js" ]
 		},
+		"ext.DarkMode.AddBackground": {
+			"es6": true,
+			"packageFiles": [ "ext.DarkMode.AddBackground.js" ]
+		},
 		"ext.DarkMode.css": {
 			"styles": [ "ext.DarkMode.less" ]
 		}
