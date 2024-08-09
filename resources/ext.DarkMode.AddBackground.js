@@ -17,7 +17,7 @@
 		'.mw-halign-center'
 	];
 	const SPAN_SELECTORS = FILE_SELECTORS.map((element) => 'span' + element);
-	const FIGURE_SELECTOR = FILE_SELECTORS.map((element) => 'span' + element);
+	const FIGURE_SELECTOR = FILE_SELECTORS.map((element) => 'figure' + element);
 	const IMG_SELECTOR = 'img:not(.mw-invert)';
 	const CLASS_WRAP = 'darkmode-image-wrap';
 	const CLASS_BACKRGOUND = 'darkmode-image-background';
