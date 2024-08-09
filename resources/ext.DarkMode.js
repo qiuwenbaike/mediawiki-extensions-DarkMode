@@ -38,8 +38,8 @@
 	const windowEventFunction = function windowEventFunction() {
 		button.style.bottom =
 			document.getElementById('proveit') ||
-				document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
-				document.getElementById('gadget-word_count-tip') ?
+			document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
+			document.getElementById('gadget-word_count-tip') ?
 				'169px' :
 				'127px';
 	};
@@ -85,10 +85,10 @@
 	};
 
 	const setMetaContent = function setMetaContent(metaContent) {
-		if (document.getElementsByTagName('meta')[ 'color-scheme' ]) {
-			document
-				.getElementsByTagName('meta')[ 'color-scheme' ]
-				.setAttribute('content', metaContent);
+		const colorSchemeMeta =
+			document.getElementsByTagName('meta')[ 'color-scheme' ];
+		if (colorSchemeMeta) {
+			colorSchemeMeta.setAttribute('content', metaContent);
 		} else {
 			const meta = document.createElement('meta');
 			meta.name = 'color-scheme';
