@@ -6,32 +6,36 @@
  */
 'use strict';
 (function () {
-	const spans = [ ...new Set(
-		document.querySelectorAll(
-			[
-				'span[typeof~="mw:File"]',
-				'span[typeof~="mw:File/Thumb"]',
-				'span[typeof~="mw:File/Frame"]',
-				'span[typeof~="mw:File/Frameless"]',
-				'span.mw-halign-left',
-				'span.mw-halign-right',
-				'span.mw-halign-center'
-			].join(',')
+	const spans = [
+		...new Set(
+			document.querySelectorAll(
+				[
+					'span[typeof~="mw:File"]',
+					'span[typeof~="mw:File/Thumb"]',
+					'span[typeof~="mw:File/Frame"]',
+					'span[typeof~="mw:File/Frameless"]',
+					'span.mw-halign-left',
+					'span.mw-halign-right',
+					'span.mw-halign-center'
+				].join(',')
+			)
 		)
-	) ];
-	const figures = [ ...new Set(
-		document.querySelectorAll(
-			[
-				'figure[typeof~="mw:File"]',
-				'figure[typeof~="mw:File/Thumb"]',
-				'figure[typeof~="mw:File/Frame"]',
-				'figure[typeof~="mw:File/Frameless"]',
-				'figure.mw-halign-left',
-				'figure.mw-halign-right',
-				'figure.mw-halign-center'
-			].join(',')
+	];
+	const figures = [
+		...new Set(
+			document.querySelectorAll(
+				[
+					'figure[typeof~="mw:File"]',
+					'figure[typeof~="mw:File/Thumb"]',
+					'figure[typeof~="mw:File/Frame"]',
+					'figure[typeof~="mw:File/Frameless"]',
+					'figure.mw-halign-left',
+					'figure.mw-halign-right',
+					'figure.mw-halign-center'
+				].join(',')
+			)
 		)
-	) ];
+	];
 	if (!spans.length && !figures.length) {
 		return;
 	}
@@ -83,7 +87,9 @@
 			return;
 		}
 
-		for (const { image, background } of imageBackgroundPeers) {
+		for (const { image, background } of [
+			...new Set(imageBackgroundPeers)
+		]) {
 			background.style.position = 'absolute';
 			background.style.width = (image.width || 0).toString() + 'px';
 			background.style.height = (image.height || 0).toString() + 'px';
