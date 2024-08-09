@@ -6,21 +6,7 @@
  */
 'use strict';
 (function () {
-	const uniqueArray = function uniqueArray(args) {
-		/**
-		 * @see {@link https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array/922982}
-		 * @license CC-BY-SA-4.0
-		 */
-		const result = [];
-		for (const item of args) {
-			if (!result.includes(item)) {
-				result.push(item);
-			}
-		}
-		return result;
-	};
-
-	const spans = uniqueArray(
+	const spans = [ ...new Set(
 		document.querySelectorAll(
 			[
 				'span[typeof~="mw:File"]',
@@ -32,8 +18,8 @@
 				'span.mw-halign-center'
 			].join(',')
 		)
-	);
-	const figures = uniqueArray(
+	) ];
+	const figures = [ ...new Set(
 		document.querySelectorAll(
 			[
 				'figure[typeof~="mw:File"]',
@@ -45,20 +31,22 @@
 				'figure.mw-halign-center'
 			].join(',')
 		)
-	);
+	) ];
 	if (!spans.length && !figures.length) {
 		return;
 	}
 
 	const imageBackgroundPeers = [];
 
-	for (const figure of figures) {
-		const images = figure.querySelectorAll('img:not(.mw-invert)');
+	for (const span of spans) {
+		const images = span.querySelectorAll('img:not(.mw-invert)');
 		if (!images.length) {
 			continue;
 		}
 
 		for (const image of images) {
+			const parentElement = image.parentElement;
+			parentElement.classList.add('darkmode-image-wrap');
 			const background = document.createElement('div');
 			background.classList.add('darkmode-image-background');
 			image.before(background);
@@ -71,15 +59,13 @@
 		}
 	}
 
-	for (const span of spans) {
-		const images = span.querySelectorAll('img:not(.mw-invert)');
+	for (const figure of figures) {
+		const images = figure.querySelectorAll('img:not(.mw-invert)');
 		if (!images.length) {
 			continue;
 		}
 
 		for (const image of images) {
-			const parentElement = image.parentElement();
-			parentElement.classList.add('darkmode-image-wrap');
 			const background = document.createElement('div');
 			background.classList.add('darkmode-image-background');
 			image.before(background);
