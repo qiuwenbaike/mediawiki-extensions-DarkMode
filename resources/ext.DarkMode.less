@@ -155,15 +155,6 @@
 			background-color: #f7f7f7 !important;
 		}
 
-		.darkmode-image-background {
-			position: absolute;
-		}
-
-		.darkmode-image-wrap {
-			position: relative;
-			display: inline-block;
-		}
-
 		*:not(.mw-no-invert) {
 			.darkmode-image-background {
 				background: rgba(0, 0, 0, 0.1);
@@ -303,8 +294,14 @@
 }
 
 /* For other elements */
+.darkmode-image-wrap {
+	position: relative;
+	display: inline-block;
+}
+
 .darkmode-image-background {
 	background: transparent;
+	position: absolute;
 }
 
 #darkmode-button {
