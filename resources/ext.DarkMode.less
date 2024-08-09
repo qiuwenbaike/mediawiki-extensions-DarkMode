@@ -155,24 +155,18 @@
 			background-color: #f7f7f7 !important;
 		}
 
-		*:not(.mw-no-invert) {
-			> [typeof~="mw:File"],
-			> [typeof~="mw:File/Thumb"],
-			> [typeof~="mw:File/Frame"],
-			> [typeof~="mw:File/Frameless"],
-			> .mw-halign-left,
-			> .mw-halign-right,
-			> .mw-halign-center {
-				background: rgba(0, 0, 0, 0.1);
-			}
+		.darkmode-image-background {
+			position: absolute;
+		}
 
-			span {
-				> [typeof~="mw:File"],
-				> [typeof~="mw:File/Thumb"],
-				> [typeof~="mw:File/Frame"],
-				> [typeof~="mw:File/Frameless"] {
-					display: inline-block;
-				}
+		.darkmode-image-wrap {
+			position: relative;
+			display: inline-block;
+		}
+
+		*:not(.mw-no-invert) {
+			.darkmode-image-background {
+				background: rgba(0, 0, 0, 0.1);
 			}
 		}
 
@@ -187,10 +181,6 @@
 		input:not([type]),
 		textarea:not([type]) {
 			background-color: #eaecf0 !important;
-		}
-
-		.darkmode-figure-background {
-			background: rgba(0, 0, 0, 0.5);
 		}
 
 		/* Color */
@@ -313,7 +303,7 @@
 }
 
 /* For other elements */
-.darkmode-figure-background {
+.darkmode-image-background {
 	background: transparent;
 }
 
