@@ -155,12 +155,39 @@
 			background-color: #f7f7f7 !important;
 		}
 
+		[typeof~="mw:File"],
+		[typeof~="mw:File/Thumb"],
+		[typeof~="mw:File/Frame"],
+		[typeof~="mw:File/Frameless"],
+		.mw-halign-left,
+		.mw-halign-right,
+		.mw-halign-center {
+			img {
+				width: auto;
+				background: rgba(0, 0, 0, 0.1);
+			}
+		}
+
 		.darkmode-image-background {
 			background: rgba(0, 0, 0, 0.1);
 		}
 
-		.mw-no-invert .darkmode-image-background {
-			background: rgba(0, 0, 0, 0.1);
+		.mw-no-invert {
+			[typeof~="mw:File"],
+			[typeof~="mw:File/Thumb"],
+			[typeof~="mw:File/Frame"],
+			[typeof~="mw:File/Frameless"],
+			.mw-halign-left,
+			.mw-halign-right,
+			.mw-halign-center {
+				img {
+					background: transparent;
+				}
+			}
+
+			.darkmode-image-background {
+				background: transparent;
+			}
 		}
 
 		.diff-addedline .diffchange {
