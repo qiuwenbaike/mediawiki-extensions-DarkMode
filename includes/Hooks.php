@@ -19,19 +19,24 @@ class Hooks implements
 	 */
 	public function onBeforePageDisplay($out, $skin): void
 	{
-		$out->addModules(['ext.DarkMode', 'ext.DarkMode.EmojiWrap', /* 'ext.DarkMode.AddBackground' */]);
-		$out->addModuleStyles('ext.DarkMode.css');
+		$requiredSkins = ['vector', 'write', 'gongbi', 'timeless'];
+		if (
+			in_array($skin->getSkinName(), $requiredSkins)
+		) {
+			$out->addModules(['ext.DarkMode', 'ext.DarkMode.EmojiWrap', /* 'ext.DarkMode.AddBackground' */]);
+			$out->addModuleStyles('ext.DarkMode.css');
 
-		if ($this->isDarkModeActive($skin)) {
-			// The class must be on the <html> element because the CSS filter creates a new stacking context.
-			// If we use the <body> instead (OutputPage::addBodyClasses), any fixed-positioned content
-			// will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
-			// Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
-			$out->addHtmlClasses('client-darkmode');
-			$out->addMeta('color-scheme', 'dark');
-		} else {
-			$out->addHtmlClasses('client-lightmode');
-			$out->addMeta('color-scheme', 'light');
+			if ($this->isDarkModeActive($skin)) {
+				// The class must be on the <html> element because the CSS filter creates a new stacking context.
+				// If we use the <body> instead (OutputPage::addBodyClasses), any fixed-positioned content
+				// will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
+				// Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
+				$out->addHtmlClasses('client-darkmode');
+				$out->addMeta('color-scheme', 'dark');
+			} else {
+				$out->addHtmlClasses('client-lightmode');
+				$out->addMeta('color-scheme', 'light');
+			}
 		}
 	}
 
