@@ -6,7 +6,7 @@
  */
 (function () {
 	const skin = mw.config.get('skin');
-	if (skin === 'vector-2022' || skin === 'ctizen') {
+	if (skin === 'vector-2022') {
 		return;
 	}
 	const COOKIE_NAME = 'usedarkmode',
