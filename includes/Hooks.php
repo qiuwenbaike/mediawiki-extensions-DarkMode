@@ -19,15 +19,12 @@ class Hooks implements
 	 */
 	public function onBeforePageDisplay($out, $skin): void
 	{
-		$requiredSkins = ['vector', 'write', 'gongbi', 'timeless', 'citizen'];
+		$requiredSkins = ['vector', 'write', 'gongbi', 'timeless', 'citizen', 'apioutput'];
 		if (
 			!in_array($skin->getSkinName(), $requiredSkins)
 		) {
 			return;
 		}
-
-		$out->addModules(['ext.DarkMode', 'ext.DarkMode.EmojiWrap', /* 'ext.DarkMode.AddBackground' */]);
-		$out->addModuleStyles('ext.DarkMode.css');
 
 		$out->addModules(['ext.DarkMode', 'ext.DarkMode.EmojiWrap', /* 'ext.DarkMode.AddBackground' */]);
 		$out->addModuleStyles('ext.DarkMode.css');
