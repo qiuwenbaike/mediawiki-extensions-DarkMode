@@ -26,7 +26,7 @@
 	},
 	"ResourceModules": {
 		"ext.DarkMode": {
-			"packageFiles": [ "ext.DarkMode.js" ],
+			"packageFiles": [ "scripts/main.js" ],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",
@@ -36,14 +36,21 @@
 		},
 		"ext.DarkMode.EmojiWrap": {
 			"es6": true,
-			"packageFiles": [ "ext.DarkMode.EmojiWrap.js" ]
+			"packageFiles": [ "scripts/emojiWrap.js" ]
 		},
 		"ext.DarkMode.AddBackground": {
 			"es6": true,
-			"packageFiles": [ "ext.DarkMode.AddBackground.js" ]
+			"packageFiles": [ "scripts/addBackground.js" ]
 		},
 		"ext.DarkMode.css": {
-			"styles": [ "ext.DarkMode.less" ]
+			"styles": {
+				"styles/main.less": {
+					"media": "screen"
+				},
+				"styles/print.less": {
+					"media": "print"
+				}
+			}
 		}
 	},
 	"ResourceFileModulePaths": {

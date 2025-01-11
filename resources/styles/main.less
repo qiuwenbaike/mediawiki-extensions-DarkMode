@@ -1,0 +1,354 @@
+/* Dark Mode
+ * Authors:
+ * - Volker E.
+ * - Alex Hollender
+ * - MusikAnimal
+ * - Carolyn Li-Madeo
+ * - Jdlrobson
+ * - 安忆 <i@anyi.in>
+ * - WaitSpring
+ */
+
+.invert() {
+	filter: invert( 1 ) hue-rotate( 180deg );
+	box-shadow: none;
+}
+
+.noinvert() {
+	filter: none;
+}
+
+html {
+	// color-scheme: only light;
+	height: 100%;
+}
+
+/* START OF DARKMODE STYLES */
+html.client-darkmode {
+	.invert;
+	// color-scheme: only dark;
+}
+
+.client-darkmode {
+	&,
+	iframe,
+	ogvjs,
+	video,
+	.mw-no-invert,
+	td .diffchange,
+	.mwe-upwiz-thumbnail img,
+	.mwe-upwiz-thumbnail canvas,
+	.cdx-no-invert,
+	.image-carousel,
+	.k-player.fullscreen,
+	.k-player .ttmlStyled,
+	.list-thumb:not( .list-thumb-none ),
+	.mw-mmv-main.jq-fullscreened,
+	.mw-tmh-play-icon,
+	.vjs-fullscreen,
+	.vjs-text-track-display,
+	.wvui-typeahead-suggestion__thumbnail,
+	.citizen-typeahead__item--page .citizen-typeahead__thumbnail {
+		.invert;
+	}
+
+	canvas,
+	img,
+	svg {
+		&:not( .mw-invert ) {
+			.invert;
+		}
+	}
+
+	/* Reset overrides, needed where double application above isn't working. */
+	.skin-vector {
+		.mw-logo-wordmark,
+		.mw-logo-icon,
+		.mw-logo-tagline,
+		#sliderCollapseLogo {
+			.noinvert;
+		}
+	}
+
+	.skin-gongbi {
+		.mw-wiki-title,
+		.mw-wiki-logo {
+			& > img {
+				.noinvert;
+			}
+		}
+	}
+
+	.skin-citizen {
+		.mw-logo-icon,
+		.mw-logo-wordmark {
+			.noinvert;
+		}
+	}
+
+	.cdx-icon svg {
+		.noinvert;
+	}
+
+	/* Fix font color at api.php */
+	.mw-special-ApiHelp {
+		color: #000;
+	}
+
+	/* Backgrounds */
+	table,
+	table.ambox-content,
+	table.toccolours,
+	.mw-notification,
+	.mwe-popups,
+	.infobox,
+	.vertical-navbox,
+	.toc,
+	.thumbinner,
+	.wikitable,
+	.cbnnr-main,
+	.cx-callout,
+	#simpleSearch,
+	#searchInput,
+	#centralNotice .cnotice {
+		background-color: #ddd;
+	}
+
+	/* Borders */
+	&,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	table.ambox-content,
+	table.toccolours,
+	.mw-notification,
+	.infobox,
+	.vertical-navbox,
+	.toc,
+	.thumbinner,
+	#mw-head,
+	#mw-panel,
+	#content.mw-body,
+	#simpleSearch,
+	#searchInput,
+	#centralNotice .cnotice {
+		border-color: #cdcbc8;
+	}
+
+	.skin-gongbi,
+	.drawer-container__mask,
+	.main-menu-mask,
+	.mw-mmv-image,
+	.mw-tmh-media-dialog .oo-ui-dialog-content > .oo-ui-window-body .oo-ui-layout,
+	.overlay.media-viewer,
+	.video-js,
+	.vjs-poster,
+	#menus-cover {
+		background-color: #f7f7f7 !important;
+	}
+
+	[ typeof~='mw:File' ],
+	[ typeof~='mw:File/Thumb' ],
+	[ typeof~='mw:File/Frame' ],
+	[ typeof~='mw:File/Frameless' ],
+	.mw-halign-left,
+	.mw-halign-right,
+	.mw-halign-center {
+		img {
+			background: rgba( 0, 0, 0, 0.1 );
+		}
+	}
+
+	.darkmode-image-background {
+		background: rgba( 0, 0, 0, 0.1 );
+	}
+
+	.mw-no-invert {
+		[ typeof~='mw:File' ],
+		[ typeof~='mw:File/Thumb' ],
+		[ typeof~='mw:File/Frame' ],
+		[ typeof~='mw:File/Frameless' ],
+		.mw-halign-left,
+		.mw-halign-right,
+		.mw-halign-center {
+			img {
+				background: transparent;
+			}
+		}
+
+		.darkmode-image-background {
+			background: transparent;
+		}
+	}
+
+	.diff-addedline .diffchange {
+		background-color: #7fd7c4;
+	}
+
+	.diff-deletedline .diffchange {
+		background-color: #e88e89;
+	}
+
+	input:not( [ type ] ),
+	textarea:not( [ type ] ) {
+		background-color: #eaecf0 !important;
+	}
+
+	/* Color */
+	input:not( [ type ] ),
+	textarea:not( [ type ] ),
+	.mw-mmv-image .error-box,
+	.skin-gongbi #searchInput {
+		color: #000 !important;
+	}
+
+	/* Links */
+	/* Links: normal */
+	a,
+	.vector-menu-tabs li a,
+	.vectorTabs li a,
+	.toctogglelabel,
+	.mw-parser-output a.external,
+	.mw-parser-output a.extiw,
+	.mw-parser-output a.extiw:active,
+	#mw-panel .portal .body li a {
+		color: #36c;
+	}
+
+	/* Visited links */
+	a:visited,
+	.mw-parser-output a.extiw:visited,
+	#mw-panel .portal .body li a:visited {
+		color: #6b4ba1;
+	}
+
+	/* Links: red */
+	a.new,
+	.vector-menu-tabs li.new a,
+	.vectorTabs li.new a {
+		color: #ff6e6e;
+	}
+
+	/* Footer links */
+	#mw-footer-container a {
+		color: #36c;
+	}
+
+	/* ::: Special Element Treatments ::: */
+	/* Image thumbnails */
+	.thumbimage {
+		border: 0;
+	}
+
+	/* Content image (thumbnail) SVGs */
+	.mw-mmv-image img.blurred {
+		filter: blur( 3px ) invert( 1 ) hue-rotate( 180deg ) !important;
+	}
+
+	img[ alt*='-at-' ],
+	img[ alt*='- at -' ],
+	.branding-box img,
+	.mainpage_box h3 .header_icon img,
+	.mw-logo-container img,
+	.mw-ext-score img,
+	.wvui-icon svg,
+	#mf-wel img,
+	#p-banner img,
+	#portal img,
+	#topics-list img {
+		.noinvert;
+	}
+
+	.mw-body-content .thumbinner .thumbimage,
+	.filehistory a img,
+	#file img {
+		/* stylelint-disable-next-line function-url-quotes */
+		background:
+ url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="%23f9fafb" d="M0 0h16v16H0z" paint-order="markers stroke fill"/></svg>' )
+			repeat;
+		background-color: #f9fafb;
+	}
+
+	/* `*not( .mbox-image )` exception doesn't work for unclear reasons */
+	.image img[ src*='svg' ] {
+		background-color: #fff;
+	}
+
+	/* Dealing with false positives from selector above */
+	.mw-echo-ui-notificationItemWidget-icon img[ src*='svg' ],
+	.mbox-image .image img[ src*='svg' ],
+	.image img[ alt^='Symbol' ] {
+		background-color: transparent;
+	}
+
+	/* Page previews */
+	.mwe-popups {
+		border: 10px solid #c8ccd1;
+		border-radius: 10px;
+		box-shadow: none;
+	}
+
+	/* Contributions menu */
+	html .cx-callout-1::after {
+		border-bottom-color: #ddd;
+	}
+
+	/* Skin-specific hack */
+
+	/* Hacks for Gongbi */
+	.skin-gongbi h1.firstHeading,
+	.skin-gongbi .mw-footer-container,
+	.skin-gongbi #mw-content-container,
+	.skin-gongbi #mw-header-nav-hack {
+		box-shadow: none;
+	}
+
+	.skin-gongbi h1.firstHeading,
+	.skin-gongbi #mw-content-container {
+		border-bottom: solid 4px #c8ccd1;
+	}
+
+	.skin-gongbi .mw-footer-container {
+		border-top: 0;
+	}
+}
+
+/* For other elements */
+.darkmode-image-wrap {
+	position: relative;
+	display: inline-block;
+}
+
+.darkmode-image-background {
+	position: absolute;
+	display: inline-block;
+	margin: 0 !important;
+	background: transparent;
+}
+
+#darkmode-button {
+	position: fixed;
+	right: 8px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	user-select: none;
+}
+
+/* Hacks for older Firefox versions */
+@-moz-document url-prefix() {
+	body {
+		background-color: #000;
+	}
+}
+
+@-moz-document url-prefix() {
+	@supports (overflow-clip-margin: 1px) {
+		body {
+			background-color: #fff;
+		}
+	}
+}

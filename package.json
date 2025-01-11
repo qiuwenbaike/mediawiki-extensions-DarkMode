@@ -5,8 +5,8 @@
 		"test": "grunt test",
 		"eslint": "eslint .",
 		"eslint:fix": "eslint . --fix",
-		"stylelint": "stylelint resources/*.less --custom-syntax postcss-less",
-		"stylelint:fix": "stylelint resources/*.less --fix --custom-syntax postcss-less"
+		"stylelint": "stylelint resources/**/*.less --custom-syntax postcss-less",
+		"stylelint:fix": "stylelint resources/**/*.less --fix --custom-syntax postcss-less"
 	},
 	"devDependencies": {
 		"eslint-config-wikimedia": "^0.28.2",
