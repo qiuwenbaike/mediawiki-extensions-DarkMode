@@ -4,7 +4,7 @@
  * @author 安忆 <i@anyi.in>, WaitSpring
  * @license GPL-3.0
  */
-(function () {
+document.addEventListener('DOMContentLoaded', () => {
 	const skin = mw.config.get('skin');
 	if (skin === 'vector-2022') {
 		return;
@@ -194,4 +194,4 @@
 	);
 
 	checkDarkMode();
-}());
+});
