@@ -30,8 +30,8 @@ importers:
         specifier: ^16.14.1
         version: 16.14.1(typescript@5.3.3)
       stylelint-config-recess-order:
-        specifier: ^5.1.1
-        version: 5.1.1(stylelint@16.14.1(typescript@5.3.3))
+        specifier: ^6.0.0
+        version: 6.0.0(stylelint@16.14.1(typescript@5.3.3))
       stylelint-config-wikimedia:
         specifier: ^0.18.0
         version: 0.18.0(postcss-less@6.0.0(postcss@8.4.49))(typescript@5.3.3)
@@ -1506,8 +1506,8 @@ packages:
   style-search@0.1.0:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
 
-  stylelint-config-recess-order@5.1.1:
-    resolution: {integrity: sha512-eDAHWVBelzDbMbdMj15pSw0Ycykv5eLeriJdbGCp0zd44yvhgZLI+wyVHegzXp5NrstxTPSxl0fuOVKdMm0XLA==}
+  stylelint-config-recess-order@6.0.0:
+    resolution: {integrity: sha512-1KqrttqpIrCYFAVQ1/bbgXo7EvvcjmkxxmnzVr+U66Xr2OlrNZqQ5+44Tmct6grCWY6wGTIBh2tSANqcmwIM2g==}
     peerDependencies:
       stylelint: '>=16'
 
@@ -3250,7 +3250,7 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-recess-order@5.1.1(stylelint@16.14.1(typescript@5.3.3)):
+  stylelint-config-recess-order@6.0.0(stylelint@16.14.1(typescript@5.3.3)):
     dependencies:
       stylelint: 16.14.1(typescript@5.3.3)
       stylelint-order: 6.0.4(stylelint@16.14.1(typescript@5.3.3))

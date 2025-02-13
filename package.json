@@ -17,7 +17,7 @@
 		"postcss-less": "^6.0.0",
 		"stylelint": "^16.14.1",
 		"stylelint-config-wikimedia": "^0.18.0",
-		"stylelint-config-recess-order": "^5.1.1",
+		"stylelint-config-recess-order": "^6.0.0",
 		"stylelint-order": "^6.0.3"
 	}
 }
