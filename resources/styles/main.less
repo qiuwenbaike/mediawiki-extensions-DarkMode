@@ -10,8 +10,8 @@
  */
 
 .invert() {
-	filter: invert( 1 ) hue-rotate( 180deg );
 	box-shadow: none;
+	filter: invert( 1 ) hue-rotate( 180deg );
 }
 
 .noinvert() {
@@ -267,7 +267,7 @@ html.client-darkmode {
 	#file img {
 		/* stylelint-disable-next-line function-url-quotes */
 		background:
- url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="%23f9fafb" d="M0 0h16v16H0z" paint-order="markers stroke fill"/></svg>' )
+ url( data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="%23f9fafb" d="M0 0h16v16H0z" paint-order="markers stroke fill"/></svg> )
 			repeat;
 		background-color: #f9fafb;
 	}
