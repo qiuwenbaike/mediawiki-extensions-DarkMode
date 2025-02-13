@@ -18,6 +18,10 @@
 	filter: none;
 }
 
+.background( @image: "" ) {
+	background: url( '@{image}.svg' ) repeat;
+}
+
 html {
 	// color-scheme: only light;
 	height: 100%;
@@ -265,10 +269,7 @@ html.client-darkmode {
 	.mw-body-content .thumbinner .thumbimage,
 	.filehistory a img,
 	#file img {
-		/* stylelint-disable-next-line function-url-quotes */
-		background:
-		url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="%23f9fafb" d="M0 0h16v16H0z" paint-order="markers stroke fill"/></svg>' )
-		repeat;
+		.background('../images/background.svg');
 		background-color: #f9fafb;
 	}
 
