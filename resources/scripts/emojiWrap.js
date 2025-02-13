@@ -5,7 +5,7 @@
  * @license GPL-3.0
  */
 'use strict';
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
 	/*!
 	 * emoji-regex 10.3.0
 	 *
@@ -152,4 +152,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		childList: true,
 		subtree: true
 	});
-});
+})();

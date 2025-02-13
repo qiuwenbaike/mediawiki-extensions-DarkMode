@@ -4,7 +4,7 @@
  * @author 安忆 <i@anyi.in>, WaitSpring
  * @license GPL-3.0
  */
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
 	const skin = mw.config.get('skin');
 	if (skin === 'vector-2022') {
 		return;
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	button.addEventListener('mouseenter', hoverListener);
 	button.addEventListener('mouseleave', hoverListener);
 
-	document.body.appendChild(button);
+	(document.body ?? document.documentElement).appendChild(button);
 
 	const windowEventFunction = function windowEventFunction() {
 		button.style.bottom =
@@ -194,4 +194,4 @@ document.addEventListener('DOMContentLoaded', () => {
 	);
 
 	checkDarkMode();
-});
+})();

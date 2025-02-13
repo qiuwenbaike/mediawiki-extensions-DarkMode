@@ -6,7 +6,7 @@
  * @license GPL-3.0
  */
 'use strict';
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
 	const FILE_SELECTORS = [
 		'[typeof~="mw:File"]',
 		'[typeof~="mw:File/Thumb"]',
@@ -79,4 +79,4 @@ document.addEventListener('DOMContentLoaded', () => {
 			div.style.height = (image.height || 0).toString() + 'px';
 		}
 	});
-});
+})();
