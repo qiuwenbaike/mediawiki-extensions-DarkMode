@@ -9,15 +9,18 @@
 		"stylelint:fix": "stylelint resources/**/*.less --fix --custom-syntax postcss-less"
 	},
 	"devDependencies": {
+		"@eslint/eslintrc": "^3.3.0",
+		"@eslint/js": "^9.22.0",
 		"eslint-config-wikimedia": "^0.29.1",
+		"globals": "^16.0.0",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "25.0.0",
 		"grunt-stylelint": "0.20.1",
 		"postcss-less": "^6.0.0",
 		"stylelint": "^16.15.0",
-		"stylelint-config-wikimedia": "^0.18.0",
 		"stylelint-config-recess-order": "^6.0.0",
+		"stylelint-config-wikimedia": "^0.18.0",
 		"stylelint-order": "^6.0.3"
 	}
 }
