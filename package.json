@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.0",
-		"@eslint/js": "^9.22.0",
+		"@eslint/js": "^9.25.1",
 		"eslint-config-wikimedia": "^0.29.1",
 		"globals": "^16.0.0",
 		"grunt": "1.6.1",
