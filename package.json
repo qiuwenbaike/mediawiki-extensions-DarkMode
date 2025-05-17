@@ -9,7 +9,7 @@
 		"stylelint:fix": "stylelint resources/**/*.less --fix --custom-syntax postcss-less"
 	},
 	"devDependencies": {
-		"@eslint/eslintrc": "^3.3.0",
+		"@eslint/eslintrc": "^3.3.1",
 		"@eslint/js": "^9.26.0",
 		"eslint-config-wikimedia": "^0.29.1",
 		"globals": "^16.1.0",
