@@ -1,3 +1,4 @@
+/* eslint-disable es-x/no-optional-chaining */
 /**
  * @name EmojiWrap.js
  * @description add a <span> wrap outside emojis.
@@ -6,6 +7,7 @@
  */
 'use strict';
 (() => {
+	const bodyElement = document.body || document.documentElement;
 	/*!
 	 * emoji-regex 10.3.0
 	 *
@@ -47,7 +49,7 @@
 	const filterTextNodeArray = function (textNodeArray, callback) {
 		for (const textNode of textNodeArray) {
 			const { nodeValue } = textNode;
-			if (!nodeValue?.trim()) {
+			if (!nodeValue || !nodeValue?.trim()) {
 				continue;
 			}
 			callback(textNode, nodeValue);
@@ -115,7 +117,7 @@
 	};
 
 	const targetTextNodeArray = getTextNodeArray(
-		document.body ?? document.documentElement
+		bodyElement
 	);
 	filterTextNodeArray(targetTextNodeArray, surroundEmojiText);
 
@@ -148,7 +150,7 @@
 	};
 
 	const mutationObserver = new MutationObserver(observerCallback);
-	mutationObserver.observe(document.body ?? document.documentElement, {
+	mutationObserver.observe(bodyElement, {
 		childList: true,
 		subtree: true
 	});

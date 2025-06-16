@@ -9,6 +9,7 @@
 	if (skin === 'vector-2022') {
 		return;
 	}
+	const bodyElement = document.body || document.documentElement;
 	const COOKIE_NAME = 'usedarkmode',
 		ICON =
 			"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 13.229 13.229'%3E%3Ccircle cx='6.614' cy='6.614' fill='%23fff' stroke='%2336c' stroke-width='1.322' r='5.953'/%3E%3Cpath d='M6.88 11.377a4.762 4.762 0 0 1-4.125-7.144 4.762 4.762 0 0 1 4.124-2.38v4.762z' fill='%2336c' paint-order='markers stroke fill'/%3E%3C/svg%3E",
@@ -37,7 +38,7 @@
 	button.addEventListener('mouseenter', hoverListener);
 	button.addEventListener('mouseleave', hoverListener);
 
-	(document.body ?? document.documentElement).appendChild(button);
+	bodyElement.appendChild(button);
 
 	const windowEventFunction = function windowEventFunction() {
 		button.style.bottom =

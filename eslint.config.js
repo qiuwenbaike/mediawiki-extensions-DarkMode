@@ -27,7 +27,7 @@ export default [
 		]
 	},
 	...compat.extends(
-		'wikimedia/client-common',
+		'wikimedia/client',
 		'wikimedia/language/es2022',
 		'wikimedia/mediawiki'
 	),
