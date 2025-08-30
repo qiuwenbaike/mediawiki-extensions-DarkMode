@@ -37,7 +37,6 @@ class Hooks implements
 			$out->addHtmlClasses('client-darkmode');
 			$out->addMeta('color-scheme', 'dark');
 		} else {
-			$out->addHtmlClasses('client-lightmode');
 			$out->addMeta('color-scheme', 'light');
 		}
 	}
