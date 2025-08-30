@@ -36,10 +36,7 @@ export default [
 			globals: {
 				...globals.browser,
 				exports: true
-			},
-
-			ecmaVersion: 11,
-			sourceType: 'module'
+			}
 		},
 
 		rules: {
