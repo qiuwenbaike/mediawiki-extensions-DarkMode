@@ -106,38 +106,39 @@
 			if (
 				nodeName.includes('INPUT') ||
 				nodeName.includes('TEXTAREA') ||
-				nodeName.includes('ANNOTATION-XML') ||
-				nodeName.includes('ANNOTATION') ||
-				nodeName.includes('MACTION') ||
-				nodeName.includes('MATH') ||
-				nodeName.includes('MENCLOSE') ||
-				nodeName.includes('MERROR') ||
-				nodeName.includes('MFENCED') ||
-				nodeName.includes('MFRAC') ||
-				nodeName.includes('MI') ||
-				nodeName.includes('MMULTISCRIPTS') ||
-				nodeName.includes('MN') ||
-				nodeName.includes('MO') ||
-				nodeName.includes('MOVER') ||
-				nodeName.includes('MPADDED') ||
-				nodeName.includes('MPHANTOM') ||
-				nodeName.includes('MPRESCRIPTS') ||
-				nodeName.includes('MROOT') ||
-				nodeName.includes('MROW') ||
-				nodeName.includes('MS') ||
-				nodeName.includes('MSPACE') ||
-				nodeName.includes('MSQRT') ||
-				nodeName.includes('MSTYLE') ||
-				nodeName.includes('MSUB') ||
-				nodeName.includes('MSUBSUP') ||
-				nodeName.includes('MSUP') ||
-				nodeName.includes('MTABLE') ||
-				nodeName.includes('MTD') ||
-				nodeName.includes('MTEXT') ||
-				nodeName.includes('MTR') ||
-				nodeName.includes('MUNDER') ||
-				nodeName.includes('MUNDEROVER') ||
-				nodeName.includes('SEMANTICS') ||
+				nodeName.includes('annotation-xml') ||
+				nodeName.includes('annotation') ||
+				nodeName.includes('maction') ||
+				nodeName.includes('math') ||
+				nodeName.includes('menclose') ||
+				nodeName.includes('merror') ||
+				nodeName.includes('mfenced') ||
+				nodeName.includes('mfrac') ||
+				nodeName.includes('mi') ||
+				nodeName.includes('mmultiscripts') ||
+				nodeName.includes('mn') ||
+				nodeName.includes('mo') ||
+				nodeName.includes('mover') ||
+				nodeName.includes('mpadded') ||
+				nodeName.includes('mphantom') ||
+				nodeName.includes('mprescripts') ||
+				nodeName.includes('mroot') ||
+				nodeName.includes('mrow') ||
+				nodeName.includes('ms') ||
+				nodeName.includes('mspace') ||
+				nodeName.includes('msqrt') ||
+				nodeName.includes('mstyle') ||
+				nodeName.includes('msub') ||
+				nodeName.includes('msubsup') ||
+				nodeName.includes('msup') ||
+				nodeName.includes('mtable') ||
+				nodeName.includes('mtd') ||
+				nodeName.includes('mtext') ||
+				nodeName.includes('mtr') ||
+				nodeName.includes('munder') ||
+				nodeName.includes('munderover') ||
+				nodeName.includes('semantics') ||
+				nodeName.includes('mjx-') ||
 				nodeName.includes(EMOJI_NODE_NAME)
 			) {
 				continue;
