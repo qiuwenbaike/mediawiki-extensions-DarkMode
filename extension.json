@@ -42,9 +42,16 @@
 			"es6": true,
 			"packageFiles": [ "scripts/addBackground.js" ]
 		},
-		"ext.DarkMode.css": {
+		"ext.DarkMode.MainStyles": {
 			"styles": {
 				"styles/main.less": {
+					"media": "screen"
+				}
+			}
+		},
+		"ext.DarkMode.ElementStyles": {
+			"styles": {
+				"styles/element.less": {
 					"media": "screen"
 				},
 				"styles/print.less": {

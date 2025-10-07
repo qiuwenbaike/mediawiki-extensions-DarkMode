@@ -19,26 +19,31 @@ class Hooks implements
 	 */
 	public function onBeforePageDisplay($out, $skin): void
 	{
-		$requiredSkins = ['vector', 'write', 'gongbi', 'timeless', 'citizen', 'apioutput'];
+		$skinsHaveDarkModeJsAndCss = ['vector', 'vector-2022'];
 		if (
-			!in_array($skin->getSkinName(), $requiredSkins)
+			in_array($skin->getSkinName(), $skinsHaveDarkModeJsAndCss)
 		) {
 			return;
 		}
 
+		$skinsHaveDarkModeCss = [];
+		if (
+			!in_array($skin->getSkinName(), $skinsHaveDarkModeCss)
+		) {
+			$out->addModuleStyles('ext.DarkMode.MainStyles');
+		}
+
 		$out->addModules(['ext.DarkMode', 'ext.DarkMode.EmojiWrap', /* 'ext.DarkMode.AddBackground' */]);
-		$out->addModuleStyles('ext.DarkMode.css');
+		$out->addModuleStyles('ext.DarkMode.ElementStyles');
 
 		if ($this->isDarkModeActive($skin)) {
 			// The class must be on the <html> element because the CSS filter creates a new stacking context.
 			// If we use the <body> instead (OutputPage::addBodyClasses), any fixed-positioned content
 			// will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
 			// Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
-			$out->addHtmlClasses('skin-theme-clientpref-night');
 			$out->addHtmlClasses('client-darkmode'); // Kept for backwards compatibility
 			$out->addMeta('color-scheme', 'dark');
 		} else {
-			$out->addHtmlClasses('skin-theme-clientpref-day');
 			$out->addHtmlClasses('client-lightmode'); // Kept for backwards compatibility
 			$out->addMeta('color-scheme', 'light');
 		}
