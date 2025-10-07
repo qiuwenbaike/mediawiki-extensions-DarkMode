@@ -21,7 +21,7 @@
 		return matchMedia('( prefers-color-scheme: dark )').matches;
 	};
 	const checkThemeDarkModeIsOn = function () {
-		return document.documentElement.classList.contains('client-darkmode');
+		return document.documentElement.classList.contains('client-darkmode') || document.documentElement.classList.contains('skin-theme-clientpref-night');
 	};
 
 	const button = document.createElement('img');
@@ -110,6 +110,9 @@
 	const switchMode = {
 		dark: function () {
 			document.documentElement.classList.add('client-darkmode');
+			document.documentElement.classList.add('skin-theme-clientpref-night');
+			document.documentElement.classList.remove('client-lightmode');
+			document.documentElement.classList.remove('skin-theme-clientpref-day');
 			setMetaContent('dark');
 			setCookie({ name: COOKIE_NAME, value: '0', hour: -1 });
 			setCookie({ name: COOKIE_NAME, value: '1', hour: 24 * 365 * 1000 });
@@ -117,7 +120,10 @@
 			button.title = message('default-link-tooltip');
 		},
 		light: function () {
+			document.documentElement.classList.add('client-lightmode');
+			document.documentElement.classList.add('skin-theme-clientpref-day');
 			document.documentElement.classList.remove('client-darkmode');
+			document.documentElement.classList.remove('skin-theme-clientpref-night');
 			setMetaContent('light');
 			setCookie({ name: COOKIE_NAME, value: '1', hour: -1 });
 			setCookie({ name: COOKIE_NAME, value: '0', hour: 24 * 365 * 1000 });

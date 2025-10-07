@@ -34,9 +34,12 @@ class Hooks implements
 			// If we use the <body> instead (OutputPage::addBodyClasses), any fixed-positioned content
 			// will be hidden in accordance with the w3c spec: https://www.w3.org/TR/filter-effects-1/#FilterProperty
 			// Fixed elements may still be hidden in Firefox due to https://bugzilla.mozilla.org/show_bug.cgi?id=1650522
-			$out->addHtmlClasses('client-darkmode');
+			$out->addHtmlClasses('skin-theme-clientpref-night');
+			$out->addHtmlClasses('client-darkmode'); // Kept for backwards compatibility
 			$out->addMeta('color-scheme', 'dark');
 		} else {
+			$out->addHtmlClasses('skin-theme-clientpref-day');
+			$out->addHtmlClasses('client-lightmode'); // Kept for backwards compatibility
 			$out->addMeta('color-scheme', 'light');
 		}
 	}
