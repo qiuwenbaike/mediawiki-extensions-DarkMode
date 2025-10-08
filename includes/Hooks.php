@@ -19,7 +19,7 @@ class Hooks implements
 	 */
 	public function onBeforePageDisplay($out, $skin): void
 	{
-		$skinsHaveDarkModeJsAndCss = ['vector', 'vector-2022'];
+		$skinsHaveDarkModeJsAndCss = ['vector-2022'];
 		if (
 			in_array($skin->getSkinName(), $skinsHaveDarkModeJsAndCss)
 		) {
