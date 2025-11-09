@@ -1,4 +1,3 @@
-/* eslint-disable mediawiki/class-doc */
 /**
  * @name AddBackground.js
  * @description add dark mode to MediaWiki sites

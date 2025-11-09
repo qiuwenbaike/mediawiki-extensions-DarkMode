@@ -1,4 +1,3 @@
-/* eslint-disable es-x/no-optional-chaining */
 /**
  * @name emojiWrap.js
  * @description add a <span> wrap outside emojis.
