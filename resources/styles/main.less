@@ -26,14 +26,12 @@
 }
 
 html {
-	// color-scheme: only light;
 	height: 100%;
 }
 
 /* START OF DARKMODE STYLES */
 html.client-darkmode {
 	.invert;
-	// color-scheme: only dark;
 }
 
 .client-darkmode {
@@ -340,4 +338,15 @@ html.client-darkmode {
 			background-color: #fff;
 		}
 	}
+}
+
+/* Hacks for Baidu Browser */
+html.client-darkmode, // Kept for compatibility
+:root:has( .client-darkmode ) {
+	color-scheme: only dark;
+}
+
+html.client-lightmode, // Kept for compatibility
+:root:has( .client-lightmode ) {
+	color-scheme: only light;
 }
