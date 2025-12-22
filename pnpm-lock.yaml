@@ -54,8 +54,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(stylelint@16.26.1(typescript@5.8.2))
       stylelint-plugin-use-baseline:
-        specifier: ^1.1.2
-        version: 1.1.2(stylelint@16.26.1(typescript@5.8.2))
+        specifier: ^1.1.4
+        version: 1.1.4(stylelint@16.26.1(typescript@5.8.2))
 
 packages:
 
@@ -1729,8 +1729,8 @@ packages:
     peerDependencies:
       stylelint: ^16.18.0
 
-  stylelint-plugin-use-baseline@1.1.2:
-    resolution: {integrity: sha512-D0B3RoataL8Do8weuz2aFl1KBPNYP6CxyFXaH7Y/Nyb1Ybhc5Vq0tAWeJvu082yf3ek/8L5ubEM9by4tn2lhqg==}
+  stylelint-plugin-use-baseline@1.1.4:
+    resolution: {integrity: sha512-HOOjjQih8hhd1sudEFMlGPhyguaoS07y/hS3F/ixZykwCsGFqO7nmpYOAtZXaUKu3wg7zLlfZrgMmrBlw6LIUg==}
     peerDependencies:
       stylelint: ^16.0.2
 
@@ -3712,7 +3712,7 @@ snapshots:
       postcss-sorting: 9.1.0(postcss@8.5.3)
       stylelint: 16.26.1(typescript@5.8.2)
 
-  stylelint-plugin-use-baseline@1.1.2(stylelint@16.26.1(typescript@5.8.2)):
+  stylelint-plugin-use-baseline@1.1.4(stylelint@16.26.1(typescript@5.8.2)):
     dependencies:
       css-tree: 3.1.0
       is-plain-object: 5.0.0
