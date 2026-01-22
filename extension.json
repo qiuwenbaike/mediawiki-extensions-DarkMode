@@ -27,6 +27,9 @@
 	"ResourceModules": {
 		"ext.DarkMode": {
 			"packageFiles": [ "scripts/main.js" ],
+			"dependencies": [
+				"mediawiki.util"
+			],
 			"messages": [
 				"darkmode-link",
 				"darkmode-link-tooltip",

@@ -28,12 +28,12 @@
 	button.id = 'darkmode-button';
 	button.src = ICON;
 	button.draggable = false;
-	button.alt = checkThemeDarkModeIsOn() ?
-		message('default-link') :
-		message('link');
-	button.title = checkThemeDarkModeIsOn() ?
-		message('default-link-tooltip') :
-		message('link-tooltip');
+	button.alt = checkThemeDarkModeIsOn()
+		? message('default-link')
+		: message('link');
+	button.title = checkThemeDarkModeIsOn()
+		? message('default-link-tooltip')
+		: message('link-tooltip');
 	button.style.opacity = '0.7';
 	button.style.bottom = '127px';
 
@@ -45,16 +45,29 @@
 
 	bodyElement.appendChild(button);
 
-	const windowEventFunction = function () {
-		button.style.bottom =
-			document.getElementById('proveit') ||
-			document.getElementsByClassName('gadget-cat_a_lot-container')[ 0 ] ||
-			document.getElementById('gadget-word_count-tip') ?
-				'169px' :
-				'127px';
+	const scrollListener = () => {
+		let buttonBottom;
+
+		if (
+			document.querySelector('#proveit') ||
+			document.querySelector('.gadget-cat_a_lot-container') ||
+			document.querySelector('#gadget-word_count-tip')
+		) {
+			buttonBottom = '169px';
+		} else {
+			buttonBottom = '127px';
+		}
+
+		reportButton.style.bottom = buttonBottom;
 	};
-	window.addEventListener('scroll', windowEventFunction);
-	window.addEventListener('selectionchange', windowEventFunction);
+	const scrollListenerWithThrottle = mw.util.throttle(scrollListener, 200);
+	document.addEventListener('DOMContentLoaded', () => {
+		document.addEventListener('scroll', scrollListenerWithThrottle);
+		document.addEventListener(
+			'selectionchange',
+			scrollListenerWithThrottle,
+		);
+	});
 
 	const getCookie = function (name) {
 		return '; '
@@ -96,7 +109,7 @@
 
 	const setMetaContent = function (metaContent) {
 		const colorSchemeMeta =
-			document.getElementsByTagName('meta')[ 'color-scheme' ];
+			document.getElementsByTagName('meta')['color-scheme'];
 		if (colorSchemeMeta) {
 			colorSchemeMeta.setAttribute('content', metaContent);
 		} else {
@@ -125,7 +138,7 @@
 			setCookie({ name: COOKIE_NAME, value: '0', hour: 24 * 365 * 1000 });
 			button.alt = message('link');
 			button.title = message('link-tooltip');
-		}
+		},
 	};
 
 	const checkDarkMode = function () {
@@ -163,20 +176,20 @@
 			if (event.matches && getCookie(COOKIE_NAME) === '1') {
 				switchMode.light();
 			}
-		}
+		},
 	};
 
 	matchMedia('( prefers-color-scheme: dark )').addEventListener(
 		'change',
 		(match) => {
 			mediaQueryListeners.dark(match.target);
-		}
+		},
 	);
 	matchMedia('( prefers-color-scheme: light )').addEventListener(
 		'change',
 		(match) => {
 			mediaQueryListeners.light(match.target);
-		}
+		},
 	);
 
 	checkDarkMode(); // Entry function
