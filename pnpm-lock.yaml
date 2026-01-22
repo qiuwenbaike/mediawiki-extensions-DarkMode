@@ -1265,8 +1265,8 @@ packages:
   lodash.truncate@4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
   make-iterator@1.0.1:
     resolution: {integrity: sha512-pxiuXh0iVEq7VM7KMIhs5gxsfxCux2URptUQaXo4iZZJxBAzTPOLE2BumO5dbfVYq/hBJFBR/a1mFDmOx5AGmw==}
@@ -3053,14 +3053,14 @@ snapshots:
   grunt-legacy-log-utils@2.1.0:
     dependencies:
       chalk: 4.1.2
-      lodash: 4.17.21
+      lodash: 4.17.23
 
   grunt-legacy-log@3.0.0:
     dependencies:
       colors: 1.1.2
       grunt-legacy-log-utils: 2.1.0
       hooker: 0.2.3
-      lodash: 4.17.21
+      lodash: 4.17.23
 
   grunt-legacy-util@2.0.1:
     dependencies:
@@ -3068,7 +3068,7 @@ snapshots:
       exit: 0.1.2
       getobject: 1.0.2
       hooker: 0.2.3
-      lodash: 4.17.21
+      lodash: 4.17.23
       underscore.string: 3.3.6
       which: 2.0.2
 
@@ -3278,7 +3278,7 @@ snapshots:
 
   lodash.truncate@4.4.2: {}
 
-  lodash@4.17.21: {}
+  lodash@4.17.23: {}
 
   make-iterator@1.0.1:
     dependencies:
@@ -3899,7 +3899,7 @@ snapshots:
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       esquery: 1.6.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
