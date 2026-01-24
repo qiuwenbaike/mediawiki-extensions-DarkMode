@@ -58,7 +58,7 @@
 			buttonBottom = '127px';
 		}
 
-		reportButton.style.bottom = buttonBottom;
+		button.style.bottom = buttonBottom;
 	};
 	const scrollListenerWithThrottle = mw.util.throttle(scrollListener, 200);
 	document.addEventListener('DOMContentLoaded', () => {
