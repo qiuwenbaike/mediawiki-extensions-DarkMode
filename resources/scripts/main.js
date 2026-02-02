@@ -36,13 +36,12 @@
 		: message('link-tooltip');
 	button.style.opacity = '0.7';
 	button.style.bottom = '127px';
-
+	/* add EventListener to button */
 	const hoverListener = function (event) {
 		button.style.opacity = event.type === 'mouseenter' ? '1' : '0.7';
 	};
 	button.addEventListener('mouseenter', hoverListener);
 	button.addEventListener('mouseleave', hoverListener);
-
 	bodyElement.appendChild(button);
 
 	const scrollListener = () => {
@@ -61,13 +60,11 @@
 		button.style.bottom = buttonBottom;
 	};
 	const scrollListenerWithThrottle = mw.util.throttle(scrollListener, 200);
-	document.addEventListener('DOMContentLoaded', () => {
-		document.addEventListener('scroll', scrollListenerWithThrottle);
-		document.addEventListener(
-			'selectionchange',
-			scrollListenerWithThrottle,
-		);
-	});
+	window.addEventListener('scroll', scrollListenerWithThrottle);
+	window.addEventListener(
+		'selectionchange',
+		scrollListenerWithThrottle,
+	);
 
 	const getCookie = function (name) {
 		return '; '
