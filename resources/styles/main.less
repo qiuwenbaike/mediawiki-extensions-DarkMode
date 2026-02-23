@@ -341,12 +341,37 @@ html.client-darkmode {
 }
 
 /* Hacks for Baidu Browser */
-html.client-darkmode, // Kept for compatibility
+// html.client-darkmode is kept for compatibility
+html.client-darkmode,
 :root:has( .client-darkmode ) {
 	color-scheme: only dark;
 }
 
-html.client-lightmode, // Kept for compatibility
+html.client-lightmode,
 :root:has( .client-lightmode ) {
 	color-scheme: only light;
+}
+
+@media ( prefers-color-scheme: dark ) {
+	html.client-darkmode,
+	:root:has( .client-darkmode ) {
+		color-scheme: only dark;
+	}
+
+	html.client-lightmode,
+	:root:has( .client-lightmode ) {
+		color-scheme: only light;
+	}
+}
+
+@media ( prefers-color-scheme: light ) {
+	html.client-darkmode,
+	:root:has( .client-darkmode ) {
+		color-scheme: only dark;
+	}
+
+	html.client-lightmode,
+	:root:has( .client-lightmode ) {
+		color-scheme: only light;
+	}
 }
