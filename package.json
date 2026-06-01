@@ -21,7 +21,7 @@
 		"eslint": "^9.39.4",
 		"eslint-config-wikimedia": "^0.32.4",
 		"globals": "^17.6.0",
-		"grunt": "1.6.1",
+		"grunt": "1.6.2",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "26.0.0",
 		"grunt-stylelint": "0.20.1",
