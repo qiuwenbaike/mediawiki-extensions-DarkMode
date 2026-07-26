@@ -15,10 +15,10 @@
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.1.0",
-		"@eslint/eslintrc": "^3.3.5",
-		"@eslint/js": "^9.39.4",
-		"baseline-browser-mapping": "^2.10.42",
-		"eslint": "^9.39.4",
+		"@eslint/eslintrc": "^3.3.6",
+		"@eslint/js": "^9.39.5",
+		"baseline-browser-mapping": "^2.11.1",
+		"eslint": "^9.39.5",
 		"eslint-config-wikimedia": "^0.32.4",
 		"globals": "^17.7.0",
 		"grunt": "1.6.2",
@@ -26,9 +26,9 @@
 		"grunt-eslint": "26.0.0",
 		"grunt-stylelint": "0.21.0",
 		"postcss-less": "^6.0.0",
-		"stylelint": "^17.14.0",
+		"stylelint": "^17.14.1",
 		"stylelint-config-recess-order": "^7.7.0",
-		"stylelint-config-wikimedia": "^0.19.2",
+		"stylelint-config-wikimedia": "^0.19.3",
 		"stylelint-order": "^8.1.1",
 		"stylelint-plugin-use-baseline": "^1.4.4"
 	}
