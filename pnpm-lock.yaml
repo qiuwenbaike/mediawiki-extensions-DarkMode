@@ -57,8 +57,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))
       stylelint-plugin-use-baseline:
-        specifier: ^1.4.7
-        version: 1.4.7(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))
+        specifier: ^1.4.8
+        version: 1.4.8(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))
 
 packages:
 
@@ -1726,8 +1726,8 @@ packages:
     peerDependencies:
       stylelint: ^16.18.0 || ^17.0.0
 
-  stylelint-plugin-use-baseline@1.4.7:
-    resolution: {integrity: sha512-5mFGYObiJ6kr6nqT0GyvIiKkpJuLoW/oG15pseJdF4S8zndb1ZQoT0I+3lEFjOmhwWuqq6MEBEtUMRlGuSBiwQ==}
+  stylelint-plugin-use-baseline@1.4.8:
+    resolution: {integrity: sha512-AJtV32b6aOoZdbiaJaj0OEO8I/wh8TSZUGUHsR/15MHSWPon2IPPVcNfzhCodvB+nBEre9xC2wdVJ8QNOWHBLw==}
     peerDependencies:
       stylelint: ^16.0.2 || ^17.0.0
 
@@ -3618,7 +3618,7 @@ snapshots:
       postcss-sorting: 10.0.0(postcss@8.5.30)
       stylelint: 17.16.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  stylelint-plugin-use-baseline@1.4.7(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-plugin-use-baseline@1.4.8(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       css-tree: 3.2.1
       is-plain-object: 5.1.0
